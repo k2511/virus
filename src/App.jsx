@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-     <div>scsdcsdcsgi</div>
-     <div>ascwscsdcdscds</div>
+      <h1>Antivirus Project</h1>
+      <p>This is a placeholder for the Antivirus Project application.</p>
     </>
   )
 }
