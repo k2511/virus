@@ -748,7 +748,7 @@ import {
   ExternalLink,
   ArrowRight,AlignJustify
 } from "lucide-react";
-
+import alogo from '../assets/images/antivirusLogo.png'
 const Hero = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
@@ -828,6 +828,23 @@ const Hero = () => {
     },
   ];
 
+  const [openIndex, setOpenIndex] = useState(null);
+  const [showDepartment, setShowDepartment] = useState(null);
+  
+  const toggleItem = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const items = [
+    { title: "Antivirus Software", content: "Submenu for Antivirus" },
+    { title: "Windows", content: "Submenu for Windows" },
+    { title: "Office 365", content: "Submenu for Office 365" },
+    { title: "Accounting Software", content: "Submenu for Accounting" },
+    { title: "Tally", content: "Submenu for Tally" },
+    { title: "QuickBooks", content: "Submenu for QuickBooks" },
+    { title: "Zoho Books", content: "Submenu for Zoho Books" },
+  ];
+
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
   };
@@ -875,31 +892,6 @@ const Hero = () => {
                   className="w-6 h-6 cursor-pointer"
                 />
               )}
-
-               {/* <div className="flex">
-      
-      <button
-        onClick={sidebarOpen}
-        className="p-2 m-4 bg-blue-500 text-white rounded-lg"
-      >
-        {open ? "Close Sidebar" : "Open Sidebar"}
-      </button>
-
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white p-6 transform 
-        ${open ? "translate-x-0" : "-translate-x-full"} 
-        transition-transform duration-300 ease-in-out`}
-      >
-        <h2 className="text-2xl font-bold mb-4">Sidebar Menu</h2>
-        <ul className="space-y-3">
-          <li className="hover:text-gray-300 cursor-pointer">Home</li>
-          <li className="hover:text-gray-300 cursor-pointer">About</li>
-          <li className="hover:text-gray-300 cursor-pointer">Services</li>
-          <li className="hover:text-gray-300 cursor-pointer">Contact</li>
-        </ul>
-      </div>
-    </div> */}
-
 
 
               </div>
@@ -953,25 +945,91 @@ const Hero = () => {
           </div>
         </div>
          {/* Sidebar */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-300 text-white p-6 transform ${
-          showslide ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50`}
-      >
-        <div className="flex items-center border-2 border-white justify-between">
-           <h2 className="text-2xl font-bold mb-6">Sidebar Menu  </h2> <X
-                  onClick={() => setShowSlide(!showslide)}
-                  className="w-6 h-6 cursor-pointer"
-                />
+     
+
+<div
+  className={`fixed top-0 left-0 h-full w-64 bg-gray-200 text-white  transform ${
+    showslide ? "translate-x-0" : "-translate-x-full"
+  } transition-transform duration-300 ease-in-out z-50 flex flex-col`}
+>
+  <div className="flex items-center  justify-between pt-5 px-5">
+    <h2 className=" text-black font-bold text-center ">
+      <img src={alogo} className="w-full h-12" />
+    </h2>
+    <X
+      onClick={() => setShowSlide(!showslide)}
+      className="w-7 h-7 cursor-pointer text-black"
+    />
+  </div>
+
+
+  <ul className="space-y-2 text-black mt-6 px-4">
+      {items.map((item, index) => (
+        <div key={index}>
+          <div
+            className="flex items-center justify-between cursor-pointer py-2"
+            onClick={() => toggleItem(index)}
+          >
+            <li className="hover:text-gray-300">{item.title}</li>
+            <ChevronDown
+              className={`transition-transform duration-300 ${
+                openIndex === index ? "rotate-180" : ""
+              }`}
+            />
+          </div>
+
+          {openIndex === index && (
+            <div className="ml-4 mt-2 p-2 bg-gray-100 rounded-md text-sm text-gray-700">
+              {item.content}
+            </div>
+          )}
         </div>
-       
-        <ul className="space-y-4">
-          <li className="hover:text-gray-300 cursor-pointer">Home</li>
-          <li className="hover:text-gray-300 cursor-pointer">Shop</li>
-          <li className="hover:text-gray-300 cursor-pointer">About</li>
-          <li className="hover:text-gray-300 cursor-pointer">Contact</li>
-        </ul>
-      </div>
+      ))}
+    </ul>
+
+  {/* SVG pushed to bottom */}
+  <div className="mt-auto">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 300 126.5"
+      className="injected-svg js-svg-injector w-full"
+    >
+      <style type="text/css">{`
+        .wave-bottom-with-dots-0{fill:#377DFF;}
+        .wave-bottom-with-dots-1{fill:#377DFF;}
+        .wave-bottom-with-dots-2{fill:#DE4437;}
+        .wave-bottom-with-dots-3{fill:#00C9A7;}
+        .wave-bottom-with-dots-4{fill:#FFC107;}
+      `}</style>
+
+      <path
+        className="wave-bottom-with-dots-0 fill-primary"
+        opacity=".6"
+        d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69  
+        c43-16.9,40-7.9,84-2.2c44,5.7,83-31.5,143-10.1v69.8H0C0,126.5,0,59,0,58.9z"
+      ></path>
+
+      <path
+        className="wave-bottom-with-dots-1 fill-primary"
+        d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11  
+        c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2  
+        C282.5,76.7,292.7,74.4,300,68.5z"
+      ></path>
+
+      <g>
+        <circle className="wave-bottom-with-dots-2 fill-danger" cx="259.5" cy="17" r="13"></circle>
+        <circle className="wave-bottom-with-dots-1 fill-primary" cx="290" cy="35.5" r="8.5"></circle>
+        <circle className="wave-bottom-with-dots-3 fill-success" cx="288" cy="5.5" r="5.5"></circle>
+        <circle className="wave-bottom-with-dots-4 fill-warning" cx="232.5" cy="34" r="2"></circle>
+      </g>
+    </svg>
+  </div>
+</div>
+
+
+
+
+
 
       {/* Overlay */}
       {showslide && (
@@ -980,13 +1038,16 @@ const Hero = () => {
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
         ></div>
       )}
+
+
+   
       </div>
 
       {/* Navigation Bar */}
       <div className="bg-white border-b relative">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
-            <button className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 md:px-6 md:py-3 flex items-center space-x-2 font-semibold">
+            <button onClick={() => {setShowDepartment(!showDepartment)}} className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold">
               <Menu className="w-5 h-5" />
               <span className="hidden md:inline">All Departments</span>
             </button>
@@ -1354,8 +1415,9 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
-          <div className="hidden md:block w-64 bg-white border-r p-4">
-            <ul className="space-y-2">
+          <div className="hidden md:block w-60 bg-white border-r p-4">
+           
+           { showDepartment &&  (<ul className="space-y-2">
               {menuItems.map((item, index) => (
                 <li key={index}>
                   {item.isSpecial ? (
@@ -1392,7 +1454,9 @@ const Hero = () => {
                   )}
                 </li>
               ))}
-            </ul>
+            </ul>)
+
+           } 
           </div>
 
           {/* Slider Section */}
