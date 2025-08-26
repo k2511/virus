@@ -755,6 +755,7 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showslide, setShowSlide] = useState(false);
   const [open, setOpen] = useState(false);
+
   const sidebarOpen = () => {
     setOpen(!open);
   };
@@ -953,7 +954,7 @@ const Hero = () => {
         </div>
          {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white p-6 transform ${
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-300 text-white p-6 transform ${
           showslide ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
