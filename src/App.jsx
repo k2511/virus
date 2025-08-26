@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import Software from "./pages/Software";
-import Brands from "./pages/Brands";
+// import Brands from "./pages/Brands";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/software" element={<Software />} />
-        <Route path="/brands" element={<Brands />} />
+        {/* <Route path="/brands" element={<Brands />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
                 {/* <Route path="/contact" element={<Contact />} /> */}
