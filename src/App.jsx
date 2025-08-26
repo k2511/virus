@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -22,7 +19,8 @@ function App() {
     <Router>
       <Topbar setActivePanel={setActivePanel} />
       <Navbar activePanel={activePanel} setActivePanel={setActivePanel} />
-          <div> virus one </div>
+          {/* <div> virus one </div> */}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/software" element={<Software />} />
