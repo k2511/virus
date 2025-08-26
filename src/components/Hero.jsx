@@ -735,7 +735,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import {
   Search,
@@ -829,7 +829,7 @@ const Hero = () => {
   ];
 
   const [openIndex, setOpenIndex] = useState(null);
-  const [showDepartment, setShowDepartment] = useState(null);
+  const [showDepartment, setShowDepartment] = useState(true);
   
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -853,6 +853,11 @@ const Hero = () => {
     setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
   };
 
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 3000); // run every 3 sec
+    return () => clearInterval(interval); // cleanup when unmount
+  }, [currentSlide]);
+
   const handleProductSelect = (productName) => {
     const slideIndex = slides.findIndex((slide) =>
       slide.title.toLowerCase().includes(productName.toLowerCase())
@@ -862,6 +867,7 @@ const Hero = () => {
     }
     setIsMobileMenuOpen(false);
   };
+
 
   return (
     <div className="w-full bg-white min-h-screen">
@@ -923,7 +929,7 @@ const Hero = () => {
               <div className="flex items-center space-x-2 text-gray-900">
                 <ShoppingCart className="w-6 h-6" />
                 <div className="text-right">
-                  <div className="bg-yellow-400 text-black text-xs px-1 rounded-full min-w-[20px] h-5 flex items-center justify-center font-bold">
+                  <div className="  bg-yellow-400 text-black text-xs px-1 rounded-full w-5 h-5 flex items-center justify-center font-bold">
                     2
                   </div>
                   <div className="font-bold text-lg">$1785.00</div>
@@ -1030,7 +1036,6 @@ const Hero = () => {
 
 
 
-
       {/* Overlay */}
       {showslide && (
         <div
@@ -1044,7 +1049,7 @@ const Hero = () => {
       </div>
 
       {/* Navigation Bar */}
-      <div className="bg-white border-b relative">
+      <div className="bg-[#e5e7eb] border-b relative">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <button onClick={() => {setShowDepartment(!showDepartment)}} className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold">
@@ -1501,7 +1506,7 @@ const Hero = () => {
                         <img
                           src={slide.image}
                           alt={slide.title}
-                          className="w-full max-w-md mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
+                          className="w-40 h-40  mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
                         />
                         <div
                           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer"
@@ -1597,7 +1602,7 @@ const Hero = () => {
         )}
 
         {/* Deals Section */}
-        <div className="px-6 md:px-12 lg:px-20 py-8 flex justify-center">
+        {/* <div className="md:px-12 lg:px-20 py-8 flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
             {data.map((val, i) => (
               <div
@@ -1608,11 +1613,11 @@ const Hero = () => {
                   <img
                     src={val.img}
                     alt="deal"
-                    className="w-32 h-28 object-contain"
+                    className="w-28 h-28 object-contain"
                   />
                 </div>
                 <div className="ml-4 flex flex-col justify-between">
-                  <p className="text-gray-700 text-lg leading-snug">
+                  <p className="text-gray-700 md:text-md  sm:text-base leading-snug">
                     {val.text}
                   </p>
                   <button className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2">
@@ -1623,7 +1628,36 @@ const Hero = () => {
               </div>
             ))}
           </div>
+        </div> */}
+
+<div className="px-4 sm:px-6 md:px-12 lg:px-20 py-8 flex justify-center">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
+    {data.map((val, i) => (
+      <div
+        key={i}
+        className="flex items-center bg-[#e5e7eb] shadow-md xl:p-4 p-2 rounded-lg"
+      >
+        <div className="flex-shrink-0">
+          <img
+            src={val.img}
+            alt="deal"
+            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain"
+          />
         </div>
+        <div className="ml-4 flex flex-col justify-between">
+          <p className="text-gray-700 text-sm sm:text-base md:text-sm leading-snug">
+            {val.text}
+          </p>
+          <button className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-base">
+            Shop now
+            <ArrowRight className="text-yellow-400" />
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
       </div>
     </div>
   );
