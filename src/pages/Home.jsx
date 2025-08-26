@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from '../components/Hero'
 import NewSection from '../components/NewSection'
 import  RecentlyViewedSlider from "../components/RecentlyViewedSlider"
+import Brand from '../components/Brand'
 
 
 
@@ -10,6 +11,7 @@ function Home() {
     <div>
       <Hero/>
       <NewSection/>
+      <Brand/>
       <RecentlyViewedSlider/>
     </div>
   )
