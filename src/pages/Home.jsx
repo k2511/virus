@@ -6,7 +6,6 @@ import Brand from '../components/Brand'
 import Bestseller from '../components/BestSeller'
 
 
-
 function Home() {
   return (
     <div>

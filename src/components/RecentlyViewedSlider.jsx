@@ -137,7 +137,7 @@ const RecentlyViewedSlider = () => {
 
   return (
     <div className="w-full flex justify-center px-4 py-6">
-      <div className="w-full max-w-6xl bg-white rounded-lg shadow-md p-4">
+      <div className="w-full max-w-6xl bg-white rounded-lg  p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-base sm:text-lg font-semibold text-gray-800">
