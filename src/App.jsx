@@ -19,6 +19,7 @@ function App() {
     <Router>
       <Topbar setActivePanel={setActivePanel} />
       <Navbar activePanel={activePanel} setActivePanel={setActivePanel} />
+          {/* <div> virus one </div> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
