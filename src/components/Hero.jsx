@@ -138,12 +138,7 @@ const Hero = () => {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-4">
-            <button
-              className="md:hidden mr-2"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+          
             <div className="flex items-center justify-around w-[15rem]">
               <div>
                 <img src={logo} alt="Logo" className="h-10" />
@@ -258,7 +253,7 @@ const Hero = () => {
 
   {/* SVG pushed to bottom */}
   <div className="mt-auto">
-    <svg
+    {/* <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 300 126.5"
       className="injected-svg js-svg-injector w-full"
@@ -291,7 +286,7 @@ const Hero = () => {
         <circle className="wave-bottom-with-dots-3 fill-success" cx="288" cy="5.5" r="5.5"></circle>
         <circle className="wave-bottom-with-dots-4 fill-warning" cx="232.5" cy="34" r="2"></circle>
       </g>
-    </svg>
+    </svg> */}
   </div>
 </div>
 
@@ -313,7 +308,7 @@ const Hero = () => {
 
       {/* Navigation Bar */}
       <div className="bg-[#e5e7eb] border-b relative">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className=" max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
             <button onClick={() => {setShowDepartment(!showDepartment)}} className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold">
               <Menu className="w-5 h-5" />
@@ -810,59 +805,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
-            <div className="fixed top-0 left-0 h-full w-64 bg-white overflow-y-auto">
-              <div className="p-4 border-b flex justify-between items-center">
-                <h2 className="text-xl font-bold">Menu</h2>
-                <button onClick={() => setIsMobileMenuOpen(false)}>
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="p-4">
-                <ul className="space-y-2">
-                  {menuItems.map((item, index) => (
-                    <li key={index}>
-                      {item.isSpecial ? (
-                        <div className="py-2 px-4 text-gray-700 hover:text-yellow-600 cursor-pointer">
-                          {item.title}
-                        </div>
-                      ) : (
-                        <div>
-                          <div
-                            className="flex justify-between items-center cursor-pointer hover:text-yellow-600 py-2 px-4"
-                            onClick={() => item.options && handleProductSelect(item.options[0])}
-                          >
-                            <span className="font-medium text-gray-700">{item.title}</span>
-                            {item.options && <ChevronRight className="w-4 h-4" />}
-                          </div>
-                          {item.options && (
-                            <ul className="ml-4 space-y-1">
-                              {item.options.map((option, i) => (
-                                <li
-                                  key={i}
-                                  className={`cursor-pointer py-1 px-4 text-sm ${
-                                    slides[currentSlide].title.toLowerCase().includes(option.toLowerCase())
-                                      ? "bg-yellow-50 text-yellow-700"
-                                      : "text-gray-600 hover:bg-gray-50"
-                                  }`}
-                                  onClick={() => handleProductSelect(option)}
-                                >
-                                  {option}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
+        
 
         {/* Deals Section */}
         {/* <div className="md:px-12 lg:px-20 py-8 flex justify-center">
@@ -893,7 +836,7 @@ const Hero = () => {
           </div>
         </div> */}
 
-<div className="px-4 sm:px-6 md:px-12 lg:px-20 py-8 flex justify-center">
+<div className="px-4 sm:px-6 md:px-12 lg:px-20 py-10 flex justify-center">
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
     {data.map((val, i) => (
       <div

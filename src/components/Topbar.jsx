@@ -4,7 +4,7 @@ import { FaDollarSign } from "react-icons/fa6";
 const Topbar = ({ setActivePanel }) => {
   return (
     <div className="w-full bg-gray-100 text-sm text-gray-700 border-b">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center py-2">
+      <div className="max-w-7xl    mx-auto px-4 flex justify-between items-center py-2">
         
         {/* Left side text */}
         <span>Welcome to Worldwide Electronics Store</span>
