@@ -746,13 +746,19 @@ import {
   ChevronRight,
   ChevronDown,
   ExternalLink,
-  ArrowRight,
+  ArrowRight,AlignJustify
 } from "lucide-react";
 
 const Hero = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showslide, setShowSlide] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const sidebarOpen = () => {
+    setOpen(!open);
+  };
 
   const slides = [
     {
@@ -856,8 +862,46 @@ const Hero = () => {
               <div>
                 <img src={logo} alt="Logo" className="h-10" />
               </div>
-              <div className="md:hidden">
-                <Menu />
+              <div className="">
+              {/* <AlignJustify /> */}
+              {showslide ? (
+                <X
+                  onClick={() => setShowSlide(false)}
+                  className="w-6 h-6 cursor-pointer"
+                />
+              ) : (
+                <Menu
+                  onClick={() => setShowSlide(true)}
+                  className="w-6 h-6 cursor-pointer"
+                />
+              )}
+
+               {/* <div className="flex">
+      
+      <button
+        onClick={sidebarOpen}
+        className="p-2 m-4 bg-blue-500 text-white rounded-lg"
+      >
+        {open ? "Close Sidebar" : "Open Sidebar"}
+      </button>
+
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white p-6 transform 
+        ${open ? "translate-x-0" : "-translate-x-full"} 
+        transition-transform duration-300 ease-in-out`}
+      >
+        <h2 className="text-2xl font-bold mb-4">Sidebar Menu</h2>
+        <ul className="space-y-3">
+          <li className="hover:text-gray-300 cursor-pointer">Home</li>
+          <li className="hover:text-gray-300 cursor-pointer">About</li>
+          <li className="hover:text-gray-300 cursor-pointer">Services</li>
+          <li className="hover:text-gray-300 cursor-pointer">Contact</li>
+        </ul>
+      </div>
+    </div> */}
+
+
+
               </div>
             </div>
             <div className="hidden md:flex items-center flex-1 max-w-2xl mx-8">
@@ -908,6 +952,34 @@ const Hero = () => {
             </div>
           </div>
         </div>
+         {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-300 text-white p-6 transform ${
+          showslide ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out z-50`}
+      >
+        <div className="flex items-center border-2 border-white justify-between">
+           <h2 className="text-2xl font-bold mb-6">Sidebar Menu  </h2> <X
+                  onClick={() => setShowSlide(!showslide)}
+                  className="w-6 h-6 cursor-pointer"
+                />
+        </div>
+       
+        <ul className="space-y-4">
+          <li className="hover:text-gray-300 cursor-pointer">Home</li>
+          <li className="hover:text-gray-300 cursor-pointer">Shop</li>
+          <li className="hover:text-gray-300 cursor-pointer">About</li>
+          <li className="hover:text-gray-300 cursor-pointer">Contact</li>
+        </ul>
+      </div>
+
+      {/* Overlay */}
+      {showslide && (
+        <div
+          onClick={() => setShowSlide(false)}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        ></div>
+      )}
       </div>
 
       {/* Navigation Bar */}
