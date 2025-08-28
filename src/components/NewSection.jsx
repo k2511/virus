@@ -243,7 +243,7 @@ const NewSection = () => {
           </div>
 
           <div className="flex-1">
-            <div className="flex flex-wrap gap-1 mb-8 bg-gray-100 rounded-lg p-1 w-full">
+            <div className="flex flex-wrap gap-[50px] mb-8 bg-gray-100 rounded-lg p-1 w-full">
               {tabs.map((tab) => (
                 <button
                   key={tab}
