@@ -137,7 +137,7 @@ const RecentlyViewedSlider = () => {
 
   return (
     <div className="w-full flex justify-center px-4 py-6">
-      <div className="w-full max-w-6xl bg-white rounded-lg shadow-md p-4">
+      <div className="w-full max-w-7xl bg-white rounded-lg shadow-md p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-base sm:text-lg font-semibold text-gray-800">
@@ -169,7 +169,7 @@ const RecentlyViewedSlider = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain mb-2"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-40 md:h-24 object-contain mb-2"
               />
               <p className="text-[10px] sm:text-xs md:text-sm text-blue-600 text-center line-clamp-2">
                 {product.name}
@@ -177,7 +177,7 @@ const RecentlyViewedSlider = () => {
               <p className="text-xs sm:text-sm font-semibold text-gray-800 mt-1">
                 {product.price}
               </p>
-              <span className="text-yellow-500 text-lg sm:text-xl mt-1">🛒</span>
+              <span className=" text-sm sm:text-lg bg-yellow-300 text-black mt-1 rounded-lg   px-5  ">Buy </span>
             </div>
           ))}
         </div>

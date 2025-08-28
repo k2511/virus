@@ -876,7 +876,7 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-4">
           
-            <div className="flex items-center justify-around w-[15rem]">
+            <div className="flex items-center justify-around w-[15rem] ">
               <div>
                 <img src={logo} alt="Logo" className="h-10" />
               </div>
@@ -918,18 +918,27 @@ const Hero = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="hidden md:flex items-center space-x-1 text-gray-600">
+              <div className="hidden md:flex items-center space-x-1 text-gray-600  ">
                 <Heart className="w-5 h-5" />
               </div>
-              <div className="flex items-center space-x-2 text-gray-900">
-                <ShoppingCart className="w-6 h-6" />
-                <div className="text-right">
-                  <div className="  bg-yellow-400 text-black text-xs px-1 rounded-full w-5 h-5 flex items-center justify-center font-bold">
+              <div className="flex relative items-center space-x-2 text-gray-900  ">
+                <div>
+                    <ShoppingCart className="w-6 h-6" />
+
+                 <div className=" absolute top-3 -right-2  bg-yellow-400 text-black animate-bounce text-xs px-1 py-1  rounded-full w-5 h-5 flex items-center justify-center font-semibold leading-none">
                     2
                   </div>
+          
+
+                </div>
+
+                {/* <div class="absolute bg-red-500 px-3 sm:px-4 py-1 sm:py-2 animate-bounce -top-[10px] -left-[10px] rounded-[4px] text-xs sm:text-sm">New</div> */}
+              
+   </div>
+                <div className="text-right ">
                   <div className="font-bold text-lg">$1785.00</div>
                 </div>
-              </div>
+           
             </div>
           </div>
           <div className="md:hidden pb-4">
@@ -990,7 +999,7 @@ const Hero = () => {
 
   {/* SVG pushed to bottom */}
   <div className="mt-auto">
-    {/* <svg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 300 126.5"
       className="injected-svg js-svg-injector w-full"
@@ -1023,7 +1032,7 @@ const Hero = () => {
         <circle className="wave-bottom-with-dots-3 fill-success" cx="288" cy="5.5" r="5.5"></circle>
         <circle className="wave-bottom-with-dots-4 fill-warning" cx="232.5" cy="34" r="2"></circle>
       </g>
-    </svg> */}
+    </svg>
   </div>
 </div>
 
@@ -1039,14 +1048,14 @@ const Hero = () => {
         ></div>
       )}
 
-
-   
+       
+  
       </div>
 
       {/* Navigation Bar */}
-      <div className="bg-[#e5e7eb] border-b relative">
-        <div className=" max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between">
+      <div className="bg-[#e5e7eb] border-b relative ">
+        <div className=" max-w-7xl mx-auto px-4 ">
+          <div className="flex items-center justify-between ">
             <button onClick={() => {setShowDepartment(!showDepartment)}} className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold">
               <Menu className="w-5 h-5" />
               <span className="hidden md:inline">All Departments</span>
@@ -1412,10 +1421,10 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row">
+      <div className="max-w-7xl mx-auto  ">
+        <div className="flex flex-col md:flex-row  "  >
           {/* Sidebar */}
-          <div className="hidden md:block w-60 bg-white border-r p-4">
+          <div className="hidden md:block w-60 from-gray-50 to-gray-100 border-r p-4">
            
            { showDepartment &&  (<ul className="space-y-2">
               {menuItems.map((item, index) => (
@@ -1460,7 +1469,8 @@ const Hero = () => {
           </div>
 
           {/* Slider Section */}
-          <div className="flex-1 bg-gradient-to-r from-gray-50 to-gray-100 p-4">
+          <div className="flex-1 bg-gradient-to-r from-gray-50 to-gray-100 p-4 overflow-hidden "> 
+            {/* overflow hidden */}
             <div className="relative w-full max-w-6xl mx-auto overflow-hidden">
               <div
                 className="flex transition-transform duration-500"
@@ -1501,12 +1511,12 @@ const Hero = () => {
                         <img
                           src={slide.image}
                           alt={slide.title}
-                          className="w-40 h-40  mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
+                          className="md:w-80 md:h-80 h-40 w-40 mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
                         />
                         <div
-                          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer"
+                          className="absolute  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer"
                         >
-                          <ExternalLink className="w-12 h-12 text-white" />
+                          {/* <ExternalLink className="w-12 h-12 text-white" /> */}
                         </div>
                       </div>
                     </div>
@@ -1539,8 +1549,11 @@ const Hero = () => {
                 ))}
               </div>
             </div>
+
           </div>
+
         </div>
+
 
         
 
@@ -1573,8 +1586,8 @@ const Hero = () => {
           </div>
         </div> */}
 
-<div className="px-4 sm:px-6 md:px-12 lg:px-20 py-10 flex justify-center">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full">
+<div className="px-4 sm:px-6 md:px-5 lg:px-2 py-10 flex justify-center max-w-7xl">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-6 gap-3 w-full  ">
     {data.map((val, i) => (
       <div
         key={i}
@@ -1591,7 +1604,7 @@ const Hero = () => {
           <p className="text-gray-700 text-sm sm:text-base md:text-sm leading-snug">
             {val.text}
           </p>
-          <button className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-base">
+          <button className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-xs ">
             Shop now
             <ArrowRight className="text-yellow-400" />
           </button>

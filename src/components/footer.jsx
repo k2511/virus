@@ -119,7 +119,7 @@ const Footer = () => {
                 
                    {/* <img src="https://tse3.mm.bing.net/th/id/OIP.7tPeof3u0gM89FdlRjGBuwHaHZ?cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="antivirus" className="w-12 h-10" /> */}
                <div className="">
-                <h1 className="text-5xl text-gray-600 font-semibold">electro.
+                <h1 className="text-5xl text-gray-600 font-semibold">Antivirus E-store.
                     </h1></div>
             </div>
             <div className="flex flex-col">
