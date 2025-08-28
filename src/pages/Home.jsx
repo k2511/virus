@@ -4,6 +4,8 @@ import NewSection from '../components/NewSection'
 import  RecentlyViewedSlider from "../components/RecentlyViewedSlider"
 import Brand from '../components/Brand'
 import Bestseller from '../components/BestSeller'
+import ProductWidget from '../components/ProductWidget'
+import BrandSlider from '../components/BrandSlider'
 
 
 function Home() {
@@ -13,7 +15,9 @@ function Home() {
       <NewSection/>
       <Brand/>
       <Bestseller/>
+      <BrandSlider/>
       <RecentlyViewedSlider/>
+      <ProductWidget/>
     </div>
   )
 }

@@ -8,42 +8,42 @@ const RecentlyViewedSlider = () => {
   const products = [
     {
       name: "Windows 10 Home",
-      price: "$139.00",
+      price: "₹139.00",
       category: "Speakers",
       image:
         "https://avatars.mds.yandex.net/i?id=50bc55deea68a40cb15789b52cff24d194458ded-4575688-images-thumbs&n=13",
     },
     {
       name: "Windows 10 Pro",
-      price: "$199.00",
+      price: "₹199.00",
       category: "Speakers",
       image:
         "https://rukminim2.flixcart.com/image/704/844/kll7bm80/operating-system/x/z/c/windows-10-professional-32-bit-64-bit-usb-full-retail-pack-original-imagyzdzssczjrfg.jpeg?q=90&crop=false",
     },
     {
       name: "Windows 11 Home",
-      price: "$139.00",
+      price: "₹139.00",
       category: "Speakers",
       image:
         "https://avatars.mds.yandex.net/i?id=c33e1f6613279a15ff2b65d2ecca6a5bb9fe1a68-4374572-images-thumbs&n=13",
     },
     {
       name: "Windows 11 Pro",
-      price: "$199.00",
+      price: "₹199.00",
       category: "Speakers",
       image:
         "https://avatars.mds.yandex.net/i?id=58d1f19b0a71da499968ddc6f3b33acfa3387d1d-5235855-images-thumbs&n=13",
     },
     {
       name: "Microsoft 365 Personal",
-      price: "$69.99/year",
+      price: "₹69.99/year",
       category: "Speakers",
       image:
         "https://avatars.mds.yandex.net/i?id=6d797b1156e9223e59c9dab9bc5e81a608bd9fdd-5315965-images-thumbs&n=13",
     },
     {
       name: "Microsoft 365 Family",
-      price: "$99.99/year",
+      price: "₹99.99/year",
       category: "Speakers",
       image:
         "https://avatars.mds.yandex.net/i?id=e3b457271ddd4397d062d0d203d47367-5242896-images-thumbs&n=13",

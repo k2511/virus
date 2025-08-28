@@ -3,6 +3,15 @@ import { FaShoppingCart } from "react-icons/fa";
 const Brands = () => {
   const [val, setVal] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
+  const topSelling =  {
+    img: "https://dantivirus.com/admin/model/pics/kas_standard.png",
+    name: "Kaspersky Antivirus 1 PC 1 Year",
+    price: "249.00",
+    category: "Antivirus"
+}
+
+  const [sale, setSale] = useState(topSelling);
+
   const list = [
     {
       name: "Kaspersky",
@@ -207,24 +216,8 @@ const Brands = () => {
     },
   ];
 
-  const controller = {
-    category: "Game Consoles",
-    name: "Game Console Controller + USB 3.0 Cable",
-    price: "$685,00",
-    images: [
-      "https://via.placeholder.com/400x300",
-      "https://via.placeholder.com/400x300",
-      "https://via.placeholder.com/400x300",
-    ],
-  };
-
-  const topSelling =  {
-          img: "https://dantivirus.com/admin/model/pics/kas_standard.png",
-          name: "Kaspersky Antivirus 1 PC 1 Year",
-          price: "249.00",
-          category: "Antivirus"
-    }
  
+
 
 
   const handleAddToCart = (item) => {
@@ -235,13 +228,17 @@ const Brands = () => {
   return (
     <div className="min-h-screen bg-gray-50  ">
       {/* Navigation Tabs */}
-      <div className="bg-white shadow-sm border-b flex justify-center ">
+      <div className="bg-white shadow-sm  border-b flex justify-center ">
         <div className="max-w-7xl mx-auto px-4  ">
           <div className="flex space-x-8 overflow-x-auto mx-auto items-center ">
             {list.map((brand, idx) => (
               <button
                 key={idx}
-                onClick={() => setVal(idx)}
+                onClick={() => {
+                  setVal(idx);
+                  console.log(brand.arr[0])
+                  setSale(brand.arr[0]);
+                }}
                 className={`py-4 px-2 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                   val === idx
                     ? 'border-blue-600 text-blue-600'
@@ -255,69 +252,21 @@ const Brands = () => {
         </div>
       </div>
 
-      {/* Products Grid */}
-      {/* <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {list[val].arr.map((item, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group"
-            >
-      
-              <div className="aspect-square bg-gray-50 flex items-center justify-center p-4">
-                <img
-                  src={item.img || "/api/placeholder/200/200"}
-                  alt={item.name}
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-
-              <div className="p-4">
-             
-                <div className="text-xs text-gray-500 mb-1">
-                  {item.category}
-                </div>
-
-           
-                <h3 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2">
-                  {item.name}
-                </h3>
-
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-lg font-bold text-gray-900">
-                    ${item.price}
-                  </span>
-                </div>
-
-             
-                <button
-                  onClick={() => handleAddToCart(item)}
-                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l1.5-6M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6" />
-                  </svg>
-                  <span>Add to Cart</span>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
+   
 
     <section>
 
-    <div className="min-h-screen bg-gray-50 p-4 md:p-10">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch ">
+    <div className="min-h-screen m-auto max-w-[1400px] bg-gray-50 p-4 md:p-10 ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 items-stretch ">
 
       <div
-  className={`grid grid-cols-2 gap-6 h-full  mx-auto 
+  className={`grid grid-cols-2 gap-2 h-full  mx-auto 
     ${list[val].arr.length === 1 ? "justify-end grid-cols-1" : ""}`}
 >
   {list[val].arr.map((item, i) => (
     <div
       key={i}
-      className="bg-white rounded-xl p-4 shadow flex flex-col justify-between items-center text-center h-full"
+      className="bg-white rounded-sm p-4 shadow flex flex-col justify-between items-center text-center h-full hover:shadow-xl"
     >
       <p className="text-sm text-gray-500">{item.category}</p>
       <p className="font-semibold text-blue-700">{item.name}</p>
@@ -336,40 +285,26 @@ const Brands = () => {
   ))}
 </div>
 
-        <div className="bg-white rounded-xl p-6 shadow flex flex-col justify-between items-center text-center h-fit ">
+        <div className="bg-white rounded-sm p-6 shadow flex flex-col justify-between items-center text-center h-fit hover:shadow-xl ">
           <div className="w-full">
-            <p className="text-sm text-gray-500">{topSelling.category}</p>
+            <p className="text-sm text-gray-500">{sale.category}</p>
             <p className="font-semibold text-blue-700 mb-4">
-              {topSelling.name}
+              {sale.name}
             </p>
             <img
-              src={topSelling.img}
+              src={sale.img}
               alt="controller"
               className="w-full max-h-80 object-contain mb-6"
             />
-            {/* <div className="flex space-x-4 mb-6 justify-center">
-              {controller.images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`thumb-${idx}`}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`h-16 w-16 object-contain cursor-pointer border ${
-                    selectedImage === idx
-                      ? "border-black"
-                      : "border-gray-300"
-                  }`}
-                />
-              ))}
-            </div> */}
+        
              <div className="w-full">
             <div className="flex items-center justify-between w-full">
-              <span className="text-lg font-semibold">{topSelling.price}</span>
+              <span className="text-lg font-semibold">{sale.price}</span>
               <button className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2">
                 <FaShoppingCart /> Add to Cart
               </button>
             </div>
-            <div className="flex gap-6 text-sm text-gray-500 mt-4  w-full justify-between   ">
+            <div className="flex gap-2 text-sm text-gray-500 mt-4  w-full justify-between   ">
               <span>Compare</span>
               <span>Add to Wishlist</span>
             </div>
@@ -379,11 +314,11 @@ const Brands = () => {
         </div>
 
       
-        <div className="grid grid-cols-2 gap-6 h-full">
+        <div className="grid grid-cols-2 gap-2 h-full">
           {list[val].arr.map((item, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl p-4 shadow flex flex-col justify-between items-center text-center h-full"
+              className="bg-white rounded-sm p-4 shadow flex flex-col justify-between items-center text-center h-full hover:shadow-xl"
             >
               <p className="text-sm text-gray-500">{item.category}</p>
               <p className="font-semibold text-blue-700">{item.name}</p>
@@ -404,50 +339,6 @@ const Brands = () => {
       </div>
     </div>
     </section>
-
-
-
-{/* <div>
-         <div className="min-h-screen bg-gray-50 p-4 md:p-10">
-  <div className="max-w-6xl flex items-center justify-center mx-auto">
-    {list.map((val, idx) => (
-
-<div
-        key={idx}
-        className="w-fit inline mx-auto px-0 cursor-pointer"
-        onClick={() => setVal(idx)}
-      >
-        <span>{val.name}</span>
-      </div>
-    ))}
-  </div>
-
-  <div className="gap-6 items-stretch mt-6">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 w-full">
-      {list[val].arr.map((item, i) => (
-        <div
-          key={i}
-          className="bg-white border-2 border-black rounded-xl p-4 shadow flex flex-col justify-between items-center text-center h-full"
-        >
-          <p className="text-sm text-gray-500">{item.name}</p>
-          <p className="font-semibold text-blue-700">{item.price}</p>
-          <img
-            src={item.img}
-            alt={item.name}
-            className="h-32 object-contain my-3"
-          />
-          <div className="flex items-center justify-between w-full">
-            <button className="bg-yellow-400 p-2 rounded-full text-white">
-            
-            </button>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-
-    </div> */}
 
     </div>
   );
