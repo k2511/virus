@@ -572,8 +572,7 @@ const Brands = () => {
   ))}
 </div>
 
-
-        <div className="bg-white rounded-xl p-6 shadow flex flex-col justify-between items-center text-center h-full ">
+        <div className="bg-white rounded-xl p-6 shadow flex flex-col justify-between items-center text-center h-fit ">
           <div>
             <p className="text-sm text-gray-500">{topSelling.category}</p>
             <p className="font-semibold text-blue-700 mb-4">
@@ -599,19 +598,20 @@ const Brands = () => {
                 />
               ))}
             </div> */}
-          </div>
-          <div className="w-full">
+             <div className="w-full">
             <div className="flex items-center justify-between w-full">
               <span className="text-lg font-semibold">{topSelling.price}</span>
               <button className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2">
                 <FaShoppingCart /> Add to Cart
               </button>
             </div>
-            <div className="flex gap-6 text-sm text-gray-500 mt-4 justify-center">
+            <div className="flex gap-6 text-sm text-gray-500 mt-4  w-full justify-between ">
               <span>Compare</span>
               <span>Add to Wishlist</span>
             </div>
           </div>
+          </div>
+         
         </div>
 
       
