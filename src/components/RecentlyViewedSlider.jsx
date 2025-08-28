@@ -145,7 +145,8 @@ const RecentlyViewedSlider = () => {
               {/* Hover Actions (inline, not absolute) */}
               <div
                 className={`overflow-hidden transition-all duration-300 w-full border-t border-gray-200
-                  ${hoveredIndex === index ? "max-h-16 opacity-100 mt-2" : "max-h-0 opacity-0"}`}
+                  `}
+                  //${hoveredIndex === index ? "max-h-16 opacity-100 mt-2" : "max-h-0 opacity-0"}
               >
                 <div className="flex items-center justify-center gap-6 py-2 bg-white">
                   <button className="flex items-center gap-1 hover:text-blue-600">
