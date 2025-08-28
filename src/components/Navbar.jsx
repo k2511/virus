@@ -6,25 +6,9 @@ export default function Navbar({ activePanel, setActivePanel }) {
   return (
     <>
       <header className="flex items-center justify-between px-6 py-4 shadow-md bg-white">
-        {/* <div className="flex items-center space-x-2">
-          <h1 className="text-2xl font-bold tracking-wide">
-            ANTIVIRUS <span className="text-gray-600">E-STORE</span>
-          </h1>
-        </div> */}
-
-        {/* Navbar links */}
-        {/* <nav className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <Link to="/" className="hover:text-lime-600">HOME</Link>
-          <Link to="/software" className="hover:text-lime-600">SOFTWARE</Link>
-          <Link to="/brands" className="hover:text-lime-600">BRANDS</Link>
-          <Link to="/about" className="hover:text-lime-600">ABOUT US</Link>
-          <Link to="/contact" className="hover:text-lime-600">CONTACT US</Link>
-        </nav> */}
 
         {/* Buttons */}
         <div className="flex space-x-4">
-          {/* <button onClick={() => setActivePanel("register")} className="text-gray-700 hover:text-lime-600">REGISTER</button> */}
-          {/* <button onClick={() => setActivePanel("login")} className="text-gray-700 hover:text-lime-600">LOGIN</button> */}
         </div>
       </header>
 
