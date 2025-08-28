@@ -454,78 +454,14 @@ const Brands = () => {
     ],
   };
 
-  const topSelling = [
-    {
-      name: "Kaspersky",
-      arr: [
-        {
+  const topSelling =  {
           img: "https://dantivirus.com/admin/model/pics/kas_standard.png",
           name: "Kaspersky Antivirus 1 PC 1 Year",
           price: "249.00",
           category: "Antivirus"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/kas_plus.png",
-          name: "Kaspersky Plus 1 PC 1 Year",
-          price: "349.00",
-          category: "Antivirus"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/kas_premium.png",
-          name: "Kaspersky Total Security 1 User 1 Year",
-          price: "409.00",
-          category: "Security Suite"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/kas_premium.png",
-          name: "Kaspersky Total Security 1 User 3 Years",
-          price: "1399.00",
-          category: "Security Suite"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/kas_premium.png",
-          name: "Kaspersky Total Security 3 User 3 Years",
-          price: "1899.00",
-          category: "Security Suite"
-        },
-      ],
-    },
-    {
-      name: "Net Protector",
-      arr: [
-        {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
-          name: "Net Protector Total Security 1 User 1 Year",
-          price: "428.00",
-          category: "Security Suite"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
-          name: "Renew Net Protector Total Security 1 PC-1 Year",
-          price: "438.00",
-          category: "Security Suite"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_30_17.png",
-          name: "Net Protector Total Security 1 User 3 Years",
-          price: "998.00",
-          category: "Security Suite"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-antivirus-pro.png",
-          name: "Net Protector Antivirus 1 User 1 Year",
-          price: "350.00",
-          category: "Antivirus"
-        },
-        {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security.png",
-          name: "Upgrade Net Protector Total Security 1 User 3 Year",
-          price: "998.00",
-          category: "Security Suite"
-        },
-      ],
-    },
-  ]
+    }
+ 
+
 
   const handleAddToCart = (item) => {
     // Add to cart functionality here
@@ -533,11 +469,11 @@ const Brands = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50  ">
       {/* Navigation Tabs */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex space-x-8 overflow-x-auto">
+      <div className="bg-white shadow-sm border-b flex justify-center ">
+        <div className="max-w-7xl mx-auto px-4  ">
+          <div className="flex space-x-8 overflow-x-auto mx-auto items-center ">
             {list.map((brand, idx) => (
               <button
                 key={idx}
@@ -608,44 +544,47 @@ const Brands = () => {
     <section>
 
     <div className="min-h-screen bg-gray-50 p-4 md:p-10">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-        {/* Left Column */}
-        <div className="grid grid-cols-2 gap-6 h-full">
-          {products.map((item, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl p-4 shadow flex flex-col justify-between items-center text-center h-full"
-            >
-              <p className="text-sm text-gray-500">{item.category}</p>
-              <p className="font-semibold text-blue-700">{item.name}</p>
-              <img
-                src={item.image}
-                alt={item.name}
-                className="h-32 object-contain my-3"
-              />
-              <div className="flex items-center justify-between w-full">
-                <span className="text-lg font-semibold">{item.price}</span>
-                <button className="bg-yellow-400 p-2 rounded-full text-white">
-                  <FaShoppingCart />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch ">
 
-        {/* Middle Column */}
-        <div className="bg-white rounded-xl p-6 shadow flex flex-col justify-between items-center text-center h-full">
+      <div
+  className={`grid grid-cols-2 gap-6 h-full  mx-auto 
+    ${list[val].arr.length === 1 ? "justify-end grid-cols-1" : ""}`}
+>
+  {list[val].arr.map((item, i) => (
+    <div
+      key={i}
+      className="bg-white rounded-xl p-4 shadow flex flex-col justify-between items-center text-center h-full"
+    >
+      <p className="text-sm text-gray-500">{item.category}</p>
+      <p className="font-semibold text-blue-700">{item.name}</p>
+      <img
+        src={item.img}
+        alt={item.name}
+        className="h-32 object-contain my-3"
+      />
+      <div className="flex items-center justify-between w-full">
+        <span className="text-lg font-semibold">{item.price}</span>
+        <button className="bg-yellow-400 p-2 rounded-full text-white">
+          <FaShoppingCart />
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+        <div className="bg-white rounded-xl p-6 shadow flex flex-col justify-between items-center text-center h-full ">
           <div>
-            <p className="text-sm text-gray-500">{controller.category}</p>
+            <p className="text-sm text-gray-500">{topSelling.category}</p>
             <p className="font-semibold text-blue-700 mb-4">
-              {controller.name}
+              {topSelling.name}
             </p>
             <img
-              src={controller.images[selectedImage]}
+              src={topSelling.img}
               alt="controller"
               className="w-full max-h-80 object-contain mb-6"
             />
-            <div className="flex space-x-4 mb-6 justify-center">
+            {/* <div className="flex space-x-4 mb-6 justify-center">
               {controller.images.map((img, idx) => (
                 <img
                   key={idx}
@@ -659,11 +598,11 @@ const Brands = () => {
                   }`}
                 />
               ))}
-            </div>
+            </div> */}
           </div>
           <div className="w-full">
             <div className="flex items-center justify-between w-full">
-              <span className="text-lg font-semibold">{controller.price}</span>
+              <span className="text-lg font-semibold">{topSelling.price}</span>
               <button className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2">
                 <FaShoppingCart /> Add to Cart
               </button>
@@ -675,9 +614,9 @@ const Brands = () => {
           </div>
         </div>
 
-        {/* Right Column */}
+      
         <div className="grid grid-cols-2 gap-6 h-full">
-          {products.map((item, i) => (
+          {list[val].arr.map((item, i) => (
             <div
               key={i}
               className="bg-white rounded-xl p-4 shadow flex flex-col justify-between items-center text-center h-full"
@@ -685,7 +624,7 @@ const Brands = () => {
               <p className="text-sm text-gray-500">{item.category}</p>
               <p className="font-semibold text-blue-700">{item.name}</p>
               <img
-                src={item.image}
+                src={item.img}
                 alt={item.name}
                 className="h-32 object-contain my-3"
               />
@@ -702,7 +641,9 @@ const Brands = () => {
     </div>
     </section>
 
-<div>
+
+
+{/* <div>
          <div className="min-h-screen bg-gray-50 p-4 md:p-10">
   <div className="max-w-6xl flex items-center justify-center mx-auto">
     {list.map((val, idx) => (
@@ -742,7 +683,7 @@ const Brands = () => {
   </div>
 </div>
 
-    </div>
+    </div> */}
 
     </div>
   );
