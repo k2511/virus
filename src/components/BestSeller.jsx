@@ -337,4 +337,4 @@ const BestSeller = () => {
   );
 };
 
-export default BestSeller;
+export default Bestseller;

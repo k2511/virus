@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ShoppingCart, BarChart3, Heart } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NewSection = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -10,6 +12,7 @@ const NewSection = () => {
   const [activeTab, setActiveTab] = useState("All Products");
   const [visibleProducts, setVisibleProducts] = useState(8); // Initial number of products to display
 
+  const navigate = useNavigate();
   const tabs = ["All Products", "Total Security", "Internet Security", "Antivirus Pro", "Upgrade"];
 
   const products = [
@@ -249,7 +252,8 @@ const NewSection = () => {
                   key={tab}
                   onClick={() => {
                     setActiveTab(tab);
-                    setVisibleProducts(8); // Reset to initial 4 products when switching tabs
+                    setVisibleProducts(8);
+                    
                   }}
                   className={`px-6 py-2 rounded-md font-medium transition-all ${
                     activeTab === tab
@@ -267,7 +271,16 @@ const NewSection = () => {
                 .filter((product) => activeTab === "All Products" || product.category === activeTab)
                 .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
                 .map((product) => (
-                  <div key={product.id} className="group">
+                  <div key={product.id} className="group"  onClick={() =>
+                    navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
+                      state: { 
+                        image: product.image, 
+                        price: product.price, 
+                        category: product.category ,
+                        originalPrice: product.originalPrice
+                      },
+                    })
+                  }>
                     <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
                       <div className="text-xs text-gray-500 mb-2">{product.category}</div>
 
