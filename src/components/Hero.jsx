@@ -161,14 +161,14 @@ const Hero = () => {
                 )}
               </div>
             </div>
-            <div className="hidden md:flex items-center flex-1 max-w-2xl mx-8">
-              <div className="flex w-full">
+            <div className="hidden md:flex items-center flex-1 max-w-2xl mx-8 ">
+              <div className="flex w-full ">
                 <input
                   type="text"
                   placeholder="Search for Products"
-                  className="flex-1 border-2 border-gray-200 px-4 py-2 rounded-l-lg focus:border-yellow-500 focus:outline-none text-gray-700"
+                  className="flex-1 border-2 border-gray-200 px-4 py-2 rounded-l-lg focus:border-yellow-500 focus:outline-none text-gray-700 "
                 />
-                <select className="border-2 border-l-0 border-gray-200 px-4 py-2 bg-white text-gray-700 focus:border-yellow-500 focus:outline-none">
+                <select className="border-2 border-l-0 border-gray-200 px-4 py-2 bg-white text-gray-700 focus:border-yellow-500 focus:outline-none ">
                   <option>All Categories</option>
                   <option>Antivirus</option>
                   <option>Windows</option>
@@ -696,9 +696,9 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto  ">
-        <div className="flex flex-col md:flex-row  ">
+        <div className="flex flex-col md:flex-row   ">
           {/* Sidebar */}
-          <div className="hidden md:block w-60 from-gray-50 to-gray-100 border-r p-4">
+          <div className="hidden md:block w-60 from-gray-50 to-gray-100 border-r p-4 ">
             {showDepartment && (
               <ul className="space-y-2">
                 {menuItems.map((item, index) => (
@@ -750,7 +750,7 @@ const Hero = () => {
           {/* Slider Section */}
           <div className="flex-1 bg-gradient-to-r from-gray-50 to-gray-100 p-4 overflow-hidden ">
             {/* overflow hidden */}
-            <div className="relative w-full max-w-6xl mx-auto overflow-hidden">
+            <div className="relative w-full max-w-6xl mx-auto overflow-hidden ">
               <div
                 className="flex transition-transform duration-500"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -758,7 +758,7 @@ const Hero = () => {
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-                    className="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center p-4"
+                    className="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center p-4 "
                   >
                     <div className="space-y-4 md:w-1/2">
                       <div className="space-y-2">
@@ -831,6 +831,7 @@ const Hero = () => {
         </div>
         <div className="px-4 sm:px-6 md:px-5 lg:px-2 py-10 flex justify-center max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-6 gap-3 w-full  ">
+          
             {data.map((val, i) => (
               <div
                 key={i}
@@ -862,3 +863,6 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
+
