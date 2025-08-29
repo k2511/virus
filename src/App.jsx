@@ -10,6 +10,7 @@ import Software from "./pages/Software";
 // import Brands from "./pages/Brands";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import NewSectionDetails from "./pages/NewSectionDetails";
 
 function App() {
   const [activePanel, setActivePanel] = useState(null);
@@ -27,7 +28,8 @@ function App() {
         {/* <Route path="/brands" element={<Brands />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-                {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/new-section-details/:id" element={<NewSectionDetails />} />
+
       </Routes>
 
       <Footer />

@@ -745,7 +745,7 @@ import {
   X,
   ChevronRight,
   ChevronDown,
-  ExternalLink,
+  ExternalLink,UserRound,
   ArrowRight,AlignJustify
 } from "lucide-react";
 import alogo from '../assets/images/antivirusLogo.png'
@@ -872,6 +872,8 @@ const Hero = () => {
   return (
     <div className="w-full bg-white min-h-screen">
       {/* Top Header */}
+
+
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-4">
