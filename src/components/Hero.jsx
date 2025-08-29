@@ -366,7 +366,7 @@ const Hero = () => {
           </div>
         </div>
         {show && (
-          <div className="absolute top-full left-0 w-full bg-gray-50 p-4 md:p-8 z-50 shadow-lg">
+          <div className="absolute top-full left-0 w-full  p-4 md:p-8 z-50 shadow-lg">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <div className="space-y-6">

@@ -58,23 +58,7 @@ import { FaFacebookF, FaGoogle, FaUser, FaLock } from "react-icons/fa";
 export default function Navbar({ activePanel, setActivePanel }) {
   return (
     <>
-      {/* <header className="flex items-center justify-between px-6 py-4 shadow-md bg-white"> */}
-        {/* Example buttons to trigger login/register */}
-        {/* <div className="flex space-x-4">
-          <button
-            onClick={() => setActivePanel("login")}
-            className="px-4 py-2 bg-lime-500 text-white rounded-md"
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => setActivePanel("register")}
-            className="px-4 py-2 bg-gray-200 text-black rounded-md"
-          >
-            Register
-          </button>
-        </div> */}
-      {/* </header> */}
+    
 
       {/* Drawer */}
       {activePanel && (
