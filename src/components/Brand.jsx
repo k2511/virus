@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Brands = () => {
+  const navigate = useNavigate();
+
   const [val, setVal] = useState(0);
   const topSelling = {
     img: "https://dantivirus.com/admin/model/pics/kas_standard.png",
@@ -222,7 +225,14 @@ const Brands = () => {
               }`}
             >
               {list[val].arr.map((item, i) => (
-                <div
+                <div onClick={()=>   navigate(`/brands/${encodeURIComponent(item.name)}`, {
+                  state: { 
+                    image: item.img, 
+                    price: item.price, 
+                    category: item.category ,
+                    // originalPrice: product.originalPrice
+                  },
+                })}
                   key={i}
                   className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl"
                 >
@@ -246,7 +256,15 @@ const Brands = () => {
             </div>
 
             {/* Featured Product */}
-            <div className="bg-white rounded-md p-6 shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0">
+            <div className="bg-white rounded-md p-6 shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0"
+            onClick={()=>   navigate(`/brands/${encodeURIComponent(sale.name)}`, {
+              state: { 
+                image: sale.img, 
+                price: sale.price, 
+                category: sale.category ,
+                // originalPrice: product.originalPrice
+              },
+            })}>
               <div className="w-full">
                 <p className="text-sm text-gray-500">{sale.category}</p>
                 <p className="font-semibold text-blue-700 mb-4 line-clamp-2">
@@ -278,6 +296,14 @@ const Brands = () => {
                 <div
                   key={i}
                   className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl"
+                  onClick={()=>   navigate(`/brands/${encodeURIComponent(item.name)}`, {
+                    state: { 
+                      image: item.img, 
+                      price: item.price, 
+                      category: item.category ,
+                      // originalPrice: product.originalPrice
+                    },
+                  })}
                 >
                   <p className="text-sm text-gray-500">{item.category}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
