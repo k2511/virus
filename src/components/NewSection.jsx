@@ -246,16 +246,16 @@ const NewSection = () => {
           </div>
 
           <div className="flex-1">
-            <div className="flex flex-wrap gap-[50px] mb-8 bg-gray-100 rounded-lg p-1 w-full">
+            <div className="flex flex-nowrap gap-[50px] mb-8 bg-gray-100 rounded-lg p-1 w-full">
               {tabs.map((tab) => (
-                <button
+                <button 
                   key={tab}
                   onClick={() => {
                     setActiveTab(tab);
                     setVisibleProducts(8);
                     
                   }}
-                  className={`px-6 py-2 rounded-md font-medium transition-all ${
+                  className={`lg:px-4 md:px-2 sm:px-1 py-2 rounded-md text-sm font-medium transition-all border-2 border-black${
                     activeTab === tab
                       ? "bg-white text-gray-900 shadow-sm"
                       : "text-gray-600 hover:text-gray-900"
