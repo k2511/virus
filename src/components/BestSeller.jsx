@@ -262,12 +262,12 @@ const BestSeller = () => {
               Bestsellers
             </h2>
           </div>
-          <div className="flex flex-wrap gap-2 mb-6 lg:mb-8 border-gray-200 justify-end">
+          <div className="flex flex-wrap gap-2 mb-6 lg:mb-8 border-gray-200 justify-end ">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                className={`px-0 py-2 text-sm  duration-200 lg:px-4 md:px-2 sm:px-1  rounded-md sm:text-sm md:text-md  mx-auto text-[0.9rem] font-medium transition-all ${
                   activeTab === tab
                     ? "text-black "
                     : "text-gray-500 hover:text-gray-700"
