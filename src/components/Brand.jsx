@@ -221,7 +221,7 @@ const Brands = () => {
             {/* Left Grid */}
             <div
               className={`grid grid-cols-1 sm:grid-cols-2 gap-4 w-full ${
-                list[val].arr.length === 1 ? "sm:grid-cols-1" : ""
+                list[val].arr.length === 1 ? "sm:grid-cols-1 " : ""
               }`}
             >
               {list[val].arr.map((item, i) => (

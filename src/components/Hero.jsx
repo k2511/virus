@@ -330,7 +330,7 @@ const Hero = () => {
               onClick={() => {
                 setShowDepartment(!showDepartment);
               }}
-              className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold"
+              className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2   w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold"
             >
               <Menu className="w-5 h-5" />
               <span className="hidden md:inline">All Departments</span>
