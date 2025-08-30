@@ -324,16 +324,16 @@ const Hero = () => {
 
       {/* Navigation Bar */}
       <div className="bg-[#e5e7eb] border-b relative ">
-        <div className=" max-w-7xl mx-auto px-4 ">
+        <div className=" max-w-7xl mx-auto px-4 hidden md:block">
           <div className="flex items-center justify-between ">
             <button
               onClick={() => {
                 setShowDepartment(!showDepartment);
               }}
-              className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2   w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold"
+              className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold"
             >
               <Menu className="w-5 h-5" />
-              <span className="hidden md:inline">All Departments</span>
+              <span className="">All Departments</span>
             </button>
             <div className="hidden md:flex items-center space-x-8">
               <button
@@ -699,9 +699,9 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto  ">
         <div className="flex flex-col md:flex-row   ">
           {/* Sidebar */}
-          <div className="hidden md:block w-60 from-gray-50 to-gray-100 border-r p-4 ">
+          <div className=" w-60 hidden md:block from-gray-50 to-gray-100 border-r p-4 ">
             {showDepartment && (
-              <ul className="space-y-2">
+              <ul className="space-y-2 hidden md:block ">
                 {menuItems.map((item, index) => (
                   <li key={index}>
                     {item.isSpecial ? (
@@ -805,13 +805,13 @@ const Hero = () => {
               {/* Navigation buttons */}
               <button
                 onClick={prevSlide}
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full p-2 shadow-md"
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full px-2 shadow-md"
               >
                 &#8592;
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full p-2 shadow-md"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full px-2 shadow-md"
               >
                 &#8594;
               </button>
