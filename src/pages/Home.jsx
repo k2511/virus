@@ -7,7 +7,6 @@ import Bestseller from '../components/BestSeller'
 import ProductWidget from '../components/ProductWidget'
 import BrandSlider from '../components/BrandSlider'
 
-
 function Home() {
   return (
     <div>
