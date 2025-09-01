@@ -168,7 +168,7 @@ const NewSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p-4 lg:p-8 ">
+    <div className="min-h-screen bg-white sm:p-4 p-0 lg:p-8 ">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-80 flex-shrink-0">
@@ -246,7 +246,7 @@ const NewSection = () => {
           </div>
 
           <div className="flex-1 mx-auto">
-            <div className="flex flex-nowrap sm:gap-5 gap-4 mx-auto mb-8 bg-gray-100 rounded-lg p-1 w-full">
+            <div className="flex flex-nowrap sm:gap-5 gap-0 mx-auto mb-8 bg-gray-100 rounded-lg p-1 w-full">
               {tabs.map((tab) => (
                 <button 
                   key={tab}
@@ -288,11 +288,11 @@ const NewSection = () => {
                         {product.name}
                       </h3>
 
-                      <div className="mb-4 bg-gray-50 rounded-lg p-4 h-32 flex items-center justify-center">
+                      <div className="mb-4 bg-gray-50 rounded-lg sm:p-1 h-32 flex items-center justify-center ">
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="max-w-full max-h-full object-contain"
+                          className="max-w-full sm:w-full w-40 sm:h-full h-40 max-h-full  object-contain"
                           onError={(e) => {
                             e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
                           }}

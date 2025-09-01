@@ -141,11 +141,11 @@ const Hero = () => {
 
 
       <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto sm:px-4 px-1">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center justify-around w-[15rem] ">
+            <div className="flex items-center  flex-row-reverse lg:flex-row md:justify-around gap-1  md:gap-8 sm:gap-4 lg:gap-16  w-fit  ">
               <div>
-                <img src={logo} alt="Logo" className="h-10" />
+                <img src={logo} alt="Logo" className="min-w-24 h-10" />
               </div>
               <div className="">
                 {/* <AlignJustify /> */}
@@ -167,9 +167,9 @@ const Hero = () => {
                 <input
                   type="text"
                   placeholder="Search for Products"
-                  className="flex-1 border-2 border-gray-200 px-4 py-2 rounded-l-lg focus:border-yellow-500 focus:outline-none text-gray-700 "
+                  className="flex-1 border-2 border-gray-200 sm:px-4  py-2 rounded-l-lg focus:border-yellow-500 focus:outline-none text-gray-700 "
                 />
-                <select className="border-2 border-l-0 border-gray-200 px-4 py-2 bg-white text-gray-700 focus:border-yellow-500 focus:outline-none ">
+                <select className="border-2 border-l-0 border-gray-200 sm:px-4 px-0 py-2 bg-white text-gray-700 focus:border-yellow-500 focus:outline-none ">
                   <option>All Categories</option>
                   <option>Antivirus</option>
                   <option>Windows</option>
@@ -180,7 +180,7 @@ const Hero = () => {
                 </button>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center sm:space-x-4 space-x-1">
               <div className="hidden md:flex items-center space-x-1 text-gray-600  ">
                 <Heart className="w-5 h-5" />
               </div>
@@ -207,7 +207,7 @@ const Hero = () => {
                 placeholder="Search products..."
                 className="flex-1 border-2 border-gray-200 px-4 py-2 rounded-l-lg focus:border-yellow-500 focus:outline-none"
               />
-              <button className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-r-lg">
+              <button className="bg-yellow-400 hover:bg-yellow-500 sm:px-4 px-1 py-2 rounded-r-lg">
                 <Search className="w-5 h-5" />
               </button>
             </div>
@@ -749,7 +749,7 @@ const Hero = () => {
           </div>
 
           {/* Slider Section */}
-          <div className="flex-1 bg-gradient-to-r from-gray-50 to-gray-100 p-4 overflow-hidden ">
+          <div className="flex-1 bg-gradient-to-r from-gray-50 to-gray-100 p-4 overflow-hidden my-5">
             {/* overflow hidden */}
             <div className="relative w-full max-w-6xl mx-auto overflow-hidden ">
               <div
@@ -759,11 +759,11 @@ const Hero = () => {
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-                    className="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center p-4 "
+                    className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-5 sm:px-4 sm:py-4  "
                   >
-                    <div className="space-y-4 md:w-1/2">
-                      <div className="space-y-2">
-                        <h2 className="text-3xl md:text-5xl font-light text-gray-800 leading-tight">
+                    <div className="space-y-4 md:w-1/2  ">
+                      <div className="space-y-2 ">
+                        <h2 className="text-xl sm:text-3xl md:text-5xl font-light text-gray-800 leading-tight">
                           {slide.title.split(" ")[0]}
                           <br />
                           <span className="font-semibold">
@@ -792,7 +792,7 @@ const Hero = () => {
                         <img
                           src={slide.image}
                           alt={slide.title}
-                          className="md:w-80 md:h-80 h-40 w-40 mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
+                          className="md:w-80 md:h-80 sm:h-40 sm:w-40 h-32 w-32 mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
                         />
                         <div className="absolute  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer">
                           {/* <ExternalLink className="w-12 h-12 text-white" /> */}
@@ -816,12 +816,12 @@ const Hero = () => {
                 &#8594;
               </button>
               {/* Dots */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ">
                 {slides.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full ${
+                    className={`w-3 h-3 rounded-full border ${
                       currentSlide === index ? "bg-yellow-400" : "bg-gray-300"
                     }`}
                   ></button>
