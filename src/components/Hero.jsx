@@ -759,7 +759,7 @@ const Hero = () => {
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-                    className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-5 sm:px-4 sm:py-4  "
+                    className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-10 sm:px-4 sm:py-4  "
                   >
                     <div className="space-y-4 md:w-1/2">
                       <div className="space-y-2 ">
@@ -792,7 +792,7 @@ const Hero = () => {
                         <img
                           src={slide.image}
                           alt={slide.title}
-                          className="md:w-80 md:h-110 sm:h-40 sm:w-40 h-32 w-32 mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105 "
+                          className="md:w-80 md:h-96 h-52 w-44  mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105 "
                         />
                         <div className="absolute  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer">
                           {/* <ExternalLink className="w-12 h-12 text-white" /> */}

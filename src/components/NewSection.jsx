@@ -65,7 +65,7 @@ const NewSection = () => {
       image: "https://antivirusestore.in/admin/model/pics/upgrade-quick-heal-total-security08_17_13_28_37.png",
       price: "$39.99",
       originalPrice: "$49.99",
-    },
+    },-
     {
       id: 7,
       category: "Antivirus Pro",
@@ -288,11 +288,11 @@ const NewSection = () => {
                         {product.name}
                       </h3>
 
-                      <div className="mb-4 bg-gray-50 rounded-lg sm:p-1 h-32 flex items-center justify-center ">
+                      <div className="mb-4  rounded-lg sm:p-1 h-32 flex items-center justify-center ">
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="max-w-full sm:w-full w-40 sm:h-full h-40 max-h-full  object-contain"
+                          className="max-w-full sm:w-full w-40 sm:h-full h-40   object-contain"
                           onError={(e) => {
                             e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
                           }}
