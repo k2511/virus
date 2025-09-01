@@ -9,7 +9,8 @@ import {
   ChevronRight,
   ChevronDown,
   ExternalLink,
-  ArrowRight,AlignJustify
+  ArrowRight,
+  AlignJustify,
 } from "lucide-react";
 import alogo from "../assets/images/antivirusLogo.png";
 const Hero = () => {
@@ -139,11 +140,10 @@ const Hero = () => {
     <div className="w-full bg-white min-h-screen">
       {/* Top Header */}
 
-
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto sm:px-4 px-1">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center  flex-row-reverse lg:flex-row md:justify-around gap-1  md:gap-8 sm:gap-4 lg:gap-16  w-fit  ">
+            <div className="flex items-center  flex-row-reverse lg:flex-row md:justify-around gap-4  md:gap-8 sm:gap-4 lg:gap-16  w-fit ml-[25px] ">
               <div>
                 <img src={logo} alt="Logo" className="min-w-24 h-10" />
               </div>
@@ -220,7 +220,7 @@ const Hero = () => {
             showslide ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out z-50 flex flex-col`}
         >
-          <div className="flex items-center  justify-between pt-5 px-5">
+          <div className="flex items-center justify-between pt-5 px-5">
             <h2 className=" text-black font-bold text-center ">
               <img src={alogo} className="w-full h-12" />
             </h2>
@@ -255,11 +255,11 @@ const Hero = () => {
           </ul>
 
           {/* SVG pushed to bottom */}
-          <div className="mt-auto">
+          <div className="mt-auto  ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 300 126.5"
-              className="injected-svg js-svg-injector w-full"
+              className="injected-svg js-svg-injector w-full  "
             >
               <style type="text/css">{`
         .wave-bottom-with-dots-0{fill:#377DFF;}
@@ -332,7 +332,7 @@ const Hero = () => {
               }}
               className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2  w-56 rounded-t-lg md:px-6 md:py-3 flex items-center space-x-2 font-semibold"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5 " />
               <span className="">All Departments</span>
             </button>
             <div className="hidden md:flex items-center space-x-8">
@@ -751,7 +751,7 @@ const Hero = () => {
           {/* Slider Section */}
           <div className="flex-1 bg-gradient-to-r from-gray-50 to-gray-100 p-4 overflow-hidden my-5">
             {/* overflow hidden */}
-            <div className="relative w-full max-w-6xl mx-auto overflow-hidden ">
+            <div className="relative w-full max-w-6xl mx-auto  overflow-hidden ">
               <div
                 className="flex transition-transform duration-500"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -761,7 +761,7 @@ const Hero = () => {
                     key={index}
                     className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-5 sm:px-4 sm:py-4  "
                   >
-                    <div className="space-y-4 md:w-1/2  ">
+                    <div className="space-y-4 md:w-1/2">
                       <div className="space-y-2 ">
                         <h2 className="text-xl sm:text-3xl md:text-5xl font-light text-gray-800 leading-tight">
                           {slide.title.split(" ")[0]}
@@ -783,7 +783,7 @@ const Hero = () => {
                           </span>
                         </div>
                       </div>
-                      <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg transition-colors">
+                      <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded-lg transition-colors">
                         Buy Now
                       </button>
                     </div>
@@ -792,7 +792,7 @@ const Hero = () => {
                         <img
                           src={slide.image}
                           alt={slide.title}
-                          className="md:w-80 md:h-80 sm:h-40 sm:w-40 h-32 w-32 mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105"
+                          className="md:w-80 md:h-110 sm:h-40 sm:w-40 h-[200px] w-32 mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105 "
                         />
                         <div className="absolute  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer">
                           {/* <ExternalLink className="w-12 h-12 text-white" /> */}
@@ -832,7 +832,6 @@ const Hero = () => {
         </div>
         <div className="px-4 sm:px-6 md:px-5 lg:px-2 py-10 flex justify-center max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-6 gap-3 w-full  ">
-          
             {data.map((val, i) => (
               <div
                 key={i}
@@ -864,6 +863,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-
-
