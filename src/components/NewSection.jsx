@@ -255,7 +255,7 @@ const NewSection = () => {
                     setVisibleProducts(8);
                     
                   }}
-                  className={`lg:px-4 md:px-2 sm:px-1 py-2 px-0 rounded-md sm:text-sm md:text-md  mx-auto text-[0.7rem] font-medium transition-all ${
+                  className={`lg:px-4 md:px-2 sm:px-1 py-2 px-2 rounded-md sm:text-sm md:text-md  mx-auto text-[0.7rem] font-medium transition-all ${
                     activeTab === tab
                       ? "bg-white text-gray-900 shadow-sm"
                       : "text-gray-600 hover:text-gray-900"
@@ -288,7 +288,7 @@ const NewSection = () => {
                         {product.name}
                       </h3>
 
-                      <div className="mb-4 bg-gray-50 rounded-lg sm:p-1 h-32 flex items-center justify-center ">
+                      <div className="mb-4  rounded-lg sm:p-1 h-32 flex items-center justify-center ">
                         <img
                           src={product.image}
                           alt={product.name}
