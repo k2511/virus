@@ -376,7 +376,7 @@ const BrandDetails = () => {
         </div>
 
         <div className="mt-10">
-          <div className="flex flex-nowrap gap-2 mx-auto sm:w-fit w-fit overflow-x-auto sm:overflow-x-hidden items-center border-2 border-black     ">
+          <div className="flex flex-nowrap gap-2 mx-auto sm:w-fit w-fit overflow-x-auto sm:overflow-x-hidden items-center      ">
             {["Reviews", "Detail", "Installation Instruction"].map((tab) => (
               <button
                 key={tab}
