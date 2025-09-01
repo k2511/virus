@@ -376,12 +376,12 @@ const BrandDetails = () => {
         </div>
 
         <div className="mt-10">
-          <div className="flex flex-nowrap gap-2 mx-auto sm:w-fit w-full overflow-x-auto sm:overflow-x-hidden items-center    ">
+          <div className="flex flex-nowrap gap-2 mx-auto sm:w-fit w-fit overflow-x-auto sm:overflow-x-hidden items-center border-2 border-black     ">
             {["Reviews", "Detail", "Installation Instruction"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 font-semibold transition-colors w-fit
+                className={`sm:px-6 px-2 py-3 font-semibold sm:text-sm text-xs transition-colors w-fit 
         ${
           activeTab === tab
             ? "bg-lime-500 text-black"
