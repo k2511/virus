@@ -142,7 +142,8 @@ const BrandDetails = () => {
                   <button
                     className="bg-lime-500 hover:bg-lime-600 text-black text-xs sm:text-sm md:text-base lg:text-lg font-normal py-2 px-3 sm:py-2 sm:px-4 rounded"
                     onClick={() => {
-                      toast.success("Buy Successfully");
+                      // toast.success("Buy Successfully");
+                           navigate('/payment');
                     }}
                   >
                     Buy now
