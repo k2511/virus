@@ -13,8 +13,8 @@ const BestSeller = () => {
         id: 0,
         category: "Total Security",
         name: "Kaspersky Total Security Suite",
-        price: "59.99",
-        originalPrice: "89.99",
+        price: "₹59.99",
+        originalPrice: "₹89.99",
         image:
           "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=300&fit=crop&crop=center",
         rating: 4.9,
@@ -25,8 +25,8 @@ const BestSeller = () => {
         id: 1,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
-        originalPrice: "19.99",
+        price: "₹12.95",
+        originalPrice: "₹19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
         rating: 4.7,
@@ -38,8 +38,8 @@ const BestSeller = () => {
         id: 2,
         category: "Password Manager",
         name: "LastPass Premium Vault",
-        price: "36.00",
-        originalPrice: "48.00",
+        price: "₹36.00",
+        originalPrice: "₹48.00",
         image:
           "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=300&h=300&fit=crop&crop=center",
         rating: 4.6,
@@ -50,8 +50,8 @@ const BestSeller = () => {
         id: 3,
         category: "Antivirus",
         name: "Norton 360 Deluxe 2025",
-        price: "49.99",
-        originalPrice: "99.99",
+        price: "₹49.99",
+        originalPrice: "₹99.99",
         image:
           "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=300&h=300&fit=crop&crop=center",
         rating: 4.8,
@@ -62,8 +62,8 @@ const BestSeller = () => {
         id: 4,
         category: "Total Security",
         name: "Kaspersky Total Security Suite",
-        price: "59.99",
-        originalPrice: "89.99",
+        price: "₹59.99",
+        originalPrice: "₹89.99",
         image:
           "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=300&fit=crop&crop=center",
         rating: 4.9,
@@ -74,8 +74,8 @@ const BestSeller = () => {
         id: 5,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
-        originalPrice: "19.99",
+        price: "₹12.95",
+        originalPrice: "₹19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
         rating: 4.7,
@@ -87,8 +87,8 @@ const BestSeller = () => {
         id: 6,
         category: "Password Manager",
         name: "LastPass Premium Vault",
-        price: "36.00",
-        originalPrice: "48.00",
+        price: "₹36.00",
+        originalPrice: "₹48.00",
         image:
           "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=300&h=300&fit=crop&crop=center",
         rating: 4.6,
@@ -99,8 +99,8 @@ const BestSeller = () => {
         id: 7,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
-        originalPrice: "19.99",
+        price: "₹12.95",
+        originalPrice: "₹19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
         rating: 4.7,
@@ -112,8 +112,8 @@ const BestSeller = () => {
         id: 8,
         category: "Password Manager",
         name: "LastPass Premium Vault",
-        price: "36.00",
-        originalPrice: "48.00",
+        price: "₹36.00",
+        originalPrice: "₹48.00",
         image:
           "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=300&h=300&fit=crop&crop=center",
         rating: 4.6,
@@ -124,8 +124,8 @@ const BestSeller = () => {
         id: 9,
         category: "Antivirus",
         name: "Norton 360 Deluxe 2025",
-        price: "49.99",
-        originalPrice: "99.99",
+        price: "₹49.99",
+        originalPrice: "₹99.99",
         image:
           "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=300&h=300&fit=crop&crop=center",
         rating: 4.8,
@@ -137,8 +137,8 @@ const BestSeller = () => {
         id: 10,
         category: "Total Security",
         name: "Kaspersky Total Security Suite",
-        price: "59.99",
-        originalPrice: "89.99",
+        price: "₹59.99",
+        originalPrice: "₹89.99",
         image:
           "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=300&fit=crop&crop=center",
         rating: 4.9,
@@ -150,8 +150,8 @@ const BestSeller = () => {
         id: 11,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
-        originalPrice: "19.99",
+        price: "₹12.95",
+        originalPrice: "₹19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
         rating: 4.7,
@@ -163,8 +163,8 @@ const BestSeller = () => {
         id: 12,
         category: "Password Manager",
         name: "LastPass Premium Vault",
-        price: "36.00",
-        originalPrice: "48.00",
+        price: "₹36.00",
+        originalPrice: "₹48.00",
         image:
           "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=300&h=300&fit=crop&crop=center",
         rating: 4.6,
@@ -175,8 +175,8 @@ const BestSeller = () => {
         id: 13,
         category: "Antivirus",
         name: "Norton 360 Deluxe 2025",
-        price: "49.99",
-        originalPrice: "99.99",
+        price: "₹49.99",
+        originalPrice: "₹99.99",
         image:
           "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=300&h=300&fit=crop&crop=center",
         rating: 4.8,
@@ -188,8 +188,8 @@ const BestSeller = () => {
         id: 14,
         category: "Total Security",
         name: "Kaspersky Total Security Suite",
-        price: "59.99",
-        originalPrice: "89.99",
+        price: "₹59.99",
+        originalPrice: "₹89.99",
         image:
           "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=300&fit=crop&crop=center",
         rating: 4.9,
@@ -201,8 +201,8 @@ const BestSeller = () => {
         id: 15,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
-        originalPrice: "19.99",
+        price: "₹12.95",
+        originalPrice: "₹19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
         rating: 4.7,
@@ -213,8 +213,8 @@ const BestSeller = () => {
         id: 16,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
-        originalPrice: "19.99",
+        price: "₹12.95",
+        originalPrice: "₹19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
         rating: 4.7,
@@ -225,7 +225,7 @@ const BestSeller = () => {
         id: 17,
         category: "VPN",
         name: "ExpressVPN Premium",
-        price: "12.95",
+        price: "₹12.95",
         originalPrice: "19.99",
         image:
           "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=300&h=300&fit=crop&crop=center",
@@ -304,7 +304,7 @@ const BestSeller = () => {
                         </h3>
                         <div className="flex items-center justify-between">
                           <span className="text-lg font-semibold text-gray-900">
-                            ${product.price}
+                            {product.price}
                           </span>
                           <button className="bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full transition-colors">
                             <ShoppingCart className="w-4 h-4 text-gray-700" />

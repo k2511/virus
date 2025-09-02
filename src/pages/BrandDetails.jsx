@@ -100,7 +100,7 @@ const BrandDetails = () => {
                 <div className="flex items-end gap-4 w-full">
                   <div>
                     <span className="sm:text-4xl text-2xl font-bold text-gray-600">
-                      Rs. {price}
+                      {price}
                     </span>
                   </div>
 
@@ -278,6 +278,7 @@ const BrandDetails = () => {
             )}
           </div>
         </div>
+
       </div>
     </div>
   );

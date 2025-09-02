@@ -105,7 +105,7 @@ const NewSectionDetails = () => {
                 <div className="flex items-end gap-4   w-full">
                   <div>
                     <span className="sm:text-4xl text-2xl font-bold text-gray-600">
-                    Rs. {price}
+                   {price}
                     </span>
                   </div>
 
@@ -173,7 +173,7 @@ const NewSectionDetails = () => {
           </div>
         </div>
 
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <div className="flex flex-nowrap gap-1 mx-auto sm:w-fit w-full sm:min-w-[16rem] overflow-x-auto sm:overflow-x-hidden items-center    ">
             {["Reviews", "Detail", "Installation Instruction"].map((tab) => (
               <button
@@ -231,7 +231,128 @@ const NewSectionDetails = () => {
               </div>
             )}
           </div>
+        </div> */}
+
+
+<div className="mt-10">
+          {/* Tab Navigation */}
+          <div className="flex flex-wrap justify-center sm:justify-start gap-1 sm:gap-2 mx-auto w-full overflow-x-auto">
+            {["Reviews", "Details", "Installation Instructions"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`
+                  px-2 py-2 sm:px-4 sm:py-3 md:px-6 md:py-3 lg:px-8 lg:py-3
+                  text-xs sm:text-sm md:text-base lg:text-lg
+                  font-medium sm:font-semibold
+                  transition-all duration-200
+                  rounded-t-lg sm:rounded-none
+                  whitespace-nowrap
+                  min-w-[80px] sm:min-w-[120px] md:min-w-[140px]
+                  ${
+                    activeTab === tab
+                      ? "bg-lime-500 text-black shadow-md transform scale-105 sm:scale-100"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-900"
+                  }
+                `}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div className="mt-4 sm:mt-6 p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 rounded-lg min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] w-full">
+            {activeTab === "Reviews" && (
+              <div className="space-y-4">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">
+                  Customer Reviews
+                </h3>
+                <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                    No reviews available yet. Be the first to review this product!
+                  </p>
+                  <div className="mt-4 flex items-center gap-2">
+                    <div className="flex">{renderStars(0)}</div>
+                    <span className="text-sm text-gray-500">0/5 stars</span>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {activeTab === "Details" && (
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">
+                  Product Details
+                </h3>
+                <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                    {category} provides comprehensive protection for your PC with advanced security features and real-time threat detection.
+                  </p>
+                  <div className="grid gap-3 sm:gap-4">
+                    <div className="flex items-start gap-3">
+                      <span className="text-lime-500 font-bold text-lg">✓</span>
+                      <span className="text-sm sm:text-base text-gray-600">Real-time antivirus protection</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lime-500 font-bold text-lg">✓</span>
+                      <span className="text-sm sm:text-base text-gray-600">Advanced firewall protection</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lime-500 font-bold text-lg">✓</span>
+                      <span className="text-sm sm:text-base text-gray-600">Safe Money for secure online banking</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lime-500 font-bold text-lg">✓</span>
+                      <span className="text-sm sm:text-base text-gray-600">Webcam and privacy protection</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lime-500 font-bold text-lg">✓</span>
+                      <span className="text-sm sm:text-base text-gray-600">24/7 technical support</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {activeTab === "Installation Instructions" && (
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">
+                  Installation Instructions
+                </h3>
+                <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
+                  <div className="space-y-3 sm:space-y-4">
+                    {[
+                      "Download the software from the provided link after purchase",
+                      "Run the installer as administrator on your computer",
+                      "Follow the on-screen installation wizard step by step",
+                      "Enter your activation key when prompted during setup",
+                      "Complete the initial system scan and configuration",
+                      "Restart your computer to complete the installation"
+                    ].map((step, index) => (
+                      <div key={index} className="flex items-start gap-3 sm:gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-lime-500 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold">
+                          {index + 1}
+                        </div>
+                        <span className="text-sm sm:text-base text-gray-600 leading-relaxed pt-1">
+                          {step}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 p-3 sm:p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                    <p className="text-xs sm:text-sm text-blue-700">
+                      <strong>Note:</strong> Make sure to disable other antivirus software before installation to avoid conflicts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+
+
+
       </div>
     </div>
   );
