@@ -3,7 +3,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Star, MessageCircle } from "lucide-react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FiInstagram } from "react-icons/fi";
@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 const BrandDetails = () => {
   const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const { image, price, category, originalPrice } = location.state || {};
 
   const [quantity, setQuantity] = useState(1);
