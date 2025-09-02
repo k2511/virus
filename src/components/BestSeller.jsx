@@ -243,7 +243,7 @@ const BestSeller = () => {
   // const [activeTab, setActiveTab] = useState("Top 20");
   // const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 7;
+  const itemsPerPage = 8;
   const products = allProducts[activeTab] || [];
 
   const totalPages = Math.ceil(products.length / itemsPerPage);

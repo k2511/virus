@@ -102,8 +102,8 @@ const BrandDetails = () => {
                 {/* <p className="text-sm text-gray-600 mb-1"></p> */}
                 <div className="flex items-end gap-4   w-full">
                   <div>
-                    <span className="sm:text-4xl text-2xl font-bold text-gray-600">
-                      {price}
+                    <span className="sm:text-4xl text-2xls font-bold text-gray-600">
+                     Rs. {price}
                     </span>
                   </div>
 
@@ -144,7 +144,7 @@ const BrandDetails = () => {
 
                 <div className="sm:gap-3  gap-1 flex justify-around w-fit">
                   <button
-                    className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.7rem]  md:text-md lg:text-lg font-bold py-1 px-2 sm:py-2 sm:px-2 rounded s"
+                    className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.6rem] sm:text-sm md:text-base lg:text-lg font-normal py-1 px-2 sm:py-2 sm:px-2 rounded s"
                     onClick={() => {
                       toast.success("Buy Successfully");
                     }}
@@ -152,7 +152,7 @@ const BrandDetails = () => {
                     BUY NOW
                   </button>
                   <button
-                    className=" bg-yellow-400 hover:bg-yellow-500  text-[0.7rem]  md:text-md lg:text-lg  text-black font-bold  py-1 px-2 sm:py-2 sm:px-2 rounded "
+                    className=" bg-yellow-400 hover:bg-yellow-500  text-[0.6rem] sm:text-sm md:text-base lg:text-lg  text-black font-normal  py-1 px-2 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
                       toast.success("Cart added Successfully");
                     }}
@@ -165,9 +165,10 @@ const BrandDetails = () => {
 
           
           </div>
+
         </div>
 
-        <div className="mt-10">
+        <div className="mt-10 ">
           <div className="flex flex-nowrap gap-1 mx-auto sm:w-fit w-fit overflow-x-auto sm:overflow-x-hidden items-center      ">
             {["Reviews", "Detail", "Installation Instruction"].map((tab) => (
               <button
@@ -227,6 +228,7 @@ const BrandDetails = () => {
             )}
           </div>
         </div>
+
       </div>
     </div>
   );

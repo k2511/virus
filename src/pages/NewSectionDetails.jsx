@@ -105,7 +105,7 @@ const NewSectionDetails = () => {
                 <div className="flex items-end gap-4   w-full">
                   <div>
                     <span className="sm:text-4xl text-2xl font-bold text-gray-600">
-                      {price}
+                    Rs. {price}
                     </span>
                   </div>
 
@@ -146,15 +146,15 @@ const NewSectionDetails = () => {
 
                 <div className="sm:gap-3  gap-1 flex justify-around w-fit">
                   <button
-                    className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.7rem]  md:text-md lg:text-lg font-bold py-1 px-2 sm:py-2 sm:px-2 rounded s"
+                    className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.6rem] sm:text-sm md:text-base  py-1 px-1 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
                       toast.success("Buy Successfully");
                     }}
                   >
-                    BUY NOW
+                    Buy now
                   </button>
                   <button
-                    className=" bg-yellow-400 hover:bg-yellow-500  text-[0.7rem]  md:text-md lg:text-lg  text-black font-bold  py-1 px-2 sm:py-2 sm:px-2 rounded "
+                    className=" bg-yellow-400 hover:bg-yellow-500  text-[0.6rem]  sm:text-sm md:text-base  text-black   py-1 px-1 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
                       toast.success("Cart added Successfully");
                     }}
@@ -174,12 +174,12 @@ const NewSectionDetails = () => {
         </div>
 
         <div className="mt-10">
-          <div className="flex flex-nowrap gap-2 mx-auto sm:w-fit w-full overflow-x-auto sm:overflow-x-hidden items-center    ">
+          <div className="flex flex-nowrap gap-1 mx-auto sm:w-fit w-full sm:min-w-[16rem] overflow-x-auto sm:overflow-x-hidden items-center    ">
             {["Reviews", "Detail", "Installation Instruction"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 font-semibold transition-colors w-fit
+                className={`px-3 py-3 font-semibold transition-colors w-fit text-[0.7rem]
         ${
           activeTab === tab
             ? "bg-lime-500 text-black"

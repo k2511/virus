@@ -11,7 +11,7 @@ const NewSection = () => {
   });
   const [activeTab, setActiveTab] = useState("All Products");
   const [visibleProducts, setVisibleProducts] = useState(8); // Initial number of products to display
-
+  
   const navigate = useNavigate();
   const tabs = ["All Products", "Total Security", "Internet Security", "Antivirus Pro", "Upgrade"];
 
@@ -21,8 +21,8 @@ const NewSection = () => {
       category: "Total Security",
       name: "Quick Heal Total Security 1 PC 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_12_13_50.png",
-      price: "$79.00",
-      originalPrice: "$99.00",
+      price: "79.00",
+      originalPrice: "99.00",
       available: 6,
       sold: 28,
     },
@@ -31,112 +31,112 @@ const NewSection = () => {
       category: "Total Security",
       name: "Quick Heal Total Security 1 PC 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/A_New_Design_-_Made_with_PosterMyWall09_17_10_53_46.jpg",
-      price: "$29.99",
-      originalPrice: "$39.99",
+      price: "29.99",
+      originalPrice: "39.99",
     },
     {
       id: 3,
       category: "Internet Security",
       name: "Quick Heal Internet Security 1 User 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_14_16_54_16.png",
-      price: "$49.99",
-      originalPrice: "$59.99",
+      price: "49.99",
+      originalPrice: "59.99",
     },
     {
       id: 4,
       category: "Antivirus Pro",
       name: "Upgrade Quick Heal Antivirus Pro 1 User 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_13_02_12.png",
-      price: "$69.99",
-      originalPrice: "$79.99",
+      price: "69.99",
+      originalPrice: "79.99",
     },
     {
       id: 5,
       category: "Total Security",
       name: "Upgrade Quick Heal Total Security 1 User 1 Year",
       image: "https://via.placeholder.com/200/200/ffffff/000000?text=Upgrade+Total+Security+1U+1Y",
-      price: "$24.99",
-      originalPrice: "$34.99",
+      price: "24.99",
+      originalPrice: "34.99",
     },
     {
       id: 6,
       category: "Upgrade",
       name: "Upgrade Quick Heal Total Security 1 User 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/upgrade-quick-heal-total-security08_17_13_28_37.png",
-      price: "$39.99",
-      originalPrice: "$49.99",
+      price: "39.99",
+      originalPrice: "49.99",
     },-
     {
       id: 7,
       category: "Antivirus Pro",
       name: "Quick Heal Antivirus Pro 1 User 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_59_20.png",
-      price: "$54.99",
-      originalPrice: "$64.99",
+      price: "54.99",
+      originalPrice: "64.99",
     },
     {
       id: 8,
       category: "Upgrade",
       name: "Upgrade Quick Heal Antivirus Pro 1 User 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_11_00_27.png",
-      price: "$19.99",
-      originalPrice: "$29.99",
+      price: "19.99",
+      originalPrice: "29.99",
     },
     {
       id: 9,
       category: "Antivirus Pro",
       name: "Quick Heal Antivirus Pro 2 User 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_51_22.png",
-      price: "$34.99",
-      originalPrice: "$44.99",
+      price: "34.99",
+      originalPrice: "44.99",
     },
     {
       id: 10,
       category: "Antivirus Pro",
       name: "Quick Heal Antivirus Pro 3 User 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_13_06_15.png",
-      price: "$49.99",
-      originalPrice: "$59.99",
+      price: "49.99",
+      originalPrice: "59.99",
     },
     {
       id: 11,
       category: "Total Security",
       name: "Upgrade Quick Heal Total Security 2 User 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_38_32.png",
-      price: "$59.99",
-      originalPrice: "$69.99",
+      price: "59.99",
+      originalPrice: "69.99",
     },
     {
       id: 12,
       category: "Total Security",
       name: "Upgrade Quick Heal Total Security 3 User 1 Year",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_07_07.png",
-      price: "$49.99",
-      originalPrice: "$59.99",
+      price: "49.99",
+      originalPrice: "59.99",
     },
     {
       id: 13,
       category: "Total Security",
       name: "Upgrade Quick Heal Total Security 3 User 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_08_03.png",
-      price: "$39.99",
-      originalPrice: "$49.99",
+      price: "39.99",
+      originalPrice: "49.99",
     },
     {
       id: 14,
       category: "Internet Security",
       name: "Upgrade Quick Heal Internet Security 1 User 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_17_10_54_32.png",
-      price: "$39.99",
-      originalPrice: "$49.99",
+      price: "39.99",
+      originalPrice: "49.99",
     },
     {
       id: 15,
       category: "Total Security",
       name: "Upgrade Quick Heal Total Security 5 User 3 Years",
       image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_43_41.png",
-      price: "$39.99",
-      originalPrice: "$49.99",
+      price: "39.99",
+      originalPrice: "49.99",
     },
   ];
 
@@ -176,7 +176,7 @@ const NewSection = () => {
               <div className="absolute top-4 right-4 bg-yellow-400 rounded-full w-16 h-16 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-xs font-medium text-gray-700">Save</div>
-                  <div className="text-sm font-bold text-gray-900">$120</div>
+                  <div className="text-sm font-bold text-gray-900">120</div>
                 </div>
               </div>
 
@@ -203,8 +203,8 @@ const NewSection = () => {
                 </h4>
 
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  <span className="text-gray-500 line-through text-sm">$99.00</span>
-                  <span className="text-red-600 text-2xl font-bold">$79.00</span>
+                  <span className="text-gray-500 line-through text-sm">99.00</span>
+                  <span className="text-red-600 text-2xl font-bold">79.00</span>
                 </div>
 
                 <div className="flex justify-between text-sm text-gray-600 mb-4">

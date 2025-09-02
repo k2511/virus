@@ -340,10 +340,11 @@ const RecentlyViewedSlider = () => {
             {visibleProducts.map((product, index) => (
               <div
                 key={index}
-                className={`flex-none w-full sm:w-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6 flex flex-col items-center group border-r border-gray-200 p-4 transition hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]`}
+                className={`flex-none w-full sm:w-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6 flex flex-col items-center group hover:border-2 border-r border-gray-200 p-4 transition hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
+                
                 {/* Category */}
                 <div className="w-full text-left mb-2">
                   <span className="text-sm text-gray-500">
@@ -377,13 +378,13 @@ const RecentlyViewedSlider = () => {
 
                 {/* Hover Actions */}
                 <div
-                  className={`overflow-hidden transition-all duration-300 w-full border-t border-gray-200 ${
+                  className={`overflow-hidden  w-full  min-h-16  ${
                     hoveredIndex === index
-                      ? "max-h-16 opacity-100 mt-2"
+                      ? "max-h-0 opacity-100 "
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="flex items-center justify-center gap-6 py-2 bg-white">
+                  <div className="flex items-center justify-center gap-6 py-2  ">
                     <button className="flex items-center gap-1 hover:text-blue-600">
                       <RotateCcw className="w-4 h-4" />
                       Compare
@@ -394,8 +395,10 @@ const RecentlyViewedSlider = () => {
                     </button>
                   </div>
                 </div>
+               
               </div>
-            ))}
+               
+            ))} <div className="h-20 border-black border-2"></div>
           </div>
         </div>
 
