@@ -14,6 +14,8 @@ const Brands = () => {
   };
 
   const [sale, setSale] = useState(topSelling);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount1, setVisibleCount1] = useState(4);
 
   const list = [
     {
@@ -192,6 +194,16 @@ const Brands = () => {
     },
   ];
 
+ 
+
+  const handleViewMore = () => {
+    setVisibleCount((prev) => prev + 4); // load 4 more each time
+  };
+
+  const handleViewMore1 = () => {
+    setVisibleCount1((prev) => prev + 4); // load 4 more each time
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation Tabs */}
@@ -217,22 +229,25 @@ const Brands = () => {
 
       <section>
         <div className="m-auto max-w-[1400px] bg-gray-50 p-4 md:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 items-start">
             {/* Left Grid */}
             <div
-              className={`grid grid-cols-1 sm:grid-cols-2 gap-4 w-full ${
+              className={`grid grid-cols-1 sm:grid-cols-2 gap-2 w-full ${
                 list[val].arr.length === 1 ? "sm:grid-cols-1 " : ""
               }`}
             >
-              {list[val].arr.map((item, i) => (
-                <div onClick={()=>   navigate(`/brands/${encodeURIComponent(item.name)}`, {
-                  state: { 
-                    image: item.img, 
-                    price: item.price, 
-                    category: item.category ,
-                    // originalPrice: product.originalPrice
-                  },
-                })}
+              {list[val].arr.slice(0, visibleCount).map((item, i) => (
+                <div
+                  onClick={() =>
+                    navigate(`/brands/${encodeURIComponent(item.name)}`, {
+                      state: {
+                        image: item.img,
+                        price: item.price,
+                        category: item.category,
+                        // originalPrice: product.originalPrice
+                      },
+                    })
+                  }
                   key={i}
                   className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl"
                 >
@@ -253,19 +268,31 @@ const Brands = () => {
                   </div>
                 </div>
               ))}
+              {visibleCount < list[val].arr.length && (
+                <button
+                  onClick={handleViewMore}
+                  className="mt-2 px-4 py-2 bg-yellow-400 text-white rounded"
+                >
+                  View More
+                </button>
+              )}
             </div>
 
-            {/* Featured Product */}
-            <div className="bg-white rounded-md p-6 shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0"
-            onClick={()=>   navigate(`/brands/${encodeURIComponent(sale.name)}`, {
-              state: { 
-                image: sale.img, 
-                price: sale.price, 
-                category: sale.category ,
-                // originalPrice: product.originalPrice
-              },
-            })}>
-              <div className="w-full">
+            {/* middle part */}
+            <div
+              className="bg-white rounded-md gap-2  h-[36rem] p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0"
+              onClick={() =>
+                navigate(`/brands/${encodeURIComponent(sale.name)}`, {
+                  state: {
+                    image: sale.img,
+                    price: sale.price,
+                    category: sale.category,
+                    // originalPrice: product.originalPrice
+                  },
+                })
+              }
+            >
+              <div className="w-full h-">
                 <p className="text-sm text-gray-500">{sale.category}</p>
                 <p className="font-semibold text-blue-700 mb-4 line-clamp-2">
                   {sale.name}
@@ -273,7 +300,7 @@ const Brands = () => {
                 <img
                   src={sale.img}
                   alt="controller"
-                  className="w-full max-h-72 object-contain mb-6"
+                  className="w-full max-h-96 object-contain mb-6"
                 />
                 <div className="w-full">
                   <div className="flex items-center justify-between w-full">
@@ -291,19 +318,21 @@ const Brands = () => {
             </div>
 
             {/* Right Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 lg:mt-0">
-              {list[val].arr.map((item, i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 lg:mt-0">
+              {list[val].arr.slice(0, visibleCount1).map((item, i) => (
                 <div
                   key={i}
                   className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl"
-                  onClick={()=>   navigate(`/brands/${encodeURIComponent(item.name)}`, {
-                    state: { 
-                      image: item.img, 
-                      price: item.price, 
-                      category: item.category ,
-                      // originalPrice: product.originalPrice
-                    },
-                  })}
+                  onClick={() =>
+                    navigate(`/brands/${encodeURIComponent(item.name)}`, {
+                      state: {
+                        image: item.img,
+                        price: item.price,
+                        category: item.category,
+                      
+                      },
+                    })
+                  }
                 >
                   <p className="text-sm text-gray-500">{item.category}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
@@ -322,7 +351,18 @@ const Brands = () => {
                   </div>
                 </div>
               ))}
+              {visibleCount1 < list[val].arr.length && (
+                <button
+                  onClick={handleViewMore1}
+                  className="mt-2 px-4 py-2  bg-yellow-400 text-white rounded"
+                >
+                  View More
+                </button>
+              )}
             </div>
+
+       
+
           </div>
         </div>
       </section>
