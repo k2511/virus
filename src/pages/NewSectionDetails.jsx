@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Star, MessageCircle } from "lucide-react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FiInstagram } from "react-icons/fi";
@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 const NewSectionDetails = () => {
   const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
+
   const { image, price, category, originalPrice } = location.state || {};
 
   const [quantity, setQuantity] = useState(1);
@@ -145,10 +147,11 @@ const NewSectionDetails = () => {
                 </div>
 
                 <div className="sm:gap-3  gap-1 flex justify-around w-fit">
-                  <button
+                  <button 
                     className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.6rem] sm:text-sm md:text-base  py-1 px-1 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
-                      toast.success("Buy Successfully");
+                      // toast.success("Buy Successfully");
+                           navigate('/payment');
                     }}
                   >
                     Buy now

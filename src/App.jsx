@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NewSectionDetails from "./pages/NewSectionDetails";
 import BrandDetails from "./pages/BrandDetails";
+import Payment from "./pages/Payment";
 
 function App() {
   const [activePanel, setActivePanel] = useState(null);
@@ -31,6 +32,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/new-section-details/:id" element={<NewSectionDetails />} />
         <Route path="/brands/:id" element={<BrandDetails />} />
+        <Route path="/payment" element={<Payment />} />
+        
       </Routes>
 
       <Footer />

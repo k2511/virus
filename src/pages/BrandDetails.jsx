@@ -145,7 +145,7 @@ const BrandDetails = () => {
                       toast.success("Buy Successfully");
                     }}
                   >
-                    BUY NOW
+                    Buy now
                   </button>
                   <button
                     className="bg-yellow-400 hover:bg-yellow-500 text-xs sm:text-sm md:text-base lg:text-lg text-black font-normal py-2 px-3 sm:py-2 sm:px-4 rounded"
