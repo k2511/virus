@@ -18,11 +18,22 @@ const NewSectionDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Reviews");
 
+  const basePrice = parseFloat(price.replace('₹', '').replace(',', ''));
+  const baseOriginalPrice = originalPrice ? parseFloat(originalPrice.replace('₹', '').replace(',', '')) : null;
+
+  // Calculate dynamic prices based on quantity
+  const currentPrice = basePrice * quantity;
+  const currentOriginalPrice = baseOriginalPrice ? baseOriginalPrice * quantity : null;
+
+  // Format price for display
+  const formatPrice = (priceValue) => {
+    return `₹${priceValue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+
       const { cart, setCart, addToCart } = useContext(MyContext);
 
       const handleAdd = (obj) => {
         addToCart(obj);
-        console.log("added")
       };
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
@@ -58,9 +69,6 @@ const NewSectionDetails = () => {
               <img src={image} />
             </div>
 
-            {/* <div className=" text-center">
-              <p className="text-teal-600 font-semibold text-lg">Save 18% GST on business purchase!!</p>
-            </div> */}
           </div>
 
           <div className="lg:space-y-6 md:space-y-3 ">
@@ -108,9 +116,10 @@ const NewSectionDetails = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+            {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="w-full">
-                {/* <p className="text-sm text-gray-600 mb-1"></p> */}
+              
                 <div className="flex items-end gap-4   w-full">
                   <div>
                     <span className="sm:text-4xl text-2xl font-bold text-gray-600">
@@ -119,11 +128,43 @@ const NewSectionDetails = () => {
                   </div>
 
                   <div className="text-right flex items-end ">
-                    {/* <p className="text-sm text-gray-600">MRP</p> */}
+                  
                     <p className="text-lg text-gray-400 line-through">
                       {originalPrice}
                     </p>
                   </div>
+                </div>
+              </div>
+            </div> */}
+
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="w-full">
+                <div className="flex items-end gap-4 w-full">
+                  <div>
+                    <span className="sm:text-4xl text-2xl font-bold text-gray-600">
+                      {formatPrice(currentPrice)}
+                    </span>
+                    {quantity > 1 && (
+                      <div className="text-sm text-gray-500">
+                        ({formatPrice(basePrice)} × {quantity})
+                      </div>
+                    )}
+                  </div>
+
+                  {currentOriginalPrice && (
+                    <div className="text-right flex items-end">
+                      <div className="flex flex-col">
+                        <p className="text-lg text-gray-400 line-through">
+                          {formatPrice(currentOriginalPrice)}
+                        </p>
+                        {quantity > 1 && (
+                          <div className="text-sm text-gray-400">
+                            ({formatPrice(baseOriginalPrice)} × {quantity})
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -157,7 +198,17 @@ const NewSectionDetails = () => {
                   <button 
                     className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.6rem] sm:text-sm md:text-base  py-1 px-1 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
-                        navigate('/payment');
+                        navigate('/payment',{
+                          state: {
+                            productName: id,
+                            quantity: quantity,
+                            unitPrice: basePrice,
+                            totalPrice: currentPrice,
+                            originalPrice: currentOriginalPrice,
+                            image: image,
+                            category: category
+                          }
+                        });
                     }}
                   >
                     Buy now
@@ -165,7 +216,9 @@ const NewSectionDetails = () => {
 
                   <button
                     className=" bg-yellow-400 hover:bg-yellow-500  text-[0.6rem]  sm:text-sm md:text-base  text-black   py-1 px-1 sm:py-2 sm:px-2 rounded "
-                    onClick={() => {handleAdd({name:id, price:price, image:image, category:''}) }}
+                    onClick={() => {
+                      toast.success("Item added in the cart")
+                      handleAdd({name:id, price:price, image:image, category:''}) }}
                   >
                     Add to cart
                   </button>
@@ -358,7 +411,7 @@ const NewSectionDetails = () => {
 
       </div>
 
-      <Cart />
+   
     </div>
   );
 };

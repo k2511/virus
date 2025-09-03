@@ -193,7 +193,7 @@ const Hero = () => {
 
               <div className="flex relative items-center space-x-2 text-gray-900  ">
                 <div className=" " 
-                  // onClick={navigate('/cart')} 
+                  onClick={() => {navigate('/cart')}} 
 
                 >
 

@@ -293,11 +293,14 @@ import { Star, MessageCircle } from "lucide-react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FiInstagram } from "react-icons/fi";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { MyContext } from "../Context/CartContext";
 
 const BrandDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+
   const { image, price, category, originalPrice } = location.state || {};
 
   const [quantity, setQuantity] = useState(1);
@@ -316,9 +319,17 @@ const BrandDetails = () => {
     return `₹${priceValue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
+  
+
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+   const { cart, setCart, addToCart } = useContext(MyContext);
+        const handleAdd = (obj) => {
+          addToCart(obj);
+          // console.log("added")
+        };
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -475,8 +486,14 @@ const BrandDetails = () => {
                     className="bg-yellow-400 hover:bg-yellow-500 text-xs sm:text-sm md:text-base lg:text-lg text-black font-normal py-2 px-3 sm:py-2 sm:px-4 rounded"
                     onClick={() => {
                       toast.success(`${quantity} item(s) added to cart for ${formatPrice(currentPrice)}`);
-                   
+                      handleAdd({
+                        name: id,
+                        price: price,
+                        image: image,
+                        category: '',
+                      });
                     }}
+                    
                   >
                     Add to cart
                   </button>
