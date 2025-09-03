@@ -7,18 +7,21 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import Software from "./pages/Software";
-// import Brands from "./pages/Brands";
+
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NewSectionDetails from "./pages/NewSectionDetails";
+
 import BrandDetails from "./pages/BrandDetails";
 import Payment from "./pages/Payment";
+import Cart from "./pages/Cart";
 
 function App() {
   const [activePanel, setActivePanel] = useState(null);
+     //  const [cart, setCart] = useState([]);
 
   return (
-    
+  
     <Router>
       <Topbar setActivePanel={setActivePanel} />
       <Navbar activePanel={activePanel} setActivePanel={setActivePanel} />
@@ -33,11 +36,14 @@ function App() {
         <Route path="/new-section-details/:id" element={<NewSectionDetails />} />
         <Route path="/brands/:id" element={<BrandDetails />} />
         <Route path="/payment" element={<Payment />} />
-        
+        <Route path="/cart" element={<Cart />} />
+
+
       </Routes>
 
       <Footer />
     </Router>
+   
   );
 }
 

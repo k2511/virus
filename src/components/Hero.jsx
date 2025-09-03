@@ -12,8 +12,13 @@ import {
   ArrowRight,
   AlignJustify,
 } from "lucide-react";
+import {  useNavigate } from "react-router-dom";
+
 import alogo from "../assets/images/antivirusLogo.png";
+
 const Hero = () => {
+  const navigate = useNavigate();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -98,7 +103,7 @@ const Hero = () => {
 
   const [openIndex, setOpenIndex] = useState(null);
   const [showDepartment, setShowDepartment] = useState(true);
-
+ 
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -180,13 +185,20 @@ const Hero = () => {
                 </button>
               </div>
             </div>
+            
             <div className="flex items-center sm:space-x-4 space-x-1">
               <div className="hidden md:flex items-center space-x-1 text-gray-600  ">
                 <Heart className="w-5 h-5" />
               </div>
+
               <div className="flex relative items-center space-x-2 text-gray-900  ">
-                <div>
-                  <ShoppingCart className="w-6 h-6" />
+                <div className=" " 
+                  // onClick={navigate('/cart')} 
+
+                >
+
+              
+                  <ShoppingCart className="w-6 h-6"   />
 
                   <div className=" absolute top-3 -right-2  bg-yellow-400 text-black animate-bounce text-xs px-1 py-1  rounded-full w-5 h-5 flex items-center justify-center font-semibold leading-none">
                     2

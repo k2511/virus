@@ -530,7 +530,7 @@ const NewSection = () => {
 
   const handleProductClick = (product) => {
     // Navigate to BrandDetails component with proper route
-    navigate(`/brands/${encodeURIComponent(product.name)}`, {
+    navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
       state: { 
         image: product.image, 
         price: product.price, 
@@ -554,7 +554,7 @@ const NewSection = () => {
       category: "Total Security"
     };
     
-    navigate(`/brands/${encodeURIComponent(dealProduct.name)}`, {
+    navigate(`/new-section-details/${encodeURIComponent(dealProduct.name)}`, {
       state: { 
         image: dealProduct.image, 
         price: dealProduct.price, 

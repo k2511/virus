@@ -4,6 +4,9 @@ import { Star, MessageCircle } from "lucide-react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FiInstagram } from "react-icons/fi";
 import toast from "react-hot-toast";
+import { MyContext } from "../Context/CartContext";
+import { useContext } from "react";
+import Cart from "./Cart";
 
 const NewSectionDetails = () => {
   const { id } = useParams();
@@ -15,11 +18,19 @@ const NewSectionDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Reviews");
 
+      const { cart, setCart, addToCart } = useContext(MyContext);
+
+      const handleAdd = (obj) => {
+        addToCart(obj);
+        console.log("added")
+      };
+
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const renderStars = (rating) => {
+
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
@@ -97,10 +108,6 @@ const NewSectionDetails = () => {
               </div>
             </div>
 
-            {/* <div className="bg-gray-100 p-4 rounded-lg">
-              <p className="font-semibold text-center text-lg mb-2">INSTANT DIGITAL DELIVERY WITHIN 30 SECONDS</p>
-            </div> */}
-
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="w-full">
                 {/* <p className="text-sm text-gray-600 mb-1"></p> */}
@@ -150,17 +157,15 @@ const NewSectionDetails = () => {
                   <button 
                     className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.6rem] sm:text-sm md:text-base  py-1 px-1 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
-                      // toast.success("Buy Successfully");
-                           navigate('/payment');
+                        navigate('/payment');
                     }}
                   >
                     Buy now
                   </button>
+
                   <button
                     className=" bg-yellow-400 hover:bg-yellow-500  text-[0.6rem]  sm:text-sm md:text-base  text-black   py-1 px-1 sm:py-2 sm:px-2 rounded "
-                    onClick={() => {
-                      toast.success("Cart added Successfully");
-                    }}
+                    onClick={() => {handleAdd({name:id, price:price, image:image, category:''}) }}
                   >
                     Add to cart
                   </button>
@@ -168,11 +173,6 @@ const NewSectionDetails = () => {
               </div>
             </div>
 
-            {/* <div className="flex gap-4 justify-center sm:justify-start">
-              <GrFacebookOption className="w-6 h-6 text-blue-600 cursor-pointer transition-colors" />
-              <FiInstagram className="w-6 h-6 text-pink-600 cursor-pointer transition-colors" />
-              <MessageCircle className="w-6 h-6 text-green-600 cursor-pointer transition-colors" />
-            </div> */}
           </div>
         </div>
 
@@ -237,7 +237,8 @@ const NewSectionDetails = () => {
         </div> */}
 
 
-<div className="mt-10">
+        <div className="mt-10">
+
           {/* Tab Navigation */}
           <div className="flex flex-wrap justify-center sm:justify-start gap-1 sm:gap-2 mx-auto w-full overflow-x-auto">
             {["Reviews", "Details", "Installation Instructions"].map((tab) => (
@@ -355,8 +356,9 @@ const NewSectionDetails = () => {
         </div>
 
 
-
       </div>
+
+      <Cart />
     </div>
   );
 };

@@ -475,6 +475,7 @@ const BrandDetails = () => {
                     className="bg-yellow-400 hover:bg-yellow-500 text-xs sm:text-sm md:text-base lg:text-lg text-black font-normal py-2 px-3 sm:py-2 sm:px-4 rounded"
                     onClick={() => {
                       toast.success(`${quantity} item(s) added to cart for ${formatPrice(currentPrice)}`);
+                   
                     }}
                   >
                     Add to cart
