@@ -2,6 +2,8 @@
 
 
 
+
+
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 
@@ -11,7 +13,6 @@ import { FiInstagram } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useContext } from "react";
 import { MyContext } from "../Context/CartContext";
-
 
 const BrandDetails = () => {
   const { id } = useParams();
@@ -448,6 +449,9 @@ const BrandDetails = () => {
         </div>
   </section>
       
+
+      {/* <RelatedProduct /> */}
+
     </div>
   );
 };
