@@ -104,7 +104,7 @@ const NewSectionDetails = () => {
 
               <div>
                 <p className="text-sm text-gray-600 mb-1">Brand Name</p>
-                <p className="font-semibold text-lg">{category}</p>
+                <p className="font-semibold text-lg">Quick Heal </p>
               </div>
 
               <div>
