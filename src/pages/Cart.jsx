@@ -42,7 +42,7 @@ const Cart = () => {
   // };
 
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 2;
+  const itemsPerPage = 10;
 
   const endOffset = itemOffset + itemsPerPage;
   const currentOrders = cart.slice(itemOffset, endOffset);
