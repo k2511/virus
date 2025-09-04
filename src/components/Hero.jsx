@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/images/logo.png";
+import { useContext } from "react";
+import { MyContext } from "../Context/CartContext";
 import {
   Search,
   Heart,
@@ -12,13 +14,14 @@ import {
   ArrowRight,
   AlignJustify,
 } from "lucide-react";
-import {  useNavigate } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 import alogo from "../assets/images/antivirusLogo.png";
 
 const Hero = () => {
   const navigate = useNavigate();
-
+  const { cart, setCart, addToCart } = useContext(MyContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -103,7 +106,7 @@ const Hero = () => {
 
   const [openIndex, setOpenIndex] = useState(null);
   const [showDepartment, setShowDepartment] = useState(true);
- 
+
   const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -185,23 +188,23 @@ const Hero = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className="flex items-center sm:space-x-4 space-x-1">
               <div className="hidden md:flex items-center space-x-1 text-gray-600  ">
                 <Heart className="w-5 h-5" />
               </div>
 
               <div className="flex relative items-center space-x-2 text-gray-900  ">
-                <div className=" " 
-                  onClick={() => {navigate('/cart')}} 
-
+                <div
+                  className=" "
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
                 >
-
-              
-                  <ShoppingCart className="w-6 h-6"   />
+                  <ShoppingCart className="w-6 h-6" />
 
                   <div className=" absolute top-3 -right-2  bg-yellow-400 text-black animate-bounce text-xs px-1 py-1  rounded-full w-5 h-5 flex items-center justify-center font-semibold leading-none">
-                    2
+                  {cart.length}
                   </div>
                 </div>
 
@@ -380,7 +383,7 @@ const Hero = () => {
         </div>
         {show && (
           <div className="absolute top-full left-0 w-full  p-4 md:p-8 z-50 shadow-lg bg-white">
-            <div className="max-w-7xl mx-auto " >
+            <div className="max-w-7xl mx-auto ">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 ">
                 <div className="space-y-6 ">
                   <h2 className="text-lg font-semibold text-gray-900 border-b border-yellow-400 pb-2">
@@ -771,10 +774,9 @@ const Hero = () => {
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-
                     className="w-full flex-shrink-0  flex flex-row items-center justify-between  gap-5 sm:gap-10 sm:px-4 sm:py-4  "
-//                     className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-10 sm:px-4 sm:py-4  "
-// >>>>>>> a439599a9caea42b66daa4589a0c6dea3b3ff01c
+                    //                     className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-10 sm:px-4 sm:py-4  "
+                    // >>>>>>> a439599a9caea42b66daa4589a0c6dea3b3ff01c
                   >
                     <div className="space-y-4 md:w-1/2">
                       <div className="space-y-2 ">
@@ -808,11 +810,9 @@ const Hero = () => {
                         <img
                           src={slide.image}
                           alt={slide.title}
-
                           className="md:w-96 md:h-96 h-44 w-44  mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105 "
 
                           // className="md:w-80 md:h-96 h-52 w-44  mx-auto rounded-lg shadow-2xl cursor-pointer transform transition-transform group-hover:scale-105 "
-
                         />
                         <div className="absolute  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20 rounded-lg cursor-pointer">
                           {/* <ExternalLink className="w-12 h-12 text-white" /> */}

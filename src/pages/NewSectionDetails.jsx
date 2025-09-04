@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { Star, MessageCircle } from "lucide-react";
+import { useParams, useLocation, useNavigate ,NavLink} from "react-router-dom";
+import { Star, MessageCircle,ShoppingCart, BarChart3, Heart } from "lucide-react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FiInstagram } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { MyContext } from "../Context/CartContext";
 import { useContext } from "react";
 import Cart from "./Cart";
+import Hero from "../components/Hero";
+import RelatedProduct from "../components/RelatedProduct";
 
 const NewSectionDetails = () => {
   const { id } = useParams();
@@ -56,7 +58,11 @@ const NewSectionDetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
+
+
   return (
+    <> 
+   
     <div className="min-h-screen bg-white max-w-6xl mx-auto">
       <div className="container mx-auto px-4 py-8 ">
         <div className="grid md:grid-cols-2 sm:gap-1 md:gap-1 lg:gap-16 ">
@@ -105,8 +111,9 @@ const NewSectionDetails = () => {
                 <p className="text-sm text-gray-600 mb-1">HSN</p>
                 <p className="font-semibold text-lg">85238020</p>
               </div>
+              
               <div>
-                <p className="text-sm text-gray-600 mb-1">GSTIN</p>
+                <p className="text-sm text-gray-600 mb-1">GIN</p>
                 <p className="font-semibold text-lg">85238020</p>
               </div>
 
@@ -177,15 +184,16 @@ const NewSectionDetails = () => {
               </div>
               <div className="flex justify-start   h-[3rem] gap-3 w-fit">
                 <div className="flex items-center border border-gray-300 rounded ">
-                  <span className="px-4 py-2  border-gray-300  text-center">
-                    {quantity}
-                  </span>
+                
                   <button
                     onClick={decrementQuantity}
                     className="px-4 py-2 hover:bg-gray-100 transition-colors  "
                   >
                     −
                   </button>
+                  <span className="px-4 py-2  border-gray-300  text-center">
+                    {quantity}
+                  </span>
                   <button
                     onClick={incrementQuantity}
                     className="px-4 py-2 hover:bg-gray-100 transition-colors"
@@ -410,9 +418,13 @@ const NewSectionDetails = () => {
 
 
       </div>
+  
 
    
+     <RelatedProduct />
     </div>
+
+    </>
   );
 };
 

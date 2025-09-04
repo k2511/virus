@@ -295,6 +295,7 @@ import { FiInstagram } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useContext } from "react";
 import { MyContext } from "../Context/CartContext";
+import RelatedProduct from "../components/RelatedProduct";
 
 const BrandDetails = () => {
   const { id } = useParams();
@@ -395,7 +396,7 @@ const BrandDetails = () => {
                 <p className="font-semibold text-lg">85238020</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600 mb-1">GSTIN</p>
+                <p className="text-sm text-gray-600 mb-1">GIN</p>
                 <p className="font-semibold text-lg">85238020</p>
               </div>
 
@@ -445,15 +446,16 @@ const BrandDetails = () => {
               </div>
               <div className="flex justify-start h-[3rem] gap-3">
                 <div className="flex items-center border border-gray-300 rounded">
-                  <span className="px-4 py-2 border-gray-300 text-center">
-                    {quantity}
-                  </span>
+                
                   <button
                     onClick={decrementQuantity}
                     className="px-4 py-2 hover:bg-gray-100 transition-colors"
                   >
                     −
                   </button>
+                  <span className="px-4 py-2 border-gray-300 text-center">
+                    {quantity}
+                  </span>
                   <button
                     onClick={incrementQuantity}
                     className="px-4 py-2 hover:bg-gray-100 transition-colors"
@@ -622,6 +624,9 @@ const BrandDetails = () => {
         </div>
 
       </div>
+
+
+      <RelatedProduct />
     </div>
   );
 };

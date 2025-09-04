@@ -295,7 +295,7 @@ const Brands = () => {
 
             {/* Featured Product */}
             <div 
-              className="bg-white rounded-md p-6 shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0 group cursor-pointer transition-all duration-300"
+              className="bg-white rounded-md p-6  md:min-h-[43rem] shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0 group cursor-pointer transition-all duration-300"
               onClick={()=> navigate(`/brands/${encodeURIComponent(sale.name)}`, {
                 state: { 
                   image: sale.img, 
@@ -304,15 +304,16 @@ const Brands = () => {
                 },
               })}
             >
-              <div className="w-full">
-                <p className="text-sm text-gray-500">{sale.category}</p>
+              <div className="w-full space-y-10">
+                <div>  <p className="text-sm text-gray-500">{sale.category}</p>
                 <p className="font-semibold text-blue-700 mb-4 line-clamp-2">
                   {sale.name}
-                </p>
+                </p> </div>
+              
                 <img
                   src={sale.img}
                   alt="featured product"
-                  className="w-full max-h-96 object-contain mb-6"
+                  className="w-full  max-h-96 m object-contain mb-6"
                 />
                 <div className="w-full">
                   <div className="flex items-center justify-between w-full">

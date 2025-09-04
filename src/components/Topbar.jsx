@@ -79,7 +79,7 @@ const Topbar = ({ setActivePanel }) => {
       <div className="max-w-7xl mx-auto px-4 py-2">
         {/* Desktop View */}
         <div className="hidden md:flex justify-between items-center">
-          <span>Welcome to Worldwide Electronics Store</span>
+          <span>Welcome to Antivirus E-Store</span>
           <div className="flex items-center space-x-4">
             <a
               href="#"
