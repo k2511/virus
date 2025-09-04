@@ -21,7 +21,7 @@ import alogo from "../assets/images/antivirusLogo.png";
 
 const Hero = () => {
   const navigate = useNavigate();
-  const { cart, setCart, addToCart } = useContext(MyContext);
+  const { cart, setCart, addToCart ,total, setTotal } = useContext(MyContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -31,6 +31,7 @@ const Hero = () => {
   const sidebarOpen = () => {
     setOpen(!open);
   };
+  
 
   const slides = [
     {
@@ -211,7 +212,7 @@ const Hero = () => {
                 {/* <div class="absolute bg-red-500 px-3 sm:px-4 py-1 sm:py-2 animate-bounce -top-[10px] -left-[10px] rounded-[4px] text-xs sm:text-sm">New</div> */}
               </div>
               <div className="text-right ">
-                <div className="font-bold text-lg">$1785.00</div>
+                <div className="font-bold text-lg"> ₹{total}</div>
               </div>
             </div>
           </div>

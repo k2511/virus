@@ -5,7 +5,8 @@ export const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
   let obj = []
-
+  
+  const [total, setTotal] = useState(0);
   const [cart, setCart] = useState(obj);
 
   const addToCart = (item) => {
@@ -13,7 +14,7 @@ export const MyProvider = ({ children }) => {
   };
 
   return (
-    <MyContext.Provider value={{ cart, setCart, addToCart }}>
+    <MyContext.Provider value={{ cart, setCart, addToCart,total, setTotal }}>
       {children}
     </MyContext.Provider>
   );

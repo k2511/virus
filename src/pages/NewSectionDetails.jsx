@@ -32,11 +32,19 @@ const NewSectionDetails = () => {
     return `₹${priceValue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
-      const { cart, setCart, addToCart } = useContext(MyContext);
+      const { cart, setCart, addToCart, total, setTotal } = useContext(MyContext);
 
       const handleAdd = (obj) => {
         addToCart(obj);
       };
+
+      const totalPrice = cart.slice(0, cart.length)
+      .reduce((sum, item) => {
+        const numericPrice = parseFloat(item.price.replace("₹", ""));
+        return sum + numericPrice;
+      }, 0);
+    
+      setTotal(totalPrice);
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>

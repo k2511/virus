@@ -46,11 +46,19 @@ const BrandDetails = () => {
   const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-   const { cart, setCart, addToCart } = useContext(MyContext);
+   const { cart, setCart, addToCart, total, setTotal } = useContext(MyContext);
         const handleAdd = (obj) => {
           addToCart(obj);
           // console.log("added")
         };
+
+        const totalPrice = cart.slice(0, cart.length)
+        .reduce((sum, item) => {
+          const numericPrice = parseFloat(item.price.replace("₹", ""));
+          return sum + numericPrice;
+        }, 0);
+      
+        setTotal(totalPrice);
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
