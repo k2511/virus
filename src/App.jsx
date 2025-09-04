@@ -18,14 +18,13 @@ import Cart from "./pages/Cart";
 
 function App() {
   const [activePanel, setActivePanel] = useState(null);
-     //  const [cart, setCart] = useState([]);
+  //  const [cart, setCart] = useState([]);
 
   return (
-  
     <Router>
       <Topbar setActivePanel={setActivePanel} />
       <Navbar activePanel={activePanel} setActivePanel={setActivePanel} />
-          {/* <div> virus one </div> */}
+      {/* <div> virus one </div> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,17 +32,17 @@ function App() {
         {/* <Route path="/brands" element={<Brands />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/new-section-details/:id" element={<NewSectionDetails />} />
+        <Route
+          path="/new-section-details/:id"
+          element={<NewSectionDetails />}
+        />
         <Route path="/brands/:id" element={<BrandDetails />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/cart" element={<Cart />} />
-
-
       </Routes>
 
       <Footer />
     </Router>
-   
   );
 }
 
