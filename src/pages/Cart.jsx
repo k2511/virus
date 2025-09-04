@@ -15,7 +15,9 @@ import toast from "react-hot-toast";
 import ReactPaginate from 'react-paginate';
 
 const Cart = () => {
-  const { cart, setCart, addToCart } = useContext(MyContext);
+  const { cart, setCart, addToCart , total, setTotal } = useContext(MyContext);
+
+
   let key = "gdlfktodlf";
   //  const updateQuantity = (id, newQuantity) => {
   //   if (newQuantity === 0) {
@@ -86,7 +88,16 @@ const Cart = () => {
   const yyyy = today.getFullYear();
 
   const formattedDate = `${dd}/${mm}/${yyyy}`;
-  // console.log(formattedDate);
+ 
+
+  const totalPrice = currentOrders
+  .slice(0, visibleRows)
+  .reduce((sum, item) => {
+    const numericPrice = parseFloat(item.price.replace("₹", ""));
+    return sum + numericPrice;
+  }, 0);
+
+  setTotal(totalPrice);
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 ">
@@ -270,8 +281,8 @@ const Cart = () => {
                           {item.name && (
                             <div className="font-medium">{item.name}</div>
                           )}
-                          <div className="text-gray-600">
-                            Price: {item.price}
+                          <div className="text-gray-600"  >
+                            Price: {item.price}  
                           </div>
                           {/* <div className="text-gray-600">Qty: {item.quantity}</div> */}
                         </div>
