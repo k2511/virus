@@ -9,7 +9,7 @@ const Brands = () => {
 
   const [val, setVal] = useState(0);
   const topSelling = {
-    img: "https://dantivirus.com/admin/model/pics/kas_standard.png",
+    image: "https://dantivirus.com/admin/model/pics/kas_standard.png",
     name: "Kaspersky Antivirus 1 PC 1 Year",
     price: "₹249.00",
     category: "Antivirus",
@@ -24,31 +24,31 @@ const Brands = () => {
       name: "Kaspersky",
       arr: [
         {
-          img: "https://dantivirus.com/admin/model/pics/kas_standard.png",
+          image: "https://dantivirus.com/admin/model/pics/kas_standard.png",
           name: "Kaspersky Antivirus 1 PC 1 Year",
           price: "₹249.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/kas_plus.png",
+          image: "https://dantivirus.com/admin/model/pics/kas_plus.png",
           name: "Kaspersky Plus 1 PC 1 Year",
           price: "₹349.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/kas_premium.png",
+          image: "https://dantivirus.com/admin/model/pics/kas_premium.png",
           name: "Kaspersky Total Security 1 User 1 Year",
           price: "₹409.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/kas_premium.png",
+          image: "https://dantivirus.com/admin/model/pics/kas_premium.png",
           name: "Kaspersky Total Security1 User 3 Years",
           price: "₹1399.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/kas_premium.png",
+          image: "https://dantivirus.com/admin/model/pics/kas_premium.png",
           name: "Kaspersky Total Security 3 User 3 Years",
           price: "₹1899.00",
           category: "Security Suite",
@@ -59,31 +59,31 @@ const Brands = () => {
       name: "Net Protector",
       arr: [
         {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
           name: "Net Protector Total Security 1 User 1 Year",
           price: "₹428.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
           name: "Renew Net Protector Total Security 1 PC-1 Year",
           price: "₹438.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_30_17.png",
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_30_17.png",
           name: "Net Protector Total Security 1 User 3 Years",
           price: "₹998.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-antivirus-pro.png",
+          image: "https://dantivirus.com/admin/model/pics/net-protector-antivirus-pro.png",
           name: "Net Protector Antivirus 1 User 1 Year",
           price: "₹350.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/net-protector-total-security.png",
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security.png",
           name: "Upgrade Net Protector Total Security 1 User 3 Year",
           price: "₹998.00",
           category: "Security Suite",
@@ -94,31 +94,31 @@ const Brands = () => {
       name: "K7",
       arr: [
         {
-          img: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim.png",
+          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim.png",
           name: "K7 Antivirus Premium 1 PC 1 Year",
           price: "₹205.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
+          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
           name: "K7 Total Security 1 PC 1 Year",
           price: "₹295.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
+          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
           name: "Renew K7 Total Security 1 PC 1 Year",
           price: "₹379.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim08_17_11_35_40.png",
+          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim08_17_11_35_40.png",
           name: "Upgrade K7 Antivirus Premium 1 User 1 Year",
           price: "₹350.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/K7-Mobile-Security08_08_11_05_34.jpg",
+          image: "https://dantivirus.com/admin/model/pics/K7-Mobile-Security08_08_11_05_34.jpg",
           name: "K7 Total Security 10 PC 1 Year",
           price: "₹1900.00",
           category: "Security Suite",
@@ -129,31 +129,31 @@ const Brands = () => {
       name: "McAfee",
       arr: [
         {
-          img: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_14_16_59_00.png",
+          image: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_14_16_59_00.png",
           name: "McAfee Antivirus 1 User 1 Year",
           price: "₹238.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_17_11_39_37.png",
+          image: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_17_11_39_37.png",
           name: "Renew McAfee Antivirus 1 User 1 Year",
           price: "₹249.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/mcafee-total-protection-security08_17_13_57_10.png",
+          image: "https://dantivirus.com/admin/model/pics/mcafee-total-protection-security08_17_13_57_10.png",
           name: "McAfee Total Protection 1 User 1 Year",
           price: "₹298.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_17_11_40_25.png",
+          image: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_17_11_40_25.png",
           name: "McAfee Antivirus 1 User 3 Year",
           price: "₹669.00",
           category: "Antivirus",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/mcafee-total-protection-security08_17_13_57_52.png",
+          image: "https://dantivirus.com/admin/model/pics/mcafee-total-protection-security08_17_13_57_52.png",
           name: "McAfee Total Protection 1 User 3 Year",
           price: "₹1200.00",
           category: "Security Suite",
@@ -164,19 +164,19 @@ const Brands = () => {
       name: "Guardian",
       arr: [
         {
-          img: "https://dantivirus.com/admin/model/pics/guardian-total-security08_15_08_36_52.png",
+          image: "https://dantivirus.com/admin/model/pics/guardian-total-security08_15_08_36_52.png",
           name: "Guardian Total Security 1 User 1 Year",
           price: "₹435.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/guardian-net-secure08_15_08_23_02.png",
+          image: "https://dantivirus.com/admin/model/pics/guardian-net-secure08_15_08_23_02.png",
           name: "Renew Guardian NetSecure 1 PC 1 Year",
           price: "₹299.00",
           category: "Security Suite",
         },
         {
-          img: "https://dantivirus.com/admin/model/pics/guardian-net-secure08_15_08_23_02.png",
+          image: "https://dantivirus.com/admin/model/pics/guardian-net-secure08_15_08_23_02.png",
           name: "Guardian Net Secure 1 User 1 Year",
           price: "₹299.00",
           category: "Security Suite",
@@ -187,7 +187,7 @@ const Brands = () => {
       name: "ESET",
       arr: [
         {
-          img: "https://dantivirus.com/admin/model/pics/eset-node-antivirus08_15_08_44_11.png",
+          image: "https://dantivirus.com/admin/model/pics/eset-node-antivirus08_15_08_44_11.png",
           name: "ESET NOD32 Antivirus 1 User 1 Year",
           price: "₹280.00",
           category: "Antivirus",
@@ -247,8 +247,8 @@ const Brands = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
             {/* Left Grid */}
             <div
-              className={`grid grid-cols-1 sm:grid-cols-2 gap-2 w-full ${
-                list[val].arr.length === 1 ? "sm:grid-cols-1 " : ""
+              className={`grid grid-cols-1 sm:grid-cols-2 gap-2 w-fit ${
+                list[val].arr.length === 1 ? " flex justify-end  " : " "
               }`}
             >
               {list[val].arr.slice(0, visibleCount).map((item, i) => (
@@ -256,23 +256,26 @@ const Brands = () => {
                   onClick={() =>
                     navigate(`/brands/${encodeURIComponent(item.name)}`, {
                       state: {
-                        image: item.img,
+                        image: item.image,
                         price: item.price,
                         category: item.category,
+                        products: list[val].arr,
+                        brand: list[val].name,
                       },
                     })
                   }
                   key={i}
-                  className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300"
-                >
+                  className={`bg-white rounded-md p-4 shadow flex ${  list[val].arr.length === 1 ? "justify-end" : ""} flex-col 
+                     justify-end   text-center hover:shadow-xl group cursor-pointer transition-all duration-300
+                  `}>
                   <p className="text-sm text-gray-500">{item.category}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
                     {item.name}
                   </p>
                   <img
-                    src={item.img}
+                    src={item.image}
                     alt={item.name}
-                    className="h-32 object-contain my-3"
+                    className="h-32 object-contain my-3 "
                   />
                   <div className="flex items-center justify-between w-full">
                     <span className="text-lg font-semibold">{item.price}</span>
@@ -298,9 +301,11 @@ const Brands = () => {
               className="bg-white rounded-md p-6  md:min-h-[43rem] shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0 group cursor-pointer transition-all duration-300"
               onClick={()=> navigate(`/brands/${encodeURIComponent(sale.name)}`, {
                 state: { 
-                  image: sale.img, 
+                  image: sale.image, 
                   price: sale.price, 
                   category: sale.category,
+                  products: list[val].arr,
+                  brand: list[val].name,
                 },
               })}
             >
@@ -311,7 +316,7 @@ const Brands = () => {
                 </p> </div>
               
                 <img
-                  src={sale.img}
+                  src={sale.image}
                   alt="featured product"
                   className="w-full  max-h-96 m object-contain mb-6"
                 />
@@ -335,9 +340,11 @@ const Brands = () => {
                   className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300"
                   onClick={()=> navigate(`/brands/${encodeURIComponent(item.name)}`, {
                     state: { 
-                      image: item.img, 
+                      image: item.image, 
                       price: item.price, 
                       category: item.category,
+                      products: list[val].arr,
+                      brand: list[val].name,
                     },
                   })}
                 >
@@ -346,7 +353,7 @@ const Brands = () => {
                     {item.name}
                   </p>
                   <img
-                    src={item.img}
+                    src={item.image}
                     alt={item.name}
                     className="h-32 object-contain my-3"
                   />

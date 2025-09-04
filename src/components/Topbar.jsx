@@ -83,7 +83,7 @@ const Topbar = ({ setActivePanel }) => {
           <div className="flex items-center space-x-4">
             <a
               href="#"
-              className="flex items-center gap-1 hover:text-[#65A30D]"
+              className="flex items-center gap-1 hover:text-[#65A30D] focus:outline-none"
               aria-label="Store Locator"
             >
               <FaMapMarkerAlt size={14} /> Store Locator

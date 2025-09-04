@@ -108,18 +108,22 @@ const NewSectionDetails = () => {
               </div>
 
               <div>
-                <p className="text-sm text-gray-600 mb-1">HSN</p>
-                <p className="font-semibold text-lg">85238020</p>
+                <p className="text-sm text-gray-600 mb-1">Region</p>
+                <p className="font-semibold text-lg">India</p>
               </div>
+
               
               <div>
                 <p className="text-sm text-gray-600 mb-1">GIN</p>
                 <p className="font-semibold text-lg">85238020</p>
               </div>
 
+            
               <div>
-                <p className="text-sm text-gray-600 mb-1">Region</p>
-                <p className="font-semibold text-lg">India</p>
+                <p className="text-sm text-gray-600 mb-1">HSN</p>
+                
+                {/* <span className="font-semibold text-lg border-2 border-green-500 text-green-500 px-3 py-1 rounded-lg">Stock available</span> */}
+                <span className="font-semibold text-lg ">Available</span>
               </div>
             </div>
 
@@ -327,7 +331,7 @@ const NewSectionDetails = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="mt-4 sm:mt-6 p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 rounded-lg min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] w-full">
+          <div className="mt-4 sm:mt-6 p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 rounded-lg min-h-[200px] sm:min-h-[250px] md:min-h-[200px] lg:min-h-[200px] w-full">
             {activeTab === "Reviews" && (
               <div className="space-y-4">
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">

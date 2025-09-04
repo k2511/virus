@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Star, MessageCircle,ShoppingCart, BarChart3, Heart } from "lucide-react";
-
+import { useNavigate } from 'react-router-dom';
 const RelatedProduct = () => {
+    const navigate = useNavigate();
+
+    const [visibleProducts, setVisibleProducts] = useState(4);
+
     const products = [
         {
           id: 1,
@@ -126,15 +130,21 @@ const RelatedProduct = () => {
           originalPrice: "₹49.99",
         },
       ];
+
+      const handleViewMore = () => {
+        setVisibleProducts((prev) => prev + 4);
+      }
+
   return (
-    <section>
-    <div className="py-10">
-      <h1 className="font-semibold text-lg md:text-3xl ">Related Product</h1>
+    <>
+    <section className='mx-5'>
+    <div className="pb-10">
+      <h1 className="font-semibold text-2xl sm:text-3xl md:text-4xl ">Related Product</h1>
     </div>
 
-    <div>
+    <div className=''>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products
+          {products.slice(0, visibleProducts)
             // .filter((product) => activeTab === "All Products" || product.category === activeTab)
             // .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
             .map((product) => (
@@ -213,8 +223,21 @@ const RelatedProduct = () => {
               </div>
             ))}
         </div>
+        <div className='text-center my-5'>
+            {visibleProducts < products.length && (
+                <button
+                  onClick={handleViewMore}
+                  className="mt-2 px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition-colors"
+                >
+                  View More
+                </button>
+              )} 
+        </div>
+       
     </div>
-  </section>
+
+  </section> 
+  </>
   )
 }
 
