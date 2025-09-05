@@ -118,7 +118,7 @@ const Footer = () => {
       {/* Copyright */}
       <div className="border-t border-header-foreground/20 mt-12 pt-8 text-center">
         <p className="text-header-foreground/60 text-sm">
-          Copyright © 2025 antivirus
+          Copyright © 2025 Antivirus E-Store. All Rights Reserved
         </p>
       </div>
     </div>

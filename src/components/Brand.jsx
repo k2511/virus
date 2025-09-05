@@ -243,12 +243,12 @@ const Brands = () => {
       </div>
 
       <section>
-        <div className="m-auto max-w-[1400px] bg-gray-50 p-4 md:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
+        <div className="mx-auto max-w-[1400px] bg-gray-50 p-4 md:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items- ">
             {/* Left Grid */}
             <div
               className={`grid grid-cols-1 sm:grid-cols-2 gap-2 w-fit ${
-                list[val].arr.length === 1 ? " flex justify-end  " : " "
+                list[val].arr.length === 1 ? " flex justify-end  " : "j "
               }`}
             >
               {list[val].arr.slice(0, visibleCount).map((item, i) => (
@@ -265,7 +265,7 @@ const Brands = () => {
                     })
                   }
                   key={i}
-                  className={`bg-white rounded-md p-4 shadow flex ${  list[val].arr.length === 1 ? "justify-end" : ""} flex-col 
+                  className={`bg-white rounded-md p-4 shadow flex ${  list[val].arr.length === 1 ? "justify-end" : "justify-center"} flex-col 
                      justify-end   text-center hover:shadow-xl group cursor-pointer transition-all duration-300
                   `}>
                   <p className="text-sm text-gray-500">{item.category}</p>
