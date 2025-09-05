@@ -884,11 +884,14 @@
 
 // export default Hero;
 
+
+
+
+
+
 import React, { useState, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/CartContext";
 import {
   Search,
@@ -903,11 +906,13 @@ import {
   AlignJustify,
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+
 import alogo from "../assets/images/antivirusLogo.png";
 
 const Hero = () => {
   const navigate = useNavigate();
-  const { cart, setCart, addToCart, total, setTotal } = useContext(MyContext);
+  const { cart, setCart, addToCart ,total, setTotal } = useContext(MyContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -920,52 +925,132 @@ const Hero = () => {
 
   const slides = [
     {
+      id: 1,
+      name: "QUICK HEAL TOTAL SECURITY",
       title: "BUY QUICK HEAL",
       subtitle: "TOTAL SECURITY",
-      price: "749",
+      price: "₹749",
       image:
         "https://megacompuworldjaipur.com/image/cache/catalog/Product/Software/quick%20heal%20(NEW)/Quick-heal-total-security-800x500.jpg",
+      category: "Antivirus",
+      originalPrice: "₹999",
+      brand: "Quick Heal"
     },
     {
+      id: 2,
+      name: "K7 ANTIVIRUS PRO",
       title: "BUY K7 ANTIVIRUS PRO",
       subtitle: "TOTAL SECURITY",
-      price: "749",
+      price: "₹749",
       image:
         "https://files.vplak.com/images/k7/ANTIVIRUS-PREMIUM/white/image-1.jpg",
+      category: "Antivirus",
+      originalPrice: "₹899",
+      brand: "K7"
     },
     {
+      id: 3,
+      name: "WINDOWS 10 PRO",
       title: "GET WINDOWS 10 PRO",
       subtitle: "@50% OFF",
-      price: "749",
+      price: "₹749",
       image:
         "https://avatars.mds.yandex.net/get-mpic/5233452/2a00000193b5906d024d06ecf3adf5dbd9e9/orig",
+      category: "Windows",
+      originalPrice: "₹1499",
+      brand: "Microsoft"
     },
     {
+      id: 4,
+      name: "NETPROTECTOR ANTIVIRUS",
       title: "PROTECT YOUR PC ALL TIME",
       subtitle: "BY NETPROTECTOR",
-      price: "749",
+      price: "₹749",
       image:
         "https://avatars.mds.yandex.net/i?id=c8932dcad233627ea6599ad0b4172e7972878c5e-5259770-images-thumbs&n=13",
+      category: "Antivirus",
+      originalPrice: "₹899",
+      brand: "NetProtector"
     },
   ];
 
   const data = [
     {
+      id: 5,
+      name: "ANTIVIRUS DEAL",
       img: "https://megacompuworldjaipur.com/image/cache/catalog/Product/Software/quick%20heal%20(NEW)/Quick-heal-total-security-800x500.jpg",
       text: "CATCH BIG DEALS ON THE ANTIVIRUS",
+      category: "Antivirus",
+      price: "₹699",
+      originalPrice: "₹899",
+      brand: "Quick Heal"
     },
     {
+      id: 6,
+      name: "WINDOWS PRODUCT",
       img: "https://files.vplak.com/images/k7/ANTIVIRUS-PREMIUM/white/image-1.jpg",
       text: "GET 70% OFF ON WINDOWS PRODUCT",
+      category: "Windows",
+      price: "₹1299",
+      originalPrice: "₹2499",
+      brand: "Microsoft"
     },
     {
+      id: 7,
+      name: "OFFICE 365",
       img: "https://avatars.mds.yandex.net/get-mpic/5233452/2a00000193b5906d024d06ecf3adf5dbd9e9/orig",
       text: "EXCEL GET 20% OFF ON OFFICE 365",
+      category: "Office",
+      price: "₹3999",
+      originalPrice: "₹4999",
+      brand: "Microsoft"
     },
     {
+      id: 8,
+      name: "COMPUTER PERIPHERAL",
       img: "https://avatars.mds.yandex.net/i?id=c8932dcad233627ea6599ad0b4172e7972878c5e-5259770-images-thumbs&n=13",
       text: "50% OFF ON COMPUTER PERIPHERAL",
+      category: "Peripherals",
+      price: "₹499",
+      originalPrice: "₹999",
+      brand: "Various"
     },
+  ];
+
+  // Related products for the BrandDetails page
+  const relatedProducts = [
+    {
+      id: 9,
+      name: "MCAFEE ANTIVIRUS",
+      image: "https://www.mcafee.com/content/dam/consumer/en-us/images/product-images/mcafee-total-protection-box-shot-2022.png",
+      price: "₹899",
+      category: "Antivirus",
+      originalPrice: "₹1199"
+    },
+    {
+      id: 10,
+      name: "WINDOWS 11 PRO",
+      image: "https://assets.mspimages.in/wp-content/uploads/2021/06/Windows-11-Pro.jpg",
+      price: "₹1499",
+      category: "Windows",
+      originalPrice: "₹1999"
+    },
+    {
+      id: 11,
+      name: "MS OFFICE 2021",
+      image: "https://softwarekeep.com/app/uploads/2020/10/Office-2021.jpg",
+      price: "₹5999",
+      category: "Office",
+      originalPrice: "₹7999"
+    },
+    {
+      id: 12,
+      name: "TALLY PRIME",
+      image: "https://www.tallysolutions.com/storage/images/tally-prime-tile.png",
+      price: "₹18000",
+      category: "Accounting",
+      originalPrice: "₹22000"
+    }
   ];
 
   const menuItems = [
@@ -1030,13 +1115,16 @@ const Hero = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleProductClick = (product) => {
+    const handleProductClick = (product) => {
     // Navigate to BrandDetails component with proper route
-    navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
+    navigate(`/brands/${encodeURIComponent(product.name)}`, {
       state: {
-        image: product.image,
-        // category: product.category,
-        
+        image: product.image || product.img,
+        price: product.price,
+        category: product.category,
+        originalPrice: product.originalPrice,
+        products: relatedProducts,
+        brand: product.brand
       },
     });
   };
@@ -1101,7 +1189,7 @@ const Hero = () => {
                   <ShoppingCart className="w-6 h-6" />
 
                   <div className=" absolute top-3 -right-2  bg-yellow-400 text-black animate-bounce text-xs px-1 py-1  rounded-full w-5 h-5 flex items-center justify-center font-semibold leading-none">
-                    {cart.length}
+                  {cart.length}
                   </div>
                 </div>
 
@@ -1184,14 +1272,14 @@ const Hero = () => {
               <path
                 className="wave-bottom-with-dots-0 fill-primary"
                 opacity=".6"
-                d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69  
+                d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69
         c43-16.9,40-7.9,84-2.2c44,5.7,83-31.5,143-10.1v69.8H0C0,126.5,0,59,0,58.9z"
               ></path>
 
               <path
                 className="wave-bottom-with-dots-1 fill-primary"
-                d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11  
-        c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2  
+                d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11
+        c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2
         C282.5,76.7,292.7,74.4,300,68.5z"
               ></path>
 
@@ -1672,6 +1760,8 @@ const Hero = () => {
                   <div
                     key={index}
                     className="w-full flex-shrink-0  flex flex-row items-center justify-between  gap-5 sm:gap-10 sm:px-4 sm:py-4  "
+                    //                     className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-10 sm:px-4 sm:py-4  "
+                    // >>>>>>> a439599a9caea42b66daa4589a0c6dea3b3ff01c
                   >
                     <div className="space-y-4 md:w-1/2">
                       <div className="space-y-2 ">
@@ -1696,15 +1786,8 @@ const Hero = () => {
                         </div>
                       </div>
                       <button
-                        onClick={() =>
-                          handleProductClick({
-                            price: slide.price,
-                            name: slide.title,
-                            image: slide.image,
-                          })
-                        }
-                        className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold sm:px-5 px-3 py-2 rounded-lg transition-colors"
-                      >
+                        onClick={() => handleProductClick(slide)}
+                       className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold sm:px-5 px-3 py-2 rounded-lg transition-colors">
                         Buy Now
                       </button>
                     </div>
@@ -1772,12 +1855,9 @@ const Hero = () => {
                   <p className="text-gray-700 text-sm sm:text-base md:text-sm leading-snug">
                     {val.text}
                   </p>
-                  <button
-                    onClick={() =>
-                      handleProductClick({ name: val.text, image: val.img })
-                    }
-                    className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-xs "
-                  >
+                  <button 
+                            onClick={() => handleProductClick(val)}
+                  className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-xs ">
                     Shop now
                     <ArrowRight className="text-yellow-400" />
                   </button>
@@ -1792,3 +1872,9 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
+
+
+
+
