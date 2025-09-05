@@ -922,28 +922,32 @@ const Hero = () => {
     {
       title: "BUY QUICK HEAL",
       subtitle: "TOTAL SECURITY",
-      price: "749",
+      brand: "Quick heal",
+      price: "₹749.00",
       image:
         "https://megacompuworldjaipur.com/image/cache/catalog/Product/Software/quick%20heal%20(NEW)/Quick-heal-total-security-800x500.jpg",
     },
     {
       title: "BUY K7 ANTIVIRUS PRO",
       subtitle: "TOTAL SECURITY",
-      price: "749",
+      brand: "k7",
+      price: "₹749.00",
       image:
         "https://files.vplak.com/images/k7/ANTIVIRUS-PREMIUM/white/image-1.jpg",
     },
     {
       title: "GET WINDOWS 10 PRO",
       subtitle: "@50% OFF",
-      price: "749",
+      brand: "Windows",
+      price: "₹749.00",
       image:
         "https://avatars.mds.yandex.net/get-mpic/5233452/2a00000193b5906d024d06ecf3adf5dbd9e9/orig",
     },
     {
       title: "PROTECT YOUR PC ALL TIME",
       subtitle: "BY NETPROTECTOR",
-      price: "749",
+      brand: "Net Protector",
+      price: "₹749.00",
       image:
         "https://avatars.mds.yandex.net/i?id=c8932dcad233627ea6599ad0b4172e7972878c5e-5259770-images-thumbs&n=13",
     },
@@ -1035,8 +1039,8 @@ const Hero = () => {
     navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
       state: {
         image: product.image,
-        // category: product.category,
-        
+        price: product.price,
+        brand: product.brand,
       },
     });
   };
@@ -1689,19 +1693,30 @@ const Hero = () => {
                       <div className="space-y-2">
                         <div className="text-gray-600 text-sm">START FROM</div>
                         <div className="flex items-baseline space-x-2">
-                          <span className="text-gray-500 text-xl">₹</span>
+                          {/* <span className="text-gray-500 text-xl">₹</span> */}
                           <span className="text-4xl md:text-5xl font-light text-gray-800">
                             {slide.price}
                           </span>
                         </div>
+                        {/* <div className="text-gray-600 text-sm">{slide.brand}</div> */}
                       </div>
                       <button
                         onClick={() =>
-                          handleProductClick({
+                          navigate(`/brands/${encodeURIComponent(slide.title)}`, {
+                            state: {
                             price: slide.price,
                             name: slide.title,
                             image: slide.image,
+                            brand: slide.brand,
+                            },
                           })
+
+                          // handleProductClick({
+                          //   price: slide.price,
+                          //   name: slide.title,
+                          //   image: slide.image,
+                          //   brand: slide.brand,
+                          // })
                         }
                         className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold sm:px-5 px-3 py-2 rounded-lg transition-colors"
                       >
