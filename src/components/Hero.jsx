@@ -1760,8 +1760,7 @@ const Hero = () => {
                   <div
                     key={index}
                     className="w-full flex-shrink-0  flex flex-row items-center justify-between  gap-5 sm:gap-10 sm:px-4 sm:py-4  "
-                    //                     className="w-full flex-shrink-0  flex flex-row items-center justify-center gap-5 sm:gap-10 sm:px-4 sm:py-4  "
-                    // >>>>>>> a439599a9caea42b66daa4589a0c6dea3b3ff01c
+       
                   >
                     <div className="space-y-4 md:w-1/2">
                       <div className="space-y-2 ">
