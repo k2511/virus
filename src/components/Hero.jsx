@@ -884,11 +884,14 @@
 
 // export default Hero;
 
+
+
+
+
+
 import React, { useState, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { MyContext } from "../Context/CartContext";
 import {
   Search,
@@ -903,11 +906,13 @@ import {
   AlignJustify,
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+
 import alogo from "../assets/images/antivirusLogo.png";
 
 const Hero = () => {
   const navigate = useNavigate();
-  const { cart, setCart, addToCart, total, setTotal } = useContext(MyContext);
+  const { cart, setCart, addToCart ,total, setTotal } = useContext(MyContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -920,56 +925,525 @@ const Hero = () => {
 
   const slides = [
     {
+      id: 1,
+      name: "QUICK HEAL TOTAL SECURITY",
       title: "BUY QUICK HEAL",
       subtitle: "TOTAL SECURITY",
-      brand: "Quick heal",
-      price: "₹749.00",
+      price: "₹749",
       image:
         "https://megacompuworldjaipur.com/image/cache/catalog/Product/Software/quick%20heal%20(NEW)/Quick-heal-total-security-800x500.jpg",
+      category: "Antivirus",
+      originalPrice: "₹999",
+      brand: "Quick Heal",
+      relatedProducts:  [
+        {
+          id: 1,
+          category: "Total Security",
+          name: "Quick Heal Total Security 1 PC 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_12_13_50.png",
+          price: "₹79.00",
+          originalPrice: "₹99.00",
+          available: 6,
+          sold: 28,
+        },
+        {
+          id: 2,
+          category: "Total Security",
+          name: "Quick Heal Total Security 1 PC 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/A_New_Design_-_Made_with_PosterMyWall09_17_10_53_46.jpg",
+          price: "₹29.99",
+          originalPrice: "₹39.99",
+        },
+        {
+          id: 3,
+          category: "Internet Security",
+          name: "Quick Heal Internet Security 1 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_14_16_54_16.png",
+          price: "₹49.99",
+          originalPrice: "₹59.99",
+        },
+        {
+          id: 4,
+          category: "Antivirus Pro",
+          name: "Upgrade Quick Heal Antivirus Pro 1 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_13_02_12.png",
+          price: "₹69.99",
+          originalPrice: "₹79.99",
+        },
+        {
+          id: 5,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 1 User 1 Year",
+          image: "https://avatars.mds.yandex.net/i?id=0a366ba961fd7fe4444dedd6867a082aa6181972-4415285-images-thumbs&n=13.png",
+          price: "₹24.99",
+          originalPrice: "₹34.99",
+        },
+        {
+          id: 6,
+          category: "Upgrade",
+          name: "Upgrade Quick Heal Total Security 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/upgrade-quick-heal-total-security08_17_13_28_37.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+        {
+          id: 7,
+          category: "Antivirus Pro",
+          name: "Quick Heal Antivirus Pro 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_59_20.png",
+          price: "₹54.99",
+          originalPrice: "₹64.99",
+        },
+        {
+          id: 8,
+          category: "Upgrade",
+          name: "Upgrade Quick Heal Antivirus Pro 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_11_00_27.png",
+          price: "₹19.99",
+          originalPrice: "₹29.99",
+        },
+        {
+          id: 9,
+          category: "Antivirus Pro",
+          name: "Quick Heal Antivirus Pro 2 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_51_22.png",
+          price: "₹34.99",
+          originalPrice: "₹44.99",
+        },
+        {
+          id: 10,
+          category: "Antivirus Pro",
+          name: "Quick Heal Antivirus Pro 3 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_13_06_15.png",
+          price: "₹49.99",
+          originalPrice: "₹59.99",
+        },
+        {
+          id: 11,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 2 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_38_32.png",
+          price: "₹59.99",
+          originalPrice: "₹69.99",
+        },
+        {
+          id: 12,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 3 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_07_07.png",
+          price: "₹49.99",
+          originalPrice: "₹59.99",
+        },
+        {
+          id: 13,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 3 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_08_03.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+        {
+          id: 14,
+          category: "Internet Security",
+          name: "Upgrade Quick Heal Internet Security 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_17_10_54_32.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+        {
+          id: 15,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 5 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_43_41.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+      ]
+
     },
     {
+      id: 2,
+      name: "K7 ANTIVIRUS PRO",
       title: "BUY K7 ANTIVIRUS PRO",
       subtitle: "TOTAL SECURITY",
-      brand: "k7",
-      price: "₹749.00",
+      price: "₹749",
       image:
         "https://files.vplak.com/images/k7/ANTIVIRUS-PREMIUM/white/image-1.jpg",
+      category: "Antivirus",
+      originalPrice: "₹899",
+      brand: "K7",
+      relatedProducts: [
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim.png",
+          name: "K7 Antivirus Premium 1 PC 1 Year",
+          price: "₹205.00",
+          category: "Antivirus",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
+          name: "K7 Total Security 1 PC 1 Year",
+          price: "₹295.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
+          name: "Renew K7 Total Security 1 PC 1 Year",
+          price: "₹379.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim08_17_11_35_40.png",
+          name: "Upgrade K7 Antivirus Premium 1 User 1 Year",
+          price: "₹350.00",
+          category: "Antivirus",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/K7-Mobile-Security08_08_11_05_34.jpg",
+          name: "K7 Total Security 10 PC 1 Year",
+          price: "₹1900.00",
+          category: "Security Suite",
+        },
+      ],
+      
     },
     {
+      id: 3,
+      name: "WINDOWS 10 PRO",
       title: "GET WINDOWS 10 PRO",
-      subtitle: "@50% OFF",
-      brand: "Windows",
-      price: "₹749.00",
+      subtitle: "@50% OFF", 
+      price: "₹749",
       image:
         "https://avatars.mds.yandex.net/get-mpic/5233452/2a00000193b5906d024d06ecf3adf5dbd9e9/orig",
+      category: "Windows",
+      originalPrice: "₹1499",
+      brand: "Microsoft",
+      relatedProducts: [{},{}]
     },
     {
+      id: 4,
+      name: "NETPROTECTOR ANTIVIRUS",
       title: "PROTECT YOUR PC ALL TIME",
       subtitle: "BY NETPROTECTOR",
-      brand: "Net Protector",
-      price: "₹749.00",
+      price: "₹749",
       image:
         "https://avatars.mds.yandex.net/i?id=c8932dcad233627ea6599ad0b4172e7972878c5e-5259770-images-thumbs&n=13",
+      category: "Antivirus",
+      originalPrice: "₹899",
+      brand: "Net Protector",
+      relatedProducts: [
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
+          name: "Net Protector Total Security 1 User 1 Year",
+          price: "₹428.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
+          name: "Renew Net Protector Total Security 1 PC-1 Year",
+          price: "₹438.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_30_17.png",
+          name: "Net Protector Total Security 1 User 3 Years",
+          price: "₹998.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-antivirus-pro.png",
+          name: "Net Protector Antivirus 1 User 1 Year",
+          price: "₹350.00",
+          category: "Antivirus",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security.png",
+          name: "Upgrade Net Protector Total Security 1 User 3 Year",
+          price: "₹998.00",
+          category: "Security Suite",
+        },
+      ],
     },
   ];
 
   const data = [
     {
-      img: "https://megacompuworldjaipur.com/image/cache/catalog/Product/Software/quick%20heal%20(NEW)/Quick-heal-total-security-800x500.jpg",
+      id: 1,
+      name: "ANTIVIRUS DEAL",
+      image: "https://megacompuworldjaipur.com/image/cache/catalog/Product/Software/quick%20heal%20(NEW)/Quick-heal-total-security-800x500.jpg",
       text: "CATCH BIG DEALS ON THE ANTIVIRUS",
+      category: "Antivirus",
+      price: "₹699",
+      originalPrice: "₹899",
+      brand: "Quick Heal",
+      relatedProducts:  [
+        {
+          id: 1,
+          category: "Total Security",
+          name: "Quick Heal Total Security 1 PC 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_12_13_50.png",
+          price: "₹79.00",
+          originalPrice: "₹99.00",
+          available: 6,
+          sold: 28,
+        },
+        {
+          id: 2,
+          category: "Total Security",
+          name: "Quick Heal Total Security 1 PC 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/A_New_Design_-_Made_with_PosterMyWall09_17_10_53_46.jpg",
+          price: "₹29.99",
+          originalPrice: "₹39.99",
+        },
+        {
+          id: 3,
+          category: "Internet Security",
+          name: "Quick Heal Internet Security 1 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_14_16_54_16.png",
+          price: "₹49.99",
+          originalPrice: "₹59.99",
+        },
+        {
+          id: 4,
+          category: "Antivirus Pro",
+          name: "Upgrade Quick Heal Antivirus Pro 1 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_13_02_12.png",
+          price: "₹69.99",
+          originalPrice: "₹79.99",
+        },
+        {
+          id: 5,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 1 User 1 Year",
+          image: "https://avatars.mds.yandex.net/i?id=0a366ba961fd7fe4444dedd6867a082aa6181972-4415285-images-thumbs&n=13.png",
+          price: "₹24.99",
+          originalPrice: "₹34.99",
+        },
+        {
+          id: 6,
+          category: "Upgrade",
+          name: "Upgrade Quick Heal Total Security 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/upgrade-quick-heal-total-security08_17_13_28_37.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+        {
+          id: 7,
+          category: "Antivirus Pro",
+          name: "Quick Heal Antivirus Pro 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_59_20.png",
+          price: "₹54.99",
+          originalPrice: "₹64.99",
+        },
+        {
+          id: 8,
+          category: "Upgrade",
+          name: "Upgrade Quick Heal Antivirus Pro 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_11_00_27.png",
+          price: "₹19.99",
+          originalPrice: "₹29.99",
+        },
+        {
+          id: 9,
+          category: "Antivirus Pro",
+          name: "Quick Heal Antivirus Pro 2 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_51_22.png",
+          price: "₹34.99",
+          originalPrice: "₹44.99",
+        },
+        {
+          id: 10,
+          category: "Antivirus Pro",
+          name: "Quick Heal Antivirus Pro 3 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_13_06_15.png",
+          price: "₹49.99",
+          originalPrice: "₹59.99",
+        },
+        {
+          id: 11,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 2 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_38_32.png",
+          price: "₹59.99",
+          originalPrice: "₹69.99",
+        },
+        {
+          id: 12,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 3 User 1 Year",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_07_07.png",
+          price: "₹49.99",
+          originalPrice: "₹59.99",
+        },
+        {
+          id: 13,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 3 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_08_03.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+        {
+          id: 14,
+          category: "Internet Security",
+          name: "Upgrade Quick Heal Internet Security 1 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_17_10_54_32.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+        {
+          id: 15,
+          category: "Total Security",
+          name: "Upgrade Quick Heal Total Security 5 User 3 Years",
+          image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_43_41.png",
+          price: "₹39.99",
+          originalPrice: "₹49.99",
+        },
+      ]
     },
     {
-      img: "https://files.vplak.com/images/k7/ANTIVIRUS-PREMIUM/white/image-1.jpg",
+      id: 2,
+      name: "WINDOWS PRODUCT",
+      image: "https://files.vplak.com/images/k7/ANTIVIRUS-PREMIUM/white/image-1.jpg",
       text: "GET 70% OFF ON WINDOWS PRODUCT",
+      category: "Windows",
+      price: "₹1299",
+      originalPrice: "₹2499", 
+      brand: "K7",
+      relatedProducts: [
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim.png",
+          name: "K7 Antivirus Premium 1 PC 1 Year",
+          price: "₹205.00",
+          category: "Antivirus",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
+          name: "K7 Total Security 1 PC 1 Year",
+          price: "₹295.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
+          name: "Renew K7 Total Security 1 PC 1 Year",
+          price: "₹379.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim08_17_11_35_40.png",
+          name: "Upgrade K7 Antivirus Premium 1 User 1 Year",
+          price: "₹350.00",
+          category: "Antivirus",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/K7-Mobile-Security08_08_11_05_34.jpg",
+          name: "K7 Total Security 10 PC 1 Year",
+          price: "₹1900.00",
+          category: "Security Suite",
+        },
+      ],
     },
     {
-      img: "https://avatars.mds.yandex.net/get-mpic/5233452/2a00000193b5906d024d06ecf3adf5dbd9e9/orig",
+      id: 3,
+      name: "OFFICE 365",
+      image: "https://avatars.mds.yandex.net/get-mpic/5233452/2a00000193b5906d024d06ecf3adf5dbd9e9/orig",
       text: "EXCEL GET 20% OFF ON OFFICE 365",
+      category: "Office",
+      price: "₹3999",
+      originalPrice: "₹4999",
+      brand: "Microsoft",
+      relatedProducts: [{
+        name: "WINDOWS 11 PRO",
+        image: "https://avatars.mds.yandex.net/i?id=d8ac9f83926690b0b5241678b1b661e60b6a2e75-4904535-images-thumbs&n=13",
+        price: "₹1499",
+        category: "Windows",
+        originalPrice: "₹1999"
+      },  {
+        name: "MS OFFICE 2021",
+        image: "https://avatars.mds.yandex.net/i?id=30f0b34dbd8e4036fc430ebb38b685610cbe1064-16401250-images-thumbs&n=13",
+        price: "₹5999",
+        category: "Office",
+        originalPrice: "₹7999"
+      },
+    ]
     },
     {
-      img: "https://avatars.mds.yandex.net/i?id=c8932dcad233627ea6599ad0b4172e7972878c5e-5259770-images-thumbs&n=13",
+      id: 4,
+      name: "COMPUTER PERIPHERAL",
+      image: "https://avatars.mds.yandex.net/i?id=c8932dcad233627ea6599ad0b4172e7972878c5e-5259770-images-thumbs&n=13",
       text: "50% OFF ON COMPUTER PERIPHERAL",
+      category: "Peripherals",
+      price: "₹499",
+      originalPrice: "₹999",
+      brand: "Various",
+      relatedProducts: [
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
+          name: "Net Protector Total Security 1 User 1 Year",
+          price: "₹428.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
+          name: "Renew Net Protector Total Security 1 PC-1 Year",
+          price: "₹438.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_30_17.png",
+          name: "Net Protector Total Security 1 User 3 Years",
+          price: "₹998.00",
+          category: "Security Suite",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-antivirus-pro.png",
+          name: "Net Protector Antivirus 1 User 1 Year",
+          price: "₹350.00",
+          category: "Antivirus",
+        },
+        {
+          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security.png",
+          name: "Upgrade Net Protector Total Security 1 User 3 Year",
+          price: "₹998.00",
+          category: "Security Suite",
+        },
+      ],
     },
+  ];
+
+  // Related products for the BrandDetails page
+  const relatedProducts = [
+    {
+      id: 9,
+      name: "MCAFEE ANTIVIRUS",
+      image: "https://www.mcafee.com/content/dam/consumer/en-us/images/product-images/mcafee-total-protection-box-shot-2022.png",
+      price: "₹899",
+      category: "Antivirus",
+      originalPrice: "₹1199"
+    },
+    {
+      id: 10,
+      name: "WINDOWS 11 PRO",
+      image: "https://assets.mspimages.in/wp-content/uploads/2021/06/Windows-11-Pro.jpg",
+      price: "₹1499",
+      category: "Windows",
+      originalPrice: "₹1999"
+    },
+    {
+      id: 11,
+      name: "MS OFFICE 2021",
+      image: "https://softwarekeep.com/app/uploads/2020/10/Office-2021.jpg",
+      price: "₹5999",
+      category: "Office",
+      originalPrice: "₹7999"
+    },
+    {
+      id: 12,
+      name: "TALLY PRIME",
+      image: "https://www.tallysolutions.com/storage/images/tally-prime-tile.png",
+      price: "₹18000",
+      category: "Accounting",
+      originalPrice: "₹22000"
+    }
   ];
 
   const menuItems = [
@@ -1034,13 +1508,17 @@ const Hero = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleProductClick = (product) => {
+    const handleProductClick = (product) => {
     // Navigate to BrandDetails component with proper route
-    navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
+    navigate(`/brands/${encodeURIComponent(product.name)}`, {
       state: {
-        image: product.image,
+        image: product.image || product.img,
         price: product.price,
-        brand: product.brand,
+        category: product.category,
+        originalPrice: product.originalPrice,
+        products: product.relatedProducts,
+        brand: product.brand
+
       },
     });
   };
@@ -1105,7 +1583,7 @@ const Hero = () => {
                   <ShoppingCart className="w-6 h-6" />
 
                   <div className=" absolute top-3 -right-2  bg-yellow-400 text-black animate-bounce text-xs px-1 py-1  rounded-full w-5 h-5 flex items-center justify-center font-semibold leading-none">
-                    {cart.length}
+                  {cart.length}
                   </div>
                 </div>
 
@@ -1188,14 +1666,14 @@ const Hero = () => {
               <path
                 className="wave-bottom-with-dots-0 fill-primary"
                 opacity=".6"
-                d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69  
+                d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69
         c43-16.9,40-7.9,84-2.2c44,5.7,83-31.5,143-10.1v69.8H0C0,126.5,0,59,0,58.9z"
               ></path>
 
               <path
                 className="wave-bottom-with-dots-1 fill-primary"
-                d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11  
-        c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2  
+                d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11
+        c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2
         C282.5,76.7,292.7,74.4,300,68.5z"
               ></path>
 
@@ -1701,25 +2179,10 @@ const Hero = () => {
                         {/* <div className="text-gray-600 text-sm">{slide.brand}</div> */}
                       </div>
                       <button
-                        onClick={() =>
-                          navigate(`/brands/${encodeURIComponent(slide.title)}`, {
-                            state: {
-                            price: slide.price,
-                            name: slide.title,
-                            image: slide.image,
-                            brand: slide.brand,
-                            },
-                          })
 
-                          // handleProductClick({
-                          //   price: slide.price,
-                          //   name: slide.title,
-                          //   image: slide.image,
-                          //   brand: slide.brand,
-                          // })
-                        }
-                        className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold sm:px-5 px-3 py-2 rounded-lg transition-colors"
-                      >
+                        onClick={() => handleProductClick(slide)}
+                       className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold sm:px-5 px-3 py-2 rounded-lg transition-colors">
+
                         Buy Now
                       </button>
                     </div>
@@ -1778,7 +2241,7 @@ const Hero = () => {
               >
                 <div className="flex-shrink-0">
                   <img
-                    src={val.img}
+                    src={val.image}
                     alt="deal"
                     className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 "
                   />
@@ -1787,12 +2250,9 @@ const Hero = () => {
                   <p className="text-gray-700 text-sm sm:text-base md:text-sm leading-snug">
                     {val.text}
                   </p>
-                  <button
-                    onClick={() =>
-                      handleProductClick({ name: val.text, image: val.img })
-                    }
-                    className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-xs "
-                  >
+                  <button 
+                            onClick={() => handleProductClick(val)}
+                  className="flex items-center gap-2 font-semibold text-gray-800 hover:text-black mt-2 text-sm sm:text-xs ">
                     Shop now
                     <ArrowRight className="text-yellow-400" />
                   </button>
@@ -1807,3 +2267,9 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
+
+
+
+

@@ -36,6 +36,13 @@ const BrandDetails = () => {
     setVisibleCount((prev) => prev + 4);
   }
   
+  const handleScroll = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -71,7 +78,7 @@ const BrandDetails = () => {
 
   return (
     <div className="min-h-screen bg-white max-w-6xl mx-auto">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8" id="section1">
         <div className="grid md:grid-cols-2 sm:gap-1 md:gap-1 lg:gap-16">
           <div className="flex flex-col items-center">
             <p className="text-red-500 text-sm italic">
@@ -194,7 +201,7 @@ const BrandDetails = () => {
                     className="bg-lime-500 hover:bg-lime-600 text-black text-xs sm:text-sm md:text-base lg:text-lg font-normal py-2 px-3 sm:py-2 sm:px-4 rounded"
                     onClick={() => {
                       // Pass the updated price and quantity to payment page
-                      navigate('/payment', {
+                      navigate('/checkout', {
                         state: {
                           productName: id,
                           quantity: quantity,
@@ -357,22 +364,38 @@ const BrandDetails = () => {
 
     <div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.slice(0, visibleCount)
+          {products?.slice(0, visibleCount)
             // .filter((product) => activeTab === "All Products" || product.category === activeTab)
             // .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
             .map((product,idx) => (
               <div 
                 key={idx} 
-                className="group cursor-pointer"  
-                onClick={()=> navigate(`/brands/${encodeURIComponent(product.name)}`, {
-                  state: { 
-                    image: product.image, 
-                    price: product.price, 
+                className="group cursor-pointer  "  
+              //   onClick={()=> navigate(`/brands/${encodeURIComponent(product.name)}`, {
+              //     state: { 
+              //       image: product.image, 
+              //       price: product.price, 
+              //       category: product.category,
+              //       products: products,
+              //       brand: brand,
+              //     },
+              //   })
+              //   handleScroll("section1")
+              // }
+              onClick={() => {
+                navigate(`/brands/${encodeURIComponent(product.name)}`, {
+                  state: {
+                    image: product.image,
+                    price: product.price,
                     category: product.category,
                     products: products,
                     brand: brand,
                   },
-                })}
+                });
+              
+                handleScroll("section1"); // will run after navigate
+              }}
+
               >
                 <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
                   <div className="text-xs text-gray-500 mb-2">{product.category}</div>

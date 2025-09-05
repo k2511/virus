@@ -38,6 +38,13 @@ const NewSectionDetails = () => {
         addToCart(obj);
       };
 
+      const handleScroll = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+
       const totalPrice = cart.slice(0, cart.length)
       .reduce((sum, item) => {
         const numericPrice = parseFloat(item.price.replace("₹", ""));
@@ -72,7 +79,7 @@ const NewSectionDetails = () => {
     <> 
    
     <div className="min-h-screen bg-white max-w-6xl mx-auto">
-      <div className="container mx-auto px-4 py-8 ">
+      <div className="container mx-auto px-4 py-8 " id="section1" >
         <div className="grid md:grid-cols-2 sm:gap-1 md:gap-1 lg:gap-16 ">
           <div className="flex flex-col items-center">
             <p className="text-red-500 text-sm italic">
@@ -218,17 +225,18 @@ const NewSectionDetails = () => {
                   <button 
                     className=" bg-lime-500 hover:bg-lime-600 text-black   text-[0.6rem] sm:text-sm md:text-base  py-1 px-1 sm:py-2 sm:px-2 rounded "
                     onClick={() => {
-                        navigate('/payment',{
-                          state: {
-                            productName: id,
-                            quantity: quantity,
-                            unitPrice: basePrice,
-                            totalPrice: currentPrice,
-                            originalPrice: currentOriginalPrice,
-                            image: image,
-                            category: category
-                          }
-                        });
+                        // navigate('/payment',{
+                        //   state: {
+                        //     productName: id,
+                        //     quantity: quantity,
+                        //     unitPrice: basePrice,
+                        //     totalPrice: currentPrice,
+                        //     originalPrice: currentOriginalPrice,
+                        //     image: image,
+                        //     category: category
+                        //   }
+                        // });
+                        navigate('/checkout')
                     }}
                   >
                     Buy now
@@ -433,7 +441,7 @@ const NewSectionDetails = () => {
   
 
    
-     <RelatedProduct />
+     <RelatedProduct handleScroll={handleScroll} />
     </div>
 
     </>

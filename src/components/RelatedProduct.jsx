@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Star, MessageCircle,ShoppingCart, BarChart3, Heart } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-const RelatedProduct = () => {
+const RelatedProduct = ({handleScroll}) => {
     const navigate = useNavigate();
 
     const [visibleProducts, setVisibleProducts] = useState(4);
@@ -151,13 +151,19 @@ const RelatedProduct = () => {
               <div 
                 key={product.id} 
                 className="group cursor-pointer"  
-                onClick={()=> navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
-                  state: { 
-                    image: product.image, 
-                    price: product.price, 
-                    category: product.category,
-                  },
-                })}
+                onClick={() => {
+                  navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
+                    state: { 
+                      image: product.image, 
+                      price: product.price, 
+                      category: product.category,
+                    },
+                  });
+                
+                  handleScroll("section1"); 
+                }}
+           
+                
               >
                 <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
                   <div className="text-xs text-gray-500 mb-2">{product.category}</div>

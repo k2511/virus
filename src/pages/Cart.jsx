@@ -12,11 +12,12 @@ import {
 import { MyContext } from "../Context/CartContext";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, setCart, addToCart , total, setTotal } = useContext(MyContext);
-
+  const navigate = useNavigate()
+  const { cart, setCart, addToCart, total, setTotal } = useContext(MyContext);
 
   let key = "gdlfktodlf";
   //  const updateQuantity = (id, newQuantity) => {
@@ -48,7 +49,7 @@ const Cart = () => {
 
   const endOffset = itemOffset + itemsPerPage;
   const currentOrders = cart.slice(itemOffset, endOffset);
-  
+
   const pageCount = Math.ceil(cart.length / itemsPerPage);
 
   const handlePageClick = (event) => {
@@ -88,11 +89,8 @@ const Cart = () => {
   const yyyy = today.getFullYear();
 
   const formattedDate = `${dd}/${mm}/${yyyy}`;
- 
 
-  const totalPrice = currentOrders
-  .slice(0, visibleRows)
-  .reduce((sum, item) => {
+  const totalPrice = currentOrders.slice(0, visibleRows).reduce((sum, item) => {
     const numericPrice = parseFloat(item.price.replace("₹", ""));
     return sum + numericPrice;
   }, 0);
@@ -242,7 +240,7 @@ const Cart = () => {
           {/* Table Container */}
           <div className="bg-white rounded-lg shadow-sm overflow-hidden">
             {/* Desktop Table */}
-            <div className="hidden lg:block overflow-x-auto">
+            <div className=" lg:block overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
@@ -281,8 +279,8 @@ const Cart = () => {
                           {item.name && (
                             <div className="font-medium">{item.name}</div>
                           )}
-                          <div className="text-gray-600"  >
-                            Price: {item.price}  
+                          <div className="text-gray-600">
+                            Price: {item.price}
                           </div>
                           {/* <div className="text-gray-600">Qty: {item.quantity}</div> */}
                         </div>
@@ -327,26 +325,39 @@ const Cart = () => {
                   ))}
                 </tbody>
               </table>
-              <ReactPaginate
-                className=""
-                breakLabel="..."
-                nextLabel="Next →"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={1}
-                pageCount={pageCount}
-                previousLabel="← Prev"
-                containerClassName="flex items-center justify-center space-x-2 mt-4"
-                pageClassName="px-3 py-1 border rounded-md text-gray-700 hover:bg-gray-200"
-                previousClassName="px-3 py-1 border rounded-md text-gray-700 hover:bg-gray-200"
-                nextClassName="px-3 py-1 border rounded-md text-gray-700 hover:bg-gray-200"
-                activeClassName="bg-blue-500 text-white"
-                breakClassName="px-3 py-1 text-gray-500"
-              />
+              <div className="flex items-center justify-between mt-4">
+                {/* Pagination Center */}
+                <div className="flex-1 flex justify-center">
+                  <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="Next →"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={1}
+                    pageCount={pageCount}
+                    previousLabel="← Prev"
+                    containerClassName="flex items-center space-x-2"
+                    pageClassName="px-3 py-1 border rounded-md text-gray-700 hover:bg-gray-200"
+                    previousClassName="px-3 py-1 border rounded-md text-gray-700 hover:bg-gray-200"
+                    nextClassName="px-3 py-1 border rounded-md text-gray-700 hover:bg-gray-200"
+                    activeClassName="bg-blue-500 text-white"
+                    breakClassName="px-3 py-1 text-gray-500"
+                  />
+                </div>
+
+                {/* Button Right */}
+                <button className="ml-4 px-4 py-2 rounded-lg bg-yellow-300 font-medium text-gray-800" onClick={() => {navigate('/checkout')}}>
+                  Proceed to checkout
+                </button>
+              </div>
+
+              {/* <div className="flex justify-end  mx-5"> */}
+
+              {/* </div> */}
             </div>
 
             {/* Mobile Cards */}
-            <div className="lg:hidden space-y-4 p-4">
+            {/* <div className="lg:hidden space-y-4 p-4">
               {currentOrders.slice(0, visibleRows).map((item, index) => (
                 <div
                   key={index}
@@ -420,7 +431,7 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             {/* Load More Button */}
             {visibleRows < cart.length && (

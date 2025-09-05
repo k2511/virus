@@ -15,6 +15,7 @@ import NewSectionDetails from "./pages/NewSectionDetails";
 import BrandDetails from "./pages/BrandDetails";
 import Payment from "./pages/Payment";
 import Cart from "./pages/Cart";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   const [activePanel, setActivePanel] = useState(null);
@@ -39,6 +40,8 @@ function App() {
         <Route path="/brands/:id" element={<BrandDetails />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckOut />} />
+        
       </Routes>
 
       <Footer />

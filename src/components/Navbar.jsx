@@ -184,7 +184,7 @@ export default function Navbar({ activePanel, setActivePanel }) {
             {activePanel === "register" && (
               <>
                 <h2 className="text-2xl font-bold text-center mb-2">
-                Welcome to Antivirus E.Store
+                Welcome to Antivirus E-Store
                 </h2>
                 <p className="text-gray-500 text-center mb-6">
                     Fill out the form to get started.
