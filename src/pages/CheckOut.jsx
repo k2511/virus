@@ -293,7 +293,6 @@ const CheckOut = () => {
               <div className="space-y-2 text-sm text-gray-600">
                 <p>Bank Transfer</p>
                 <p>Razorpay</p>
-                <p>Paypal</p>
                 <p>Cash On Delivery</p>
                 <p>Check Payments</p>
                

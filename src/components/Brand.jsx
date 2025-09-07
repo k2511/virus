@@ -220,7 +220,7 @@ const Brands = () => {
   );
 
   const CompareWishlistSection1 = () => (
-    <div className="flex justify-between w-full items-center sm:gap-4 md:gap-2 gap-0 px-2 text-sm  text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div className="flex justify-between w-full items-center sm:gap-4 md:gap-2 lg:px-0 lg:gap-0 gap-0 px-2 text-sm  text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       <div className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors">
         <VscGraph className="w-4 h-4" />
         <span className="text-xs sm:text-xs ">Compare</span>
@@ -265,7 +265,7 @@ const Brands = () => {
               className={`${
                 list[val].arr.length === 1
                   ? "flex justify-end w-full mt-4 lg:mt-0"  // only 1 item → push right
-                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0  mx-auto" // multiple items → grid
+                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0  mx-auto " // multiple items → grid
               }`}
             >
               {list[val].arr.slice(0, visibleCount).map((item, i) => (
@@ -282,7 +282,8 @@ const Brands = () => {
                     })
                   }
                   key={i}
-                  className="bg-white rounded-md sm:p-2 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300">
+                  className="bg-white  p-3  flex flex-col justify-between items-center text-center 
+                   group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
                   <p className="text-sm text-gray-500">{item.category}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
                     {item.name}
@@ -313,7 +314,8 @@ const Brands = () => {
 
             {/* Featured Product */}
             <div 
-              className="bg-white rounded-md  sm:p-2  md:min-h-[43rem] shadow flex flex-col justify-between items-center  text-center hover:shadow-xl mt-4 lg:mt-0 group cursor-pointer transition-all duration-300"
+              className="bg-white py-5   px-3 gap-1 mx-1 md:min-h-[41rem]  flex flex-col justify-between items-center
+                text-center  mt-4 lg:mt-0 group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
               onClick={()=> navigate(`/brands/${encodeURIComponent(sale.name)}`, {
                 state: { 
                   image: sale.image, 
@@ -356,7 +358,8 @@ const Brands = () => {
               {list[val].arr.slice(0, visibleCount1).map((item, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-md  sm:p-2 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300"
+                  className="bg-white  p-3   flex flex-col justify-between items-center 
+                  text-center  group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
                   onClick={()=> navigate(`/brands/${encodeURIComponent(item.name)}`, {
                     state: { 
                       image: item.image, 
