@@ -283,7 +283,7 @@ const Brands = () => {
                   }
                   key={i}
                   className="bg-white  p-3  flex flex-col justify-between items-center text-center 
-                   group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
+                   group cursor-pointer transition-all duration-300    hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
                   <p className="text-sm text-gray-500">{item.category}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
                     {item.name}

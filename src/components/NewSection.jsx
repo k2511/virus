@@ -307,7 +307,7 @@ const NewSection = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-2 ">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0 ">
               {products
                 .filter((product) => activeTab === "All Products" || product.category === activeTab)
                 .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
@@ -317,7 +317,7 @@ const NewSection = () => {
                     className="group cursor-pointer "  
                     onClick={() => handleProductClick(product)}
                   >
-                    <div className="bg-white border border-gray-200 rounded-lg sm:p-4 p-3 hover:shadow-lg transition-shadow">
+                    <div className="bg-white border-2 border-gray-300 mb-4 sm:p-4 p-3 transition-all duration-200 m-1 hover:border-gray-300  hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)] ">
                       <div className="text-xs text-gray-500 mb-2">{product.category}</div>
 
                       <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
