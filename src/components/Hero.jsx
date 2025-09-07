@@ -2172,7 +2172,7 @@ const Hero = () => {
                         <div className="text-gray-600 text-sm">START FROM</div>
                         <div className="flex items-baseline space-x-2">
                           {/* <span className="text-gray-500 text-xl">₹</span> */}
-                          <span className="text-4xl md:text-5xl font-light text-gray-800">
+                          <span className="text-3xl md:text-5xl font-light text-gray-800">
                             {slide.price}
                           </span>
                         </div>

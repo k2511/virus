@@ -206,7 +206,7 @@ const Brands = () => {
 
   // Reusable component for Compare & Wishlist section
   const CompareWishlistSection = () => (
-    <div className="flex justify-center items-center gap-4 text-sm text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div className="flex justify-around w-full items-center sm:gap-4 gap-1 text-sm  text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       <div className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors">
         <VscGraph className="w-4 h-4" />
         <span>Compare</span>
@@ -215,6 +215,20 @@ const Brands = () => {
       <div className="flex items-center gap-1 hover:text-red-500 cursor-pointer transition-colors">
         <FaRegHeart className="w-4 h-4" />
         <span>Add to Wishlist</span>
+      </div>
+    </div>
+  );
+
+  const CompareWishlistSection1 = () => (
+    <div className="flex justify-between w-full items-center sm:gap-4 md:gap-2 gap-0 px-2 text-sm  text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors">
+        <VscGraph className="w-4 h-4" />
+        <span className="text-xs sm:text-xs ">Compare</span>
+      </div>
+      <span className="text-gray-300">•</span>
+      <div className="flex items-center sm:gap-1  gap-0 hover:text-red-500 cursor-pointer transition-colors">
+        <FaRegHeart className="sm:w-4 sm:h-4 w-2 h-2" />
+        <span className="text-[0.8rem] sm:text-xs lg:text-">Add to Wishlist</span>
       </div>
     </div>
   );
@@ -244,11 +258,14 @@ const Brands = () => {
 
       <section>
         <div className="mx-auto max-w-[1400px] bg-gray-50 p-4 md:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items- ">
+          <div className="grid grid-cols-1 lg:grid-cols-3  items-start ">
             {/* Left Grid */}
+
             <div
-              className={`grid grid-cols-1 sm:grid-cols-2 gap-2 w-fit ${
-                list[val].arr.length === 1 ? " flex justify-end  " : "j "
+              className={`${
+                list[val].arr.length === 1
+                  ? "flex justify-end w-full mt-4 lg:mt-0"  // only 1 item → push right
+                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0  mx-auto" // multiple items → grid
               }`}
             >
               {list[val].arr.slice(0, visibleCount).map((item, i) => (
@@ -265,9 +282,7 @@ const Brands = () => {
                     })
                   }
                   key={i}
-                  className={`bg-white rounded-md p-4 shadow flex ${  list[val].arr.length === 1 ? "justify-end" : "justify-center"} flex-col 
-                     justify-end   text-center hover:shadow-xl group cursor-pointer transition-all duration-300
-                  `}>
+                  className="bg-white rounded-md sm:p-2 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300">
                   <p className="text-sm text-gray-500">{item.category}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
                     {item.name}
@@ -283,7 +298,7 @@ const Brands = () => {
                       <FaShoppingCart />
                     </button>
                   </div>
-                  <CompareWishlistSection />
+                  <CompareWishlistSection1 />
                 </div>
               ))}
               {visibleCount < list[val].arr.length && (
@@ -298,7 +313,7 @@ const Brands = () => {
 
             {/* Featured Product */}
             <div 
-              className="bg-white rounded-md p-6  md:min-h-[43rem] shadow flex flex-col justify-between items-center text-center hover:shadow-xl mt-4 lg:mt-0 group cursor-pointer transition-all duration-300"
+              className="bg-white rounded-md  sm:p-2  md:min-h-[43rem] shadow flex flex-col justify-between items-center  text-center hover:shadow-xl mt-4 lg:mt-0 group cursor-pointer transition-all duration-300"
               onClick={()=> navigate(`/brands/${encodeURIComponent(sale.name)}`, {
                 state: { 
                   image: sale.image, 
@@ -321,7 +336,7 @@ const Brands = () => {
                   className="w-full  max-h-96 m object-contain mb-6"
                 />
                 <div className="w-full">
-                  <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center justify-around w-full ">
                     <span className="text-lg font-semibold">{sale.price}</span>
                     <button className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2 hover:bg-yellow-500 transition-colors">
                       <FaShoppingCart /> Add to Cart
@@ -333,11 +348,15 @@ const Brands = () => {
             </div>
 
             {/* Right Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 lg:mt-0">
+            <div   className={`${
+                list[val].arr.length === 1
+                  ? "flex justify-start w-full mt-4 lg:mt-0"  // only 1 item → push right
+                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0 mx-auto" // multiple items → grid
+              }`}>
               {list[val].arr.slice(0, visibleCount1).map((item, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-md p-4 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300"
+                  className="bg-white rounded-md  sm:p-2 shadow flex flex-col justify-between items-center text-center hover:shadow-xl group cursor-pointer transition-all duration-300"
                   onClick={()=> navigate(`/brands/${encodeURIComponent(item.name)}`, {
                     state: { 
                       image: item.image, 
@@ -363,7 +382,7 @@ const Brands = () => {
                       <FaShoppingCart />
                     </button>
                   </div>
-                  <CompareWishlistSection />
+                  <CompareWishlistSection1 />
                 </div>
               ))}
               {visibleCount1 < list[val].arr.length && (

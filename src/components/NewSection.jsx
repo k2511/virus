@@ -307,20 +307,20 @@ const NewSection = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-2 ">
               {products
                 .filter((product) => activeTab === "All Products" || product.category === activeTab)
                 .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
                 .map((product) => (
                   <div 
                     key={product.id} 
-                    className="group cursor-pointer"  
+                    className="group cursor-pointer "  
                     onClick={() => handleProductClick(product)}
                   >
-                    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                    <div className="bg-white border border-gray-200 rounded-lg sm:p-4 p-3 hover:shadow-lg transition-shadow">
                       <div className="text-xs text-gray-500 mb-2">{product.category}</div>
 
-                      <h3 className="text-blue-600 font-medium text-sm mb-3 line-clamp-2 hover:underline">
+                      <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
                         {product.name}
                       </h3>
 
@@ -328,7 +328,7 @@ const NewSection = () => {
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="max-w-full sm:w-full w-40 sm:h-full h-40 object-contain"
+                          className="max-w-full sm:w-full w-40 mt-3 mb-3 sm:h-full h-40 object-contain"
                           onError={(e) => {
                             e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
                           }}
@@ -355,7 +355,7 @@ const NewSection = () => {
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-4 mt-3 text-xs text-gray-500">
+                      <div className="flex items-center justify-between gap-1 mt-3 text-xs text-gray-500">
                         <button 
                           className="flex items-center gap-1 hover:text-gray-700"
                           onClick={(e) => {
@@ -367,7 +367,7 @@ const NewSection = () => {
                           Compare
                         </button>
                         <button 
-                          className="flex items-center gap-1 hover:text-gray-700"
+                          className="flex items-center gap-1 hover:text-gray-700 text-[0.8rem] sm:text-xs lg:text-"
                           onClick={(e) => {
                             e.stopPropagation();
                             toast.success("Added to wishlist!");
