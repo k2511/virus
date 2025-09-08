@@ -31,8 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/model/pics', express.static('model/pics'));
 app.use('/action/photos', express.static('action/photos'));
-
-const testDB = async () => {
+ 
+const testDB = async () =>  {
   try {
     const connection = await db.getConnection();
     console.log("✅ Database connection successful!");
@@ -68,7 +68,7 @@ app.use(
       }
     }
   })
-);
+); 
 
 // -------------------- Routes --------------------
 app.use("/api/auth", authRouter);

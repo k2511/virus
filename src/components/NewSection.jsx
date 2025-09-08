@@ -3,8 +3,10 @@ import { ShoppingCart, BarChart3, Heart } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from 'axios'
 
 const NewSection = () => {
+  const [products , setProducts] = useState([])
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 0,
@@ -16,130 +18,144 @@ const NewSection = () => {
   const navigate = useNavigate();
   const tabs = ["All Products", "Total Security", "Internet Security", "Antivirus Pro", "Upgrade"];
 
-  const products = [
-    {
-      id: 1,
-      category: "Total Security",
-      name: "Quick Heal Total Security 1 PC 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_12_13_50.png",
-      price: "₹79.00",
-      originalPrice: "₹99.00",
-      available: 6,
-      sold: 28,
-    },
-    {
-      id: 2,
-      category: "Total Security",
-      name: "Quick Heal Total Security 1 PC 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/A_New_Design_-_Made_with_PosterMyWall09_17_10_53_46.jpg",
-      price: "₹29.99",
-      originalPrice: "₹39.99",
-    },
-    {
-      id: 3,
-      category: "Internet Security",
-      name: "Quick Heal Internet Security 1 User 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_14_16_54_16.png",
-      price: "₹49.99",
-      originalPrice: "₹59.99",
-    },
-    {
-      id: 4,
-      category: "Antivirus Pro",
-      name: "Upgrade Quick Heal Antivirus Pro 1 User 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_13_02_12.png",
-      price: "₹69.99",
-      originalPrice: "₹79.99",
-    },
-    {
-      id: 5,
-      category: "Total Security",
-      name: "Upgrade Quick Heal Total Security 1 User 1 Year",
-      image: "https://avatars.mds.yandex.net/i?id=0a366ba961fd7fe4444dedd6867a082aa6181972-4415285-images-thumbs&n=13.png",
-      price: "₹24.99",
-      originalPrice: "₹34.99",
-    },
-    {
-      id: 6,
-      category: "Upgrade",
-      name: "Upgrade Quick Heal Total Security 1 User 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/upgrade-quick-heal-total-security08_17_13_28_37.png",
-      price: "₹39.99",
-      originalPrice: "₹49.99",
-    },
-    {
-      id: 7,
-      category: "Antivirus Pro",
-      name: "Quick Heal Antivirus Pro 1 User 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_59_20.png",
-      price: "₹54.99",
-      originalPrice: "₹64.99",
-    },
-    {
-      id: 8,
-      category: "Upgrade",
-      name: "Upgrade Quick Heal Antivirus Pro 1 User 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_11_00_27.png",
-      price: "₹19.99",
-      originalPrice: "₹29.99",
-    },
-    {
-      id: 9,
-      category: "Antivirus Pro",
-      name: "Quick Heal Antivirus Pro 2 User 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_51_22.png",
-      price: "₹34.99",
-      originalPrice: "₹44.99",
-    },
-    {
-      id: 10,
-      category: "Antivirus Pro",
-      name: "Quick Heal Antivirus Pro 3 User 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_13_06_15.png",
-      price: "₹49.99",
-      originalPrice: "₹59.99",
-    },
-    {
-      id: 11,
-      category: "Total Security",
-      name: "Upgrade Quick Heal Total Security 2 User 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_38_32.png",
-      price: "₹59.99",
-      originalPrice: "₹69.99",
-    },
-    {
-      id: 12,
-      category: "Total Security",
-      name: "Upgrade Quick Heal Total Security 3 User 1 Year",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_07_07.png",
-      price: "₹49.99",
-      originalPrice: "₹59.99",
-    },
-    {
-      id: 13,
-      category: "Total Security",
-      name: "Upgrade Quick Heal Total Security 3 User 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_08_03.png",
-      price: "₹39.99",
-      originalPrice: "₹49.99",
-    },
-    {
-      id: 14,
-      category: "Internet Security",
-      name: "Upgrade Quick Heal Internet Security 1 User 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_17_10_54_32.png",
-      price: "₹39.99",
-      originalPrice: "₹49.99",
-    },
-    {
-      id: 15,
-      category: "Total Security",
-      name: "Upgrade Quick Heal Total Security 5 User 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_43_41.png",
-      price: "₹39.99",
-      originalPrice: "₹49.99",
-    },
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     category: "Total Security",
+  //     name: "Quick Heal Total Security 1 PC 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_12_13_50.png",
+  //     price: "₹79.00",
+  //     originalPrice: "₹99.00",
+  //     available: 6,
+  //     sold: 28,
+  //   },
+  //   {
+  //     id: 2,
+  //     category: "Total Security",
+  //     name: "Quick Heal Total Security 1 PC 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/A_New_Design_-_Made_with_PosterMyWall09_17_10_53_46.jpg",
+  //     price: "₹29.99",
+  //     originalPrice: "₹39.99",
+  //   },
+  //   {
+  //     id: 3,
+  //     category: "Internet Security",
+  //     name: "Quick Heal Internet Security 1 User 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_14_16_54_16.png",
+  //     price: "₹49.99",
+  //     originalPrice: "₹59.99",
+  //   },
+  //   {
+  //     id: 4,
+  //     category: "Antivirus Pro",
+  //     name: "Upgrade Quick Heal Antivirus Pro 1 User 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_13_02_12.png",
+  //     price: "₹69.99",
+  //     originalPrice: "₹79.99",
+  //   },
+  //   {
+  //     id: 5,
+  //     category: "Total Security",
+  //     name: "Upgrade Quick Heal Total Security 1 User 1 Year",
+  //     image: "https://avatars.mds.yandex.net/i?id=0a366ba961fd7fe4444dedd6867a082aa6181972-4415285-images-thumbs&n=13.png",
+  //     price: "₹24.99",
+  //     originalPrice: "₹34.99",
+  //   },
+  //   {
+  //     id: 6,
+  //     category: "Upgrade",
+  //     name: "Upgrade Quick Heal Total Security 1 User 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/upgrade-quick-heal-total-security08_17_13_28_37.png",
+  //     price: "₹39.99",
+  //     originalPrice: "₹49.99",
+  //   },
+  //   {
+  //     id: 7,
+  //     category: "Antivirus Pro",
+  //     name: "Quick Heal Antivirus Pro 1 User 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_59_20.png",
+  //     price: "₹54.99",
+  //     originalPrice: "₹64.99",
+  //   },
+  //   {
+  //     id: 8,
+  //     category: "Upgrade",
+  //     name: "Upgrade Quick Heal Antivirus Pro 1 User 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/Quick-heal-renewal-pack08_17_11_00_27.png",
+  //     price: "₹19.99",
+  //     originalPrice: "₹29.99",
+  //   },
+  //   {
+  //     id: 9,
+  //     category: "Antivirus Pro",
+  //     name: "Quick Heal Antivirus Pro 2 User 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_10_51_22.png",
+  //     price: "₹34.99",
+  //     originalPrice: "₹44.99",
+  //   },
+  //   {
+  //     id: 10,
+  //     category: "Antivirus Pro",
+  //     name: "Quick Heal Antivirus Pro 3 User 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-pro08_17_13_06_15.png",
+  //     price: "₹49.99",
+  //     originalPrice: "₹59.99",
+  //   },
+  //   {
+  //     id: 11,
+  //     category: "Total Security",
+  //     name: "Upgrade Quick Heal Total Security 2 User 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_38_32.png",
+  //     price: "₹59.99",
+  //     originalPrice: "₹69.99",
+  //   },
+  //   {
+  //     id: 12,
+  //     category: "Total Security",
+  //     name: "Upgrade Quick Heal Total Security 3 User 1 Year",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_07_07.png",
+  //     price: "₹49.99",
+  //     originalPrice: "₹59.99",
+  //   },
+  //   {
+  //     id: 13,
+  //     category: "Total Security",
+  //     name: "Upgrade Quick Heal Total Security 3 User 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_13_08_03.png",
+  //     price: "₹39.99",
+  //     originalPrice: "₹49.99",
+  //   },
+  //   {
+  //     id: 14,
+  //     category: "Internet Security",
+  //     name: "Upgrade Quick Heal Internet Security 1 User 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-internet-security08_17_10_54_32.png",
+  //     price: "₹39.99",
+  //     originalPrice: "₹49.99",
+  //   },
+  //   {
+  //     id: 15,
+  //     category: "Total Security",
+  //     name: "Upgrade Quick Heal Total Security 5 User 3 Years",
+  //     image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_17_10_43_41.png",
+  //     price: "₹39.99",
+  //     originalPrice: "₹49.99",
+  //   },
+  // ];
+  
+  const getData = async() => {
+    try{
+       const res = await axios.get('http://localhost:5000/api/products');
+       const data = res.data;
+       setProducts(data);
+       console.log("data", data);
+    }catch(err){
+      console.log("err", err);
+    }
+  } 
+  useEffect(() => {
+      getData();
+  }, [])
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -170,12 +186,12 @@ const NewSection = () => {
 
   const handleProductClick = (product) => {
     // Navigate to BrandDetails component with proper route
-    navigate(`/new-section-details/${encodeURIComponent(product.name)}`, {
+    navigate(`/new-section-details/${encodeURIComponent(product.pname)}`, {
       state: { 
         image: product.image, 
-        price: product.price, 
-        category: product.category,
-        originalPrice: product.originalPrice
+        price: product.p, 
+        category: product.cname,
+        originalPrice: product.mp
       },
     });
   };
@@ -309,26 +325,26 @@ const NewSection = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0 ">
               {products
-                .filter((product) => activeTab === "All Products" || product.category === activeTab)
+                .filter((product) => activeTab === "All Products" || product.cname === activeTab)
                 .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
                 .map((product) => (
                   <div 
-                    key={product.id} 
+                    key={product.PID} 
                     className="group cursor-pointer "  
                     onClick={() => handleProductClick(product)}
                   >
 
 
                     <div className="bg-white border-r-2 border-gray-200 mb-4 sm:p-4 p-3 transition-all duration-200 m-1 hover:border-gray-300 border-b-2 sm:border-b-0  hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]  ">
-                      <div className="text-xs text-gray-500 mb-2">{product.category}</div>
+                      <div className="text-xs text-gray-500 mb-2">{product.cname}</div>
                       <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
-                        {product.name}
+                        {product.pname}
                       </h3>
 
                       <div className="mb-4 rounded-lg sm:p-1 h-32 flex items-center justify-center">
                         <img
                           src={product.image}
-                          alt={product.name}
+                          alt={product.pname}
                           className="max-w-full sm:w-full w-40 mt-3 mb-3 sm:h-full h-40 object-contain"
                           onError={(e) => {
                             e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
@@ -338,13 +354,13 @@ const NewSection = () => {
 
                       <div className="flex items-center justify-between">
                         <div className="flex flex-col">
-                          {product.originalPrice && (
+                          {product.mprice && (
                             <span className="text-xs text-gray-500 line-through">
-                              {product.originalPrice}
+                              {product.mprice}
                             </span>
                           )}
                           <span className="text-lg font-semibold text-gray-900">
-                            {product.price}
+                            {product.oprice}
                           </span>
                         </div>
 
