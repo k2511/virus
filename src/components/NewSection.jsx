@@ -317,8 +317,10 @@ const NewSection = () => {
                     className="group cursor-pointer "  
                     onClick={() => handleProductClick(product)}
                   >
-                    <div className="bg-white border border-gray-200 rounded-lg sm:p-4 p-3 hover:shadow-lg transition-shadow">
+                    <div className="bg-white border-r-2 border-gray-200  sm:p-4 p-3 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)] transition-shadow">
+
                       <div className="text-xs text-gray-500 mb-2">{product.category}</div>
+
 
                       <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
                         {product.name}
@@ -400,4 +402,5 @@ const NewSection = () => {
 };
 
 export default NewSection;
+
 
