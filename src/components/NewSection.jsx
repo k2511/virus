@@ -3,10 +3,23 @@ import { ShoppingCart, BarChart3, Heart } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from 'axios'
+import axios from "axios";
+
+const IMAGE_BASE_URL = "http://localhost:5000/";
+
+const Loader = () => {
+  return (
+    <div className="flex justify-center items-center ">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+    </div>
+  ); // Customize this as needed
+};
 
 const NewSection = () => {
-  const [products , setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 0,
@@ -14,9 +27,15 @@ const NewSection = () => {
   });
   const [activeTab, setActiveTab] = useState("All Products");
   const [visibleProducts, setVisibleProducts] = useState(8); // Initial number of products to display
-  
+
   const navigate = useNavigate();
-  const tabs = ["All Products", "Total Security", "Internet Security", "Antivirus Pro", "Upgrade"];
+  const tabs = [
+    "All Products",
+    "Total Security",
+    "Internet Security",
+    "Antivirus Pro",
+    "Upgrade",
+  ];
 
   // const products = [
   //   {
@@ -142,20 +161,27 @@ const NewSection = () => {
   //     originalPrice: "₹49.99",
   //   },
   // ];
-  
-  const getData = async() => {
-    try{
-       const res = await axios.get('http://localhost:5000/api/products');
-       const data = res.data;
-       setProducts(data);
-       console.log("data", data);
-    }catch(err){
+
+  const getData = async () => {
+    // setBrands(["All Products"])
+    try {
+      const res = await axios.get("http://localhost:5000/api/products");
+      const data = res.data;
+
+      setLoading(!loading);
+
+      console.log("data", data);
+      setProducts(data);
+
+      const brandSet = new Set(data.map((item) => item.bname));
+      setBrands([...brandSet]);
+    } catch (err) {
       console.log("err", err);
     }
-  } 
+  };
   useEffect(() => {
-      getData();
-  }, [])
+    getData();
+  }, []);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -181,41 +207,44 @@ const NewSection = () => {
   }, []);
 
   const handleViewMore = () => {
-    setVisibleProducts((prev) => prev + 8); // Load 8 more products (2 rows of 4)
+    setVisibleProducts((prev) => prev + 4); // Load 8 more products (2 rows of 4)
   };
 
   const handleProductClick = (product) => {
     // Navigate to BrandDetails component with proper route
     navigate(`/new-section-details/${encodeURIComponent(product.pname)}`, {
-      state: { 
-        image: product.image, 
-        price: product.p, 
+      state: {
+        image: `${IMAGE_BASE_URL}${product.pic1}`,
+        price: product.oprice,
         category: product.cname,
-        originalPrice: product.mp
+        originalPrice: product.mprice,
+        products: products.filter((product) => product.bname === activeTab
+        )
       },
     });
   };
 
   const handleAddToCart = (e, product) => {
     e.stopPropagation(); // Prevent product click navigation
-    toast.success(`${product.name} added to cart!`);
+    toast.success(`${product.pname} added to cart!`);
   };
 
   const handleDealProductClick = () => {
     const dealProduct = {
       name: "Quick Heal Total Security 1PC 3 Years",
-      image: "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_18_09_46_14.png",
+      image:
+        "https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_18_09_46_14.png",
       price: "₹79.00",
       originalPrice: "₹99.00",
-      category: "Total Security"
+      category: "Total Security",
     };
-    
+
     navigate(`/new-section-details/${encodeURIComponent(dealProduct.name)}`, {
-      state: { 
-        image: dealProduct.image, 
-        price: dealProduct.price, 
+      state: {
+        image: dealProduct.image,
+        price: dealProduct.price,
         category: dealProduct.category,
-        originalPrice: dealProduct.originalPrice
+        originalPrice: dealProduct.originalPrice,
       },
     });
   };
@@ -226,7 +255,7 @@ const NewSection = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Deal of the Day Section */}
           <div className="lg:w-80 flex-shrink-0">
-            <div 
+            <div
               className="border-2 border-yellow-400 rounded-2xl p-6 bg-gradient-to-br from-yellow-50 to-white relative overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
               onClick={handleDealProductClick}
             >
@@ -238,7 +267,9 @@ const NewSection = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Deal of the</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                  Deal of the
+                </h3>
                 <h3 className="text-lg font-semibold text-gray-900">Day</h3>
               </div>
 
@@ -249,7 +280,8 @@ const NewSection = () => {
                   alt="Quick Heal Total Security 1PC 3 Years"
                   className="w-full object-contain mx-auto"
                   onError={(e) => {
-                    e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                    e.target.src =
+                      "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
                   }}
                 />
               </div>
@@ -260,8 +292,12 @@ const NewSection = () => {
                 </h4>
 
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  <span className="text-gray-500 line-through text-sm">₹99.00</span>
-                  <span className="text-red-600 text-2xl font-bold">₹79.00</span>
+                  <span className="text-gray-500 line-through text-sm">
+                    ₹99.00
+                  </span>
+                  <span className="text-red-600 text-2xl font-bold">
+                    ₹79.00
+                  </span>
                 </div>
 
                 <div className="flex justify-between text-sm text-gray-600 mb-4">
@@ -274,11 +310,16 @@ const NewSection = () => {
                 </div>
 
                 <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-                  <div className="bg-yellow-400 h-2 rounded-full" style={{ width: "82%" }}></div>
+                  <div
+                    className="bg-yellow-400 h-2 rounded-full"
+                    style={{ width: "82%" }}
+                  ></div>
                 </div>
 
                 <div className="text-center mb-4">
-                  <div className="text-sm text-gray-600 mb-2">Hurry Up! Offer ends in:</div>
+                  <div className="text-sm text-gray-600 mb-2">
+                    Hurry Up! Offer ends in:
+                  </div>
                   <div className="flex justify-center gap-1">
                     <div className="bg-gray-800 text-white px-2 py-1 rounded text-xl font-mono">
                       {String(timeLeft.hours).padStart(2, "0")}
@@ -305,14 +346,14 @@ const NewSection = () => {
           {/* Products Section */}
           <div className="flex-1 mx-auto">
             <div className="flex flex-nowrap sm:gap-5 gap-0 mx-auto mb-8 bg-gray-100 rounded-lg p-1 w-full">
-              {tabs.map((tab) => (
-                <button 
-                  key={tab}
+              {brands.map((tab, idx) => (
+                <button
+                  key={idx}
                   onClick={() => {
                     setActiveTab(tab);
                     setVisibleProducts(8);
                   }}
-                  className={`lg:px-4 md:px-2 sm:px-1 py-2 px-2 rounded-md sm:text-sm md:text-md mx-auto text-[0.7rem] font-medium transition-all ${
+                  className={` md:px-2 sm:px-1 py-2 px-2 rounded-md sm:text-sm  mx-auto text-[0.7rem] font-medium transition-all ${
                     activeTab === tab
                       ? "bg-white text-gray-900 shadow-sm"
                       : "text-gray-600 hover:text-gray-900"
@@ -325,29 +366,38 @@ const NewSection = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0 ">
               {products
-                .filter((product) => activeTab === "All Products" || product.cname === activeTab)
-                .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
+                .filter(
+                  (product) =>
+                    activeTab === "All Products" || product.bname === activeTab
+                )
+                .slice(
+                  0,
+                  activeTab === "All Products"
+                    ? visibleProducts
+                    : products.length
+                )
                 .map((product) => (
-                  <div 
-                    key={product.PID} 
-                    className="group cursor-pointer "  
+                  <div
+                    key={product.PID}
+                    className="group cursor-pointer "
                     onClick={() => handleProductClick(product)}
                   >
-
-
-                    <div className="bg-white border-r-2 border-gray-200 mb-4 sm:p-4 p-3 transition-all duration-200 m-1 hover:border-gray-300 border-b-2 sm:border-b-0  hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]  ">
-                      <div className="text-xs text-gray-500 mb-2">{product.cname}</div>
+                    <div className="bg-white border-r-2 border-gray-200 mb-4 p-3 transition-all duration-200 m-1 hover:border-gray-300 border-b-2 sm:border-b-0  hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]  ">
+                      <div className="text-xs text-gray-500 mb-2">
+                        {product.cname}
+                      </div>
                       <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
                         {product.pname}
                       </h3>
 
                       <div className="mb-4 rounded-lg sm:p-1 h-32 flex items-center justify-center">
                         <img
-                          src={product.image}
+                          src={`${IMAGE_BASE_URL}${product.pic1}`}
                           alt={product.pname}
                           className="max-w-full sm:w-full w-40 mt-3 mb-3 sm:h-full h-40 object-contain"
                           onError={(e) => {
-                            e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                            e.target.src =
+                              "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
                           }}
                         />
                       </div>
@@ -356,15 +406,15 @@ const NewSection = () => {
                         <div className="flex flex-col">
                           {product.mprice && (
                             <span className="text-xs text-gray-500 line-through">
-                              {product.mprice}
+                             ₹{product.mprice}
                             </span>
                           )}
                           <span className="text-lg font-semibold text-gray-900">
-                            {product.oprice}
+                          ₹{product.oprice}
                           </span>
                         </div>
 
-                        <button 
+                        <button
                           className="bg-yellow-400 hover:bg-yellow-500 text-white p-2 rounded-full transition-colors"
                           onClick={(e) => handleAddToCart(e, product)}
                         >
@@ -373,7 +423,7 @@ const NewSection = () => {
                       </div>
 
                       <div className="flex items-center justify-between gap-1 mt-3 text-xs text-gray-500">
-                        <button 
+                        <button
                           className="flex items-center gap-1 hover:text-gray-700"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -383,7 +433,7 @@ const NewSection = () => {
                           <BarChart3 className="w-3 h-3" />
                           Compare
                         </button>
-                        <button 
+                        <button
                           className="flex items-center gap-1 hover:text-gray-700 text-[0.8rem] sm:text-xs lg:text-"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -397,18 +447,20 @@ const NewSection = () => {
                     </div>
                   </div>
                 ))}
+              {loading && <Loader />}
             </div>
 
-            {activeTab === "All Products" && visibleProducts < products.length && (
-              <div className="text-center mt-8">
-                <button
-                  onClick={handleViewMore}
-                  className="px-6 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 transition-colors"
-                >
-                  View More
-                </button>
-              </div>
-            )}
+            {activeTab === "Quick Heal" &&
+              visibleProducts < products.length && (
+                <div className="text-center mt-8">
+                  <button
+                    onClick={handleViewMore}
+                    className="px-6 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 transition-colors"
+                  >
+                    View More
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       </div>
@@ -417,5 +469,3 @@ const NewSection = () => {
 };
 
 export default NewSection;
-
-

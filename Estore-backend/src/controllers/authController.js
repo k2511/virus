@@ -59,34 +59,3 @@ export const LogIn = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-export const signup = async(req, res) => {
-  try{
-
-     const {email, password} = req.body;
-     console.log("signup", email, password);
-
-     if(!email || !password){
-        return res.json({
-            message:"All field is required",
-            success:false,
-        })
-     }
-
-    //  let query = "SELECT email FROM "
-    
-
-  //    if(!email || !password){
-  //     return res.json({
-  //         message:"",
-  //         success:false,
-  //     })
-  //  }
-
-
-
-  }catch(err){
-    console.error("signup Error:", err);
-    res.status(500).json({ error: err.message });
-  }
-}

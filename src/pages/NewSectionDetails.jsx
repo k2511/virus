@@ -9,13 +9,15 @@ import { useContext } from "react";
 import Cart from "./Cart";
 import Hero from "../components/Hero";
 import RelatedProduct from "../components/RelatedProduct";
+ const IMAGE_BASE_URL = "http://localhost:5000/"
+
 
 const NewSectionDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { image, price, category, originalPrice } = location.state || {};
+  const { image, price, category, originalPrice, products } = location.state || {};
 
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Reviews");
@@ -132,11 +134,9 @@ const NewSectionDetails = () => {
                 <p className="text-sm text-gray-600 mb-1">GIN</p>
                 <p className="font-semibold text-lg">85238020</p>
               </div>
-
             
               <div>
                 <p className="text-sm text-gray-600 mb-1">HSN</p>
-                
                 {/* <span className="font-semibold text-lg border-2 border-green-500 text-green-500 px-3 py-1 rounded-lg">Stock available</span> */}
                 <span className="font-semibold text-lg ">Available</span>
               </div>
@@ -441,7 +441,7 @@ const NewSectionDetails = () => {
   
 
    
-     <RelatedProduct handleScroll={handleScroll} />
+     <RelatedProduct handleScroll={handleScroll} products={products} />
     </div>
 
     </>

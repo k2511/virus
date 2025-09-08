@@ -15,7 +15,6 @@ export const deleteProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
   try {
     const [rows] = await db.query("SELECT * FROM product ORDER BY PID DESC");
-    // console.log('data', rows.length)
     res.json(rows);
   } catch (error) {
     res.status(500).json({ error: error.message });

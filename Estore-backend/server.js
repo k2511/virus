@@ -3,8 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import db from "./src/config/db.js";   // auto-connect
-import { authRouter } from "./src/routes/authRoutes.js"; 
-import helmet from "helmet"; 
+import { authRouter } from "./src/routes/authRoutes.js";
+import helmet from "helmet";  
 import { reviewRouter } from "./src/routes/reviewRoutes.js";
 import { categoryRouter } from "./src/routes/categoryRoutes.js";
 import { productRouter } from "./src/routes/productRoutes.js";
@@ -31,8 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/model/pics', express.static('model/pics'));
 app.use('/action/photos', express.static('action/photos'));
- 
-const testDB = async () =>  {
+
+const testDB = async () => {
   try {
     const connection = await db.getConnection();
     console.log("✅ Database connection successful!");
@@ -68,7 +68,7 @@ app.use(
       }
     }
   })
-); 
+);
 
 // -------------------- Routes --------------------
 app.use("/api/auth", authRouter);
@@ -83,8 +83,6 @@ app.use("/api/inventory", inventoryRouter);
 app.use("/api/coupons", couponRouter);
 app.use("/api/keys", keyRouter);
 app.use("/api/users", userRouter);
-
-
 
 // -------------------- Start Server --------------------
 const PORT = process.env.PORT || 5000;
