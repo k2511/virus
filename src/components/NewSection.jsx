@@ -218,8 +218,8 @@ const NewSection = () => {
         price: product.oprice,
         category: product.cname,
         originalPrice: product.mprice,
-        products: products.filter((product) => product.bname === activeTab
-        )
+         stock : product.no_of_stock,
+         products: products.filter((p) => p.bname === product.bname) 
       },
     });
   };
@@ -354,7 +354,7 @@ const NewSection = () => {
                     setVisibleProducts(8);
                   }}
                   className={` md:px-2 sm:px-1 py-2 px-2 rounded-md sm:text-sm  mx-auto text-[0.7rem] font-medium transition-all ${
-                    activeTab === tab
+                    tab === activeTab
                       ? "bg-white text-gray-900 shadow-sm"
                       : "text-gray-600 hover:text-gray-900"
                   }`}
@@ -364,7 +364,7 @@ const NewSection = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0 ">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0 mx-auto ">
               {products
                 .filter(
                   (product) =>
@@ -374,7 +374,8 @@ const NewSection = () => {
                   0,
                   activeTab === "All Products"
                     ? visibleProducts
-                    : products.length
+                    // : visibleProducts
+                      : products.length
                 )
                 .map((product) => (
                   <div
@@ -447,10 +448,10 @@ const NewSection = () => {
                     </div>
                   </div>
                 ))}
-              {loading && <Loader />}
+              {loading && <Loader  className='mx-auto'/>}
             </div>
 
-            {activeTab === "Quick Heal" &&
+            { activeTab === "All Products" &&
               visibleProducts < products.length && (
                 <div className="text-center mt-8">
                   <button

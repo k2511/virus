@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import db from "./src/config/db.js";   // auto-connect
 import { authRouter } from "./src/routes/authRoutes.js";
-import helmet from "helmet";  
+import helmet from "helmet"; 
 import { reviewRouter } from "./src/routes/reviewRoutes.js";
 import { categoryRouter } from "./src/routes/categoryRoutes.js";
 import { productRouter } from "./src/routes/productRoutes.js";

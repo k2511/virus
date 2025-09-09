@@ -17,8 +17,9 @@ const NewSectionDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { image, price, category, originalPrice, products } = location.state || {};
+  const { image, price, category, originalPrice,stock, products } = location.state || {};
 
+  console.log("pro", products)
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Reviews");
 
@@ -34,7 +35,7 @@ const NewSectionDetails = () => {
     return `₹${priceValue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
-      const { cart, setCart, addToCart, total, setTotal } = useContext(MyContext);
+      const { cart, setCart, addToCart, total, setTotal,  } = useContext(MyContext);
 
       const handleAdd = (obj) => {
         addToCart(obj);
@@ -76,7 +77,6 @@ const NewSectionDetails = () => {
   }, []);
 
 
-
   return (
     <> 
    
@@ -115,8 +115,8 @@ const NewSectionDetails = () => {
               </div>
 
               <div>
-                <p className="text-sm text-gray-600 mb-1">Software Download</p>
-                <p className="font-semibold text-lg">Stock Available</p>
+                <p className="text-sm text-gray-600 mb-1">Stock</p>
+                <p className="font-semibold text-lg">{stock}</p>
               </div>
 
               <div>

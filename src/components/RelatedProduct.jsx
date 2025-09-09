@@ -158,6 +158,9 @@ const RelatedProduct = ({handleScroll, products}) => {
                       image: `${IMAGE_BASE_URL}${product.pic1}` , 
                       price: product.oprice, 
                       category: product.cname,
+                      originalPrice: product.mprice,
+                      stock : product.no_of_stock,
+                      products: products.filter((p) => p.bname === product.bname) 
                     },
                   });
                 
@@ -174,7 +177,7 @@ const RelatedProduct = ({handleScroll, products}) => {
 
                   <div className="mb-4 rounded-lg sm:p-1 h-32 flex items-center justify-center">
                     <img
-                      src={product.image}
+                      src={`${IMAGE_BASE_URL}${product.pic1}`}
                       alt={product.pname}
                       className="max-w-full sm:w-full w-40 sm:h-full h-40 object-contain"
                       onError={(e) => {
