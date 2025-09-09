@@ -118,88 +118,7 @@ const CheckOut = () => {
                 />
               </div>
             </div>
-            
-            <div className="mt-6">
-              <label className="block text-gray-700 font-medium mb-2">Company Name (Optional)</label>
-              <input 
-                type="text"
-                placeholder="Company Name"
-                className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-            </div>
-            
-            <div className="mt-6">
-              <label className="block text-gray-700 font-medium mb-2">
-                Country <span className="text-red-500">*</span>
-              </label>
-              <select className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                <option>Select country</option>
-                <option>United States</option>
-                <option>United Kingdom</option>
-                <option>Canada</option>
-                <option>Australia</option>
-              </select>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  Street Address <span className="text-red-500">*</span>
-                </label>
-                <input 
-                  type="text"
-                  defaultValue="470 Lucy Ford"
-                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">Apt, Suite, Etc.</label>
-                <input 
-                  type="text"
-                  defaultValue="YCTB 2LF"
-                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              </div>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  City <span className="text-red-500">*</span>
-                </label>
-                <input 
-                  type="text"
-                  defaultValue="London"
-                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  Postcode/Zip <span className="text-red-500">*</span>
-                </label>
-                <input 
-                  type="text"
-                  defaultValue="99999"
-                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <label className="block text-gray-700 font-medium mb-2">
-                State <span className="text-red-500">*</span>
-              </label>
-              <select className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                <option>Select state</option>
-                <option>California</option>
-                <option>New York</option>
-                <option>Texas</option>
-                <option>Florida</option>
-              </select>
-            </div>
-            
+
             <div className="grid md:grid-cols-2 gap-6 mt-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
@@ -222,18 +141,115 @@ const CheckOut = () => {
               </div>
             </div>
             
+            {/* <div className="mt-6">
+              <label className="block text-gray-700 font-medium mb-2">Company Name (Optional)</label>
+              <input 
+                type="text"
+                placeholder="Company Name"
+                className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </div> */}
+            
             <div className="mt-6">
+              <label className="block text-gray-700 font-medium mb-2">
+                Country <span className="text-red-500">*</span>
+              </label>
+              <select className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                <option>Select country</option>
+                <option>Maharashtra</option>
+                <option>Gujarat</option>
+                <option>Jammu & kashmir</option>
+                <option>Madhya Pradesh</option>
+              </select>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">
+                  Street Address <span className="text-red-500">*</span>
+                </label>
+                <input 
+                  type="text"
+                  defaultValue="470 Lucy Ford"
+                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+              </div>
+              
+
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Amount</label>
+                <input 
+                  type="number"
+                  defaultValue="YCTB 2LF"
+                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">
+                  City <span className="text-red-500">*</span>
+                </label>
+                <input 
+                  type="text"
+                  defaultValue="London"
+                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+              </div>
+              
+              {/* <div>
+                <label className="block text-gray-700 font-medium mb-2">
+                  Postcode/Zip <span className="text-red-500">*</span>
+                </label>
+                <input 
+                  type="text"
+                  defaultValue="99999"
+                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+              </div> */}
+
+               <div>
+                <label className="block text-gray-700 font-medium mb-2">
+                  Date 
+                </label>
+                <input 
+                  type='date'
+                  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+              </div>
+            </div>
+            
+            <div className="mt-6">
+              <label className="block text-gray-700 font-medium mb-2">
+                State <span className="text-red-500">*</span>
+              </label>
+              <select className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                <option>Select state</option>
+                <option>California</option>
+                <option>New York</option>
+                <option>Texas</option>
+                <option>Florida</option>
+              </select>
+            </div>
+            
+          
+            
+            {/* <div className="mt-6">
               <label className="flex items-center">
                 <input type="checkbox" className="mr-3" />
                 <span className="text-gray-700">Create An Account?</span>
               </label>
-            </div>
+            </div> */}
+
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm mt-8">
+          {/* <div className="bg-white p-6 rounded-lg shadow-sm mt-8">
             <h2 className="text-xl font-semibold mb-6 text-gray-800">Shipping Details details</h2>
-          </div>
+          </div> */}
         </div>
+        
+
         
         {/* Order Summary */}
         <div className="lg:col-span-1">
