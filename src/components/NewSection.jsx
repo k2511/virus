@@ -362,7 +362,7 @@ const NewSection = () => {
     try {
       const res = await axios.get("http://localhost:5000/api/products");
       const data = res.data;
-      
+      console.log('data', data)
       // Filter only Quick Heal products
       const quickHealProducts = data.filter(product => 
         product.bname && product.bname.toLowerCase().includes("quick heal")
