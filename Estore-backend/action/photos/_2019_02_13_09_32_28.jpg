@@ -1,0 +1,15 @@
+<?php
+ 
+ include 'dbconn.php';
+ 
+ $subcat_id1=$_GET['a1'];
+ $sql = "delete from subcat where SCID=$subcat_id1";
+ //echo $sql;
+ $result = $conn->query($sql);
+
+ echo "<script>
+ alert('Record deleted Successfully!!');
+ window.location.href='../subcategory.html.php';
+ </script>";
+ 
+?>

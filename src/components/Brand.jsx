@@ -1,200 +1,434 @@
-import React, { useState } from "react";
+// import React, { useState, useEffect } from "react";
+// import { FaShoppingCart } from "react-icons/fa";
+// import { useNavigate } from "react-router-dom";
+// import { VscGraph } from "react-icons/vsc";
+// import { FaRegHeart } from "react-icons/fa";
+// import toast from "react-hot-toast";
+// import axios from "axios";
+
+// const IMAGE_BASE_URL = "http://localhost:5000/";
+
+// const Brands = () => {
+//   const navigate = useNavigate();
+
+//   const [val, setVal] = useState(0);
+//   const [brands, setBrands] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [visibleCount, setVisibleCount] = useState(4);
+//   const [visibleCount1, setVisibleCount1] = useState(4);
+//   const [featuredProduct, setFeaturedProduct] = useState(null);
+
+//   const getData = async () => {
+//     try {
+//       const res = await axios.get("http://localhost:5000/api/products");
+//       const data = res.data;
+      
+//       // Group products by brand name
+//       const brandGroups = {};
+      
+//       data.forEach(product => {
+//         if (product.bname) {
+//           const brandName = product.bname.trim();
+//           if (!brandGroups[brandName]) {
+//             brandGroups[brandName] = [];
+//           }
+//           brandGroups[brandName].push(product);
+//         }
+//       });
+      
+//       // Convert to array format similar to original structure
+//       const brandsArray = Object.keys(brandGroups).map(brandName => ({
+//         name: brandName,
+//         arr: brandGroups[brandName]
+//       }));
+      
+//       setBrands(brandsArray);
+      
+//       // Set first product of first brand as featured product
+//       if (brandsArray.length > 0 && brandsArray[0].arr.length > 0) {
+//         setFeaturedProduct(brandsArray[0].arr[0]);
+//       }
+      
+//       setLoading(false);
+//     } catch (err) {
+//       console.error("Error fetching data:", err);
+//       toast.error("Failed to load products");
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getData();
+//   }, []);
+
+//   const handleViewMore = () => {
+//     setVisibleCount((prev) => prev + 4);
+//   };
+
+//   const handleViewMore1 = () => {
+//     setVisibleCount1((prev) => prev + 4);
+//   };
+
+//   const handleBrandSwitch = (idx) => {
+//     setVal(idx);
+//     setVisibleCount(4);
+//     setVisibleCount1(4);
+    
+//     // Set first product of selected brand as featured
+//     if (brands[idx] && brands[idx].arr.length > 0) {
+//       setFeaturedProduct(brands[idx].arr[0]);
+//     }
+//   };
+
+//   const handleProductClick = (product, brandName) => {
+//     navigate(`/brands/${encodeURIComponent(product.pname)}`, {
+//       state: {
+//         image: `${IMAGE_BASE_URL}${product.pic1}`,
+//         price: product.oprice,
+//         category: product.cname,
+//         originalPrice: product.mprice,
+//         stock: product.no_of_stock,
+//         products: brands[val].arr,
+//         brand: brandName,
+//         product: product
+//       },
+//     });
+//   };
+
+//   const handleAddToCart = (e, product) => {
+//     e.stopPropagation();
+//     toast.success(`${product.pname} added to cart!`);
+//   };
+
+//   const handleCompare = (e, product) => {
+//     e.stopPropagation();
+//     toast.success(`${product.pname} added to compare list!`);
+//   };
+
+//   const handleWishlist = (e, product) => {
+//     e.stopPropagation();
+//     toast.success(`${product.pname} added to wishlist!`);
+//   };
+
+//   // Reusable component for Compare & Wishlist section
+//   const CompareWishlistSection = ({ product }) => (
+//     <div className="flex justify-around w-full items-center sm:gap-4 gap-1 text-sm text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+//       <div 
+//         className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors"
+//         onClick={(e) => handleCompare(e, product)}
+//       >
+//         <VscGraph className="w-4 h-4" />
+//         <span>Compare</span>
+//       </div>
+//       <span className="text-gray-300">•</span>
+//       <div 
+//         className="flex items-center gap-1 hover:text-red-500 cursor-pointer transition-colors"
+//         onClick={(e) => handleWishlist(e, product)}
+//       >
+//         <FaRegHeart className="w-4 h-4" />
+//         <span>Add to Wishlist</span>
+//       </div>
+//     </div>
+//   );
+
+//   const CompareWishlistSection1 = ({ product }) => (
+//     <div className="flex justify-between w-full items-center sm:gap-4 md:gap-2 lg:px-0 lg:gap-0 gap-0 px-2 text-sm text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+//       <div 
+//         className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors"
+//         onClick={(e) => handleCompare(e, product)}
+//       >
+//         <VscGraph className="w-4 h-4" />
+//         <span className="text-xs sm:text-xs">Compare</span>
+//       </div>
+//       <span className="text-gray-300">•</span>
+//       <div 
+//         className="flex items-center sm:gap-1 gap-0 hover:text-red-500 cursor-pointer transition-colors"
+//         onClick={(e) => handleWishlist(e, product)}
+//       >
+//         <FaRegHeart className="sm:w-4 sm:h-4 w-2 h-2" />
+//         <span className="text-[0.8rem] sm:text-xs lg:text-">Add to Wishlist</span>
+//       </div>
+//     </div>
+//   );
+
+//   if (loading) {
+//     return (
+//       <div className="min-h-screen bg-white flex items-center justify-center">
+//         <div className="text-center">
+//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+//           <p className="mt-4 text-gray-600">Loading brands...</p>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   if (brands.length === 0) {
+//     return (
+//       <div className="min-h-screen bg-white flex items-center justify-center">
+//         <div className="text-center">
+//           <p className="text-gray-600">No brands found</p>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   const currentBrand = brands[val];
+//   const currentProducts = currentBrand ? currentBrand.arr : [];
+
+//   return (
+//     <div className="min-h-screen bg-white">
+//       {/* Navigation Tabs */}
+//       <div className="bg-white shadow-sm border-b flex justify-center">
+//         <div className="max-w-7xl mx-auto px-4 w-full">
+//           <div className="flex space-x-4 overflow-x-auto no-scrollbar mx-auto items-center justify-center">
+//             {brands.map((brand, idx) => (
+//               <button
+//                 key={idx}
+//                 onClick={() => handleBrandSwitch(idx)}
+//                 className={`py-3 px-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors flex-shrink-0 ${
+//                   val === idx
+//                     ? "border-blue-600 text-blue-600"
+//                     : "border-transparent text-gray-500 hover:text-gray-700"
+//                 }`}
+//               >
+//                 {brand.name}
+//               </button>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       <section>
+//         <div className="mx-auto max-w-[1400px] bg-gray-50 p-4 md:p-10">
+//           <div className="grid grid-cols-1 lg:grid-cols-3 items-start">
+//             {/* Left Grid */}
+//             <div
+//               className={`${
+//                 currentProducts.length === 1
+//                   ? "flex justify-end w-full mt-4 lg:mt-0"
+//                   : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0 mx-auto"
+//               }`}
+//             >
+//               {currentProducts.slice(0, visibleCount).map((product, i) => (
+//                 <div
+//                   onClick={() => handleProductClick(product, currentBrand.name)}
+//                   key={product.PID || i}
+//                   className="bg-white p-3 flex flex-col justify-between items-center text-center 
+//                    group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
+//                 >
+//                   <p className="text-sm text-gray-500">{product.cname}</p>
+//                   <p className="font-semibold text-blue-700 line-clamp-2">
+//                     {product.pname}
+//                   </p>
+//                   <img
+//                     src={`${IMAGE_BASE_URL}${product.pic1}`}
+//                     alt={product.pname}
+//                     className="h-32 object-contain my-3"
+//                     onError={(e) => {
+//                       e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+//                     }}
+//                   />
+//                   <div className="flex items-center justify-between w-full">
+//                     <div className="flex flex-col">
+//                       {product.mprice && product.mprice !== product.oprice && (
+//                         <span className="text-xs text-gray-500 line-through">
+//                           ₹{product.mprice}
+//                         </span>
+//                       )}
+//                       <span className="text-lg font-semibold">₹{product.oprice}</span>
+//                     </div>
+//                     <button 
+//                       className="bg-yellow-400 p-2 rounded-full text-white hover:bg-yellow-500 transition-colors"
+//                       onClick={(e) => handleAddToCart(e, product)}
+//                     >
+//                       <FaShoppingCart />
+//                     </button>
+//                   </div>
+//                   <CompareWishlistSection1 product={product} />
+//                 </div>
+//               ))}
+//               {visibleCount < currentProducts.length && (
+//                 <button
+//                   onClick={handleViewMore}
+//                   className="mt-2 px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition-colors"
+//                 >
+//                   View More
+//                 </button>
+//               )}
+//             </div>
+
+//             {/* Featured Product */}
+//             {featuredProduct && (
+//               <div 
+//                 className="bg-white py-5 px-3 gap-1 mx-1 md:min-h-[41rem] flex flex-col justify-between items-center
+//                   text-center mt-4 lg:mt-0 group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
+//                 onClick={() => handleProductClick(featuredProduct, currentBrand.name)}
+//               >
+//                 <div className="w-full space-y-10">
+//                   <div>
+//                     <p className="text-sm text-gray-500">{featuredProduct.cname}</p>
+//                     <p className="font-semibold text-blue-700 mb-4 line-clamp-2">
+//                       {featuredProduct.pname}
+//                     </p>
+//                   </div>
+                
+//                   <img
+//                     src={`${IMAGE_BASE_URL}${featuredProduct.pic1}`}
+//                     alt="featured product"
+//                     className="w-full max-h-96 object-contain mb-6"
+//                     onError={(e) => {
+//                       e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+//                     }}
+//                   />
+//                   <div className="w-full">
+//                     <div className="flex items-center justify-around w-full">
+//                       <div className="flex flex-col">
+//                         {featuredProduct.mprice && featuredProduct.mprice !== featuredProduct.oprice && (
+//                           <span className="text-sm text-gray-500 line-through">
+//                             ₹{featuredProduct.mprice}
+//                           </span>
+//                         )}
+//                         <span className="text-lg font-semibold">₹{featuredProduct.oprice}</span>
+//                       </div>
+//                       <button 
+//                         className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2 hover:bg-yellow-500 transition-colors"
+//                         onClick={(e) => handleAddToCart(e, featuredProduct)}
+//                       >
+//                         <FaShoppingCart /> Add to Cart
+//                       </button>
+//                     </div>
+//                     <CompareWishlistSection product={featuredProduct} />
+//                   </div>
+//                 </div>
+//               </div>
+//             )}
+
+//             {/* Right Grid */}
+//             <div className={`${
+//                 currentProducts.length === 1
+//                   ? "flex justify-start w-full mt-4 lg:mt-0"
+//                   : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0 mx-auto"
+//               }`}>
+//               {currentProducts.slice(0, visibleCount1).map((product, i) => (
+//                 <div
+//                   key={product.PID || i}
+//                   className="bg-white p-3 flex flex-col justify-between items-center 
+//                   text-center group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
+//                   onClick={() => handleProductClick(product, currentBrand.name)}
+//                 >
+//                   <p className="text-sm text-gray-500">{product.cname}</p>
+//                   <p className="font-semibold text-blue-700 line-clamp-2">
+//                     {product.pname}
+//                   </p>
+//                   <img
+//                     src={`${IMAGE_BASE_URL}${product.pic1}`}
+//                     alt={product.pname}
+//                     className="h-32 object-contain my-3"
+//                     onError={(e) => {
+//                       e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+//                     }}
+//                   />
+//                   <div className="flex items-center justify-between w-full">
+//                     <div className="flex flex-col">
+//                       {product.mprice && product.mprice !== product.oprice && (
+//                         <span className="text-xs text-gray-500 line-through">
+//                           ₹{product.mprice}
+//                         </span>
+//                       )}
+//                       <span className="text-lg font-semibold">₹{product.oprice}</span>
+//                     </div>
+//                     <button 
+//                       className="bg-yellow-400 p-2 rounded-full text-white hover:bg-yellow-500 transition-colors"
+//                       onClick={(e) => handleAddToCart(e, product)}
+//                     >
+//                       <FaShoppingCart />
+//                     </button>
+//                   </div>
+//                   <CompareWishlistSection1 product={product} />
+//                 </div>
+//               ))}
+//               {visibleCount1 < currentProducts.length && (
+//                 <button
+//                   onClick={handleViewMore1}
+//                   className="mt-2 px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition-colors"
+//                 >
+//                   View More
+//                 </button>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// };
+
+// export default Brands;
+
+
+
+import React, { useState, useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { VscGraph } from "react-icons/vsc";
 import { FaRegHeart } from "react-icons/fa";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+const IMAGE_BASE_URL = "http://localhost:5000/";
 
 const Brands = () => {
   const navigate = useNavigate();
 
   const [val, setVal] = useState(0);
-  const topSelling = {
-    image: "https://dantivirus.com/admin/model/pics/kas_standard.png",
-    name: "Kaspersky Antivirus 1 PC 1 Year",
-    price: "₹249.00",
-    category: "Antivirus",
-  };
-
-  const [sale, setSale] = useState(topSelling);
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(4);
   const [visibleCount1, setVisibleCount1] = useState(4);
+  const [featuredProduct, setFeaturedProduct] = useState(null);
 
-  const list = [
-    {
-      name: "Kaspersky",
-      arr: [
-        {
-          image: "https://dantivirus.com/admin/model/pics/kas_standard.png",
-          name: "Kaspersky Antivirus 1 PC 1 Year",
-          price: "₹249.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/kas_plus.png",
-          name: "Kaspersky Plus 1 PC 1 Year",
-          price: "₹349.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/kas_premium.png",
-          name: "Kaspersky Total Security 1 User 1 Year",
-          price: "₹409.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/kas_premium.png",
-          name: "Kaspersky Total Security1 User 3 Years",
-          price: "₹1399.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/kas_premium.png",
-          name: "Kaspersky Total Security 3 User 3 Years",
-          price: "₹1899.00",
-          category: "Security Suite",
-        },
-      ],
-    },
-    {
-      name: "Net Protector",
-      arr: [
-        {
-          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
-          name: "Net Protector Total Security 1 User 1 Year",
-          price: "₹428.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_33_41.png",
-          name: "Renew Net Protector Total Security 1 PC-1 Year",
-          price: "₹438.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security08_17_11_30_17.png",
-          name: "Net Protector Total Security 1 User 3 Years",
-          price: "₹998.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/net-protector-antivirus-pro.png",
-          name: "Net Protector Antivirus 1 User 1 Year",
-          price: "₹350.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/net-protector-total-security.png",
-          name: "Upgrade Net Protector Total Security 1 User 3 Year",
-          price: "₹998.00",
-          category: "Security Suite",
-        },
-      ],
-    },
-    {
-      name: "K7",
-      arr: [
-        {
-          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim.png",
-          name: "K7 Antivirus Premium 1 PC 1 Year",
-          price: "₹205.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
-          name: "K7 Total Security 1 PC 1 Year",
-          price: "₹295.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/k7-total-security.png",
-          name: "Renew K7 Total Security 1 PC 1 Year",
-          price: "₹379.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/k7-antivirus-premuim08_17_11_35_40.png",
-          name: "Upgrade K7 Antivirus Premium 1 User 1 Year",
-          price: "₹350.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/K7-Mobile-Security08_08_11_05_34.jpg",
-          name: "K7 Total Security 10 PC 1 Year",
-          price: "₹1900.00",
-          category: "Security Suite",
-        },
-      ],
-    },
-    {
-      name: "McAfee",
-      arr: [
-        {
-          image: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_14_16_59_00.png",
-          name: "McAfee Antivirus 1 User 1 Year",
-          price: "₹238.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_17_11_39_37.png",
-          name: "Renew McAfee Antivirus 1 User 1 Year",
-          price: "₹249.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/mcafee-total-protection-security08_17_13_57_10.png",
-          name: "McAfee Total Protection 1 User 1 Year",
-          price: "₹298.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/mcafee-antivirus08_17_11_40_25.png",
-          name: "McAfee Antivirus 1 User 3 Year",
-          price: "₹669.00",
-          category: "Antivirus",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/mcafee-total-protection-security08_17_13_57_52.png",
-          name: "McAfee Total Protection 1 User 3 Year",
-          price: "₹1200.00",
-          category: "Security Suite",
-        },
-      ],
-    },
-    {
-      name: "Guardian",
-      arr: [
-        {
-          image: "https://dantivirus.com/admin/model/pics/guardian-total-security08_15_08_36_52.png",
-          name: "Guardian Total Security 1 User 1 Year",
-          price: "₹435.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/guardian-net-secure08_15_08_23_02.png",
-          name: "Renew Guardian NetSecure 1 PC 1 Year",
-          price: "₹299.00",
-          category: "Security Suite",
-        },
-        {
-          image: "https://dantivirus.com/admin/model/pics/guardian-net-secure08_15_08_23_02.png",
-          name: "Guardian Net Secure 1 User 1 Year",
-          price: "₹299.00",
-          category: "Security Suite",
-        },
-      ],
-    },
-    {
-      name: "ESET",
-      arr: [
-        {
-          image: "https://dantivirus.com/admin/model/pics/eset-node-antivirus08_15_08_44_11.png",
-          name: "ESET NOD32 Antivirus 1 User 1 Year",
-          price: "₹280.00",
-          category: "Antivirus",
-        },
-      ],
-    },
-  ];
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/products");
+      const data = res.data;
+      
+      // Group products by brand name (remove Quick Heal filter)
+      const brandGroups = {};
+      
+      data.forEach(product => {
+        if (product.bname) {
+          const brandName = product.bname.trim();
+          if (!brandGroups[brandName]) {
+            brandGroups[brandName] = [];
+          }
+          brandGroups[brandName].push(product);
+        }
+      });
+      
+      // Convert to array format similar to original structure
+      const brandsArray = Object.keys(brandGroups).map(brandName => ({
+        name: brandName,
+        arr: brandGroups[brandName]
+      }));
+      
+      setBrands(brandsArray);
+      
+      // Set first product of first brand as featured product
+      if (brandsArray.length > 0 && brandsArray[0].arr.length > 0) {
+        setFeaturedProduct(brandsArray[0].arr[0]);
+      }
+      
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      toast.error("Failed to load products");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleViewMore = () => {
     setVisibleCount((prev) => prev + 4);
@@ -204,34 +438,111 @@ const Brands = () => {
     setVisibleCount1((prev) => prev + 4);
   };
 
+  const handleBrandSwitch = (idx) => {
+    setVal(idx);
+    setVisibleCount(4);
+    setVisibleCount1(4);
+    
+    // Set first product of selected brand as featured
+    if (brands[idx] && brands[idx].arr.length > 0) {
+      setFeaturedProduct(brands[idx].arr[0]);
+    }
+  };
+
+  const handleProductClick = (product, brandName) => {
+    navigate(`/brands/${encodeURIComponent(product.pname)}`, {
+      state: {
+        image: `${IMAGE_BASE_URL}${product.pic1}`,
+        price: product.oprice,
+        category: product.cname,
+        originalPrice: product.mprice,
+        stock: product.no_of_stock,
+        products: brands[val].arr,
+        brand: brandName,
+        product: product
+      },
+    });
+  };
+
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    toast.success(`${product.pname} added to cart!`);
+  };
+
+  const handleCompare = (e, product) => {
+    e.stopPropagation();
+    toast.success(`${product.pname} added to compare list!`);
+  };
+
+  const handleWishlist = (e, product) => {
+    e.stopPropagation();
+    toast.success(`${product.pname} added to wishlist!`);
+  };
+
   // Reusable component for Compare & Wishlist section
-  const CompareWishlistSection = () => (
-    <div className="flex justify-around w-full items-center sm:gap-4 gap-1 text-sm  text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <div className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors">
+  const CompareWishlistSection = ({ product }) => (
+    <div className="flex justify-around w-full items-center sm:gap-4 gap-1 text-sm text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div 
+        className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors"
+        onClick={(e) => handleCompare(e, product)}
+      >
         <VscGraph className="w-4 h-4" />
         <span>Compare</span>
       </div>
       <span className="text-gray-300">•</span>
-      <div className="flex items-center gap-1 hover:text-red-500 cursor-pointer transition-colors">
+      <div 
+        className="flex items-center gap-1 hover:text-red-500 cursor-pointer transition-colors"
+        onClick={(e) => handleWishlist(e, product)}
+      >
         <FaRegHeart className="w-4 h-4" />
         <span>Add to Wishlist</span>
       </div>
     </div>
   );
 
-  const CompareWishlistSection1 = () => (
-    <div className="flex justify-between w-full items-center sm:gap-4 md:gap-2 lg:px-0 lg:gap-0 gap-0 px-2 text-sm  text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <div className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors">
+  const CompareWishlistSection1 = ({ product }) => (
+    <div className="flex justify-between w-full items-center sm:gap-4 md:gap-2 lg:px-0 lg:gap-0 gap-0 px-2 text-sm text-gray-500 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div 
+        className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors"
+        onClick={(e) => handleCompare(e, product)}
+      >
         <VscGraph className="w-4 h-4" />
-        <span className="text-xs sm:text-xs ">Compare</span>
+        <span className="text-xs sm:text-xs">Compare</span>
       </div>
       <span className="text-gray-300">•</span>
-      <div className="flex items-center sm:gap-1  gap-0 hover:text-red-500 cursor-pointer transition-colors">
+      <div 
+        className="flex items-center sm:gap-1 gap-0 hover:text-red-500 cursor-pointer transition-colors"
+        onClick={(e) => handleWishlist(e, product)}
+      >
         <FaRegHeart className="sm:w-4 sm:h-4 w-2 h-2" />
         <span className="text-[0.8rem] sm:text-xs lg:text-">Add to Wishlist</span>
       </div>
     </div>
   );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading brands...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (brands.length === 0) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600">No brands found</p>
+        </div>
+      </div>
+    );
+  }
+
+  const currentBrand = brands[val];
+  const currentProducts = currentBrand ? currentBrand.arr : [];
 
   return (
     <div className="min-h-screen bg-white">
@@ -239,10 +550,10 @@ const Brands = () => {
       <div className="bg-white shadow-sm border-b flex justify-center">
         <div className="max-w-7xl mx-auto px-4 w-full">
           <div className="flex space-x-4 overflow-x-auto no-scrollbar mx-auto items-center justify-center">
-            {list.map((brand, idx) => (
+            {brands.map((brand, idx) => (
               <button
                 key={idx}
-                onClick={() => setSale(brand.arr[0]) || setVal(idx)}
+                onClick={() => handleBrandSwitch(idx)}
                 className={`py-3 px-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors flex-shrink-0 ${
                   val === idx
                     ? "border-blue-600 text-blue-600"
@@ -258,51 +569,54 @@ const Brands = () => {
 
       <section>
         <div className="mx-auto max-w-[1400px] bg-gray-50 p-4 md:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3  items-start ">
+          <div className="grid grid-cols-1 lg:grid-cols-3 items-start">
             {/* Left Grid */}
-
             <div
               className={`${
-                list[val].arr.length === 1
-                  ? "flex justify-end w-full mt-4 lg:mt-0"  // only 1 item → push right
-                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0  mx-auto " // multiple items → grid
+                currentProducts.length === 1
+                  ? "flex justify-end w-full mt-4 lg:mt-0"
+                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0 mx-auto"
               }`}
             >
-              {list[val].arr.slice(0, visibleCount).map((item, i) => (
+              {currentProducts.slice(0, visibleCount).map((product, i) => (
                 <div
-                  onClick={() =>
-                    navigate(`/brands/${encodeURIComponent(item.name)}`, {
-                      state: {
-                        image: item.image,
-                        price: item.price,
-                        category: item.category,
-                        products: list[val].arr,
-                        brand: list[val].name,
-                      },
-                    })
-                  }
-                  key={i}
-                  className="bg-white  p-3  flex flex-col justify-between items-center text-center 
-                   group cursor-pointer transition-all duration-300    hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
-                  <p className="text-sm text-gray-500">{item.category}</p>
+                  onClick={() => handleProductClick(product, currentBrand.name)}
+                  key={product.PID || i}
+                  className="bg-white p-3 flex flex-col justify-between items-center text-center 
+                   group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
+                >
+                  <p className="text-sm text-gray-500">{product.cname}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
-                    {item.name}
+                    {product.pname}
                   </p>
                   <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-32 object-contain my-3 "
+                    src={`${IMAGE_BASE_URL}${product.pic1}`}
+                    alt={product.pname}
+                    className="h-32 object-contain my-3"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                    }}
                   />
                   <div className="flex items-center justify-between w-full">
-                    <span className="text-lg font-semibold">{item.price}</span>
-                    <button className="bg-yellow-400 p-2 rounded-full text-white hover:bg-yellow-500 transition-colors">
+                    <div className="flex flex-col">
+                      {product.mprice && product.mprice !== product.oprice && (
+                        <span className="text-xs text-gray-500 line-through">
+                          ₹{product.mprice}
+                        </span>
+                      )}
+                      <span className="text-lg font-semibold">₹{product.oprice}</span>
+                    </div>
+                    <button 
+                      className="bg-yellow-400 p-2 rounded-full text-white hover:bg-yellow-500 transition-colors"
+                      onClick={(e) => handleAddToCart(e, product)}
+                    >
                       <FaShoppingCart />
                     </button>
                   </div>
-                  <CompareWishlistSection1 />
+                  <CompareWishlistSection1 product={product} />
                 </div>
               ))}
-              {visibleCount < list[val].arr.length && (
+              {visibleCount < currentProducts.length && (
                 <button
                   onClick={handleViewMore}
                   className="mt-2 px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition-colors"
@@ -313,82 +627,96 @@ const Brands = () => {
             </div>
 
             {/* Featured Product */}
-            <div 
-              className="bg-white py-5   px-3 gap-1 mx-1 md:min-h-[41rem]  flex flex-col justify-between items-center
-                text-center  mt-4 lg:mt-0 group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
-              onClick={()=> navigate(`/brands/${encodeURIComponent(sale.name)}`, {
-                state: { 
-                  image: sale.image, 
-                  price: sale.price, 
-                  category: sale.category,
-                  products: list[val].arr,
-                  brand: list[val].name,
-                },
-              })}
-            >
-              <div className="w-full space-y-10">
-                <div>  <p className="text-sm text-gray-500">{sale.category}</p>
-                <p className="font-semibold text-blue-700 mb-4 line-clamp-2">
-                  {sale.name}
-                </p> </div>
-              
-                <img
-                  src={sale.image}
-                  alt="featured product"
-                  className="w-full  max-h-96 m object-contain mb-6"
-                />
-                <div className="w-full">
-                  <div className="flex items-center justify-around w-full ">
-                    <span className="text-lg font-semibold">{sale.price}</span>
-                    <button className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2 hover:bg-yellow-500 transition-colors">
-                      <FaShoppingCart /> Add to Cart
-                    </button>
+            {featuredProduct && (
+              <div 
+                className="bg-white py-5 px-3 gap-1 mx-1 md:min-h-[41rem] flex flex-col justify-between items-center
+                  text-center mt-4 lg:mt-0 group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
+                onClick={() => handleProductClick(featuredProduct, currentBrand.name)}
+              >
+                <div className="w-full space-y-10">
+                  <div>
+                    <p className="text-sm text-gray-500">{featuredProduct.cname}</p>
+                    <p className="font-semibold text-blue-700 mb-4 line-clamp-2">
+                      {featuredProduct.pname}
+                    </p>
                   </div>
-                  <CompareWishlistSection />
+                
+                  <img
+                    src={`${IMAGE_BASE_URL}${featuredProduct.pic1}`}
+                    alt="featured product"
+                    className="w-full max-h-96 object-contain mb-6"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                    }}
+                  />
+                  <div className="w-full">
+                    <div className="flex items-center justify-around w-full">
+                      <div className="flex flex-col">
+                        {featuredProduct.mprice && featuredProduct.mprice !== featuredProduct.oprice && (
+                          <span className="text-sm text-gray-500 line-through">
+                            ₹{featuredProduct.mprice}
+                          </span>
+                        )}
+                        <span className="text-lg font-semibold">₹{featuredProduct.oprice}</span>
+                      </div>
+                      <button 
+                        className="bg-yellow-400 px-4 py-2 rounded-full text-white flex items-center gap-2 hover:bg-yellow-500 transition-colors"
+                        onClick={(e) => handleAddToCart(e, featuredProduct)}
+                      >
+                        <FaShoppingCart /> Add to Cart
+                      </button>
+                    </div>
+                    <CompareWishlistSection product={featuredProduct} />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Right Grid */}
-            <div   className={`${
-                list[val].arr.length === 1
-                  ? "flex justify-start w-full mt-4 lg:mt-0"  // only 1 item → push right
-                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0 mx-auto" // multiple items → grid
+            <div className={`${
+                currentProducts.length === 1
+                  ? "flex justify-start w-full mt-4 lg:mt-0"
+                  : "grid grid-cols-1 sm:grid-cols-2 gap-1 w-fit mt-4 lg:mt-0 mx-auto"
               }`}>
-              {list[val].arr.slice(0, visibleCount1).map((item, i) => (
+              {currentProducts.slice(0, visibleCount1).map((product, i) => (
                 <div
-                  key={i}
-                  className="bg-white  p-3   flex flex-col justify-between items-center 
-                  text-center  group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
-                  onClick={()=> navigate(`/brands/${encodeURIComponent(item.name)}`, {
-                    state: { 
-                      image: item.image, 
-                      price: item.price, 
-                      category: item.category,
-                      products: list[val].arr,
-                      brand: list[val].name,
-                    },
-                  })}
+                  key={product.PID || i}
+                  className="bg-white p-3 flex flex-col justify-between items-center 
+                  text-center group cursor-pointer transition-all duration-300 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]"
+                  onClick={() => handleProductClick(product, currentBrand.name)}
                 >
-                  <p className="text-sm text-gray-500">{item.category}</p>
+                  <p className="text-sm text-gray-500">{product.cname}</p>
                   <p className="font-semibold text-blue-700 line-clamp-2">
-                    {item.name}
+                    {product.pname}
                   </p>
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={`${IMAGE_BASE_URL}${product.pic1}`}
+                    alt={product.pname}
                     className="h-32 object-contain my-3"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                    }}
                   />
                   <div className="flex items-center justify-between w-full">
-                    <span className="text-lg font-semibold">{item.price}</span>
-                    <button className="bg-yellow-400 p-2 rounded-full text-white hover:bg-yellow-500 transition-colors">
+                    <div className="flex flex-col">
+                      {product.mprice && product.mprice !== product.oprice && (
+                        <span className="text-xs text-gray-500 line-through">
+                          ₹{product.mprice}
+                        </span>
+                      )}
+                      <span className="text-lg font-semibold">₹{product.oprice}</span>
+                    </div>
+                    <button 
+                      className="bg-yellow-400 p-2 rounded-full text-white hover:bg-yellow-500 transition-colors"
+                      onClick={(e) => handleAddToCart(e, product)}
+                    >
                       <FaShoppingCart />
                     </button>
                   </div>
-                  <CompareWishlistSection1 />
+                  <CompareWishlistSection1 product={product} />
                 </div>
               ))}
-              {visibleCount1 < list[val].arr.length && (
+              {visibleCount1 < currentProducts.length && (
                 <button
                   onClick={handleViewMore1}
                   className="mt-2 px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500 transition-colors"
