@@ -356,7 +356,7 @@
 // export default NewSection;
 
 
-
+import { useNavigate } from "react-router-dom";
 
 import React, { useState, useEffect } from "react";
 import { ShoppingCart, BarChart3, Heart } from "lucide-react";
@@ -364,6 +364,8 @@ import axios from "axios";
 const IMAGE_BASE_URL = "http://localhost:5000/";
 
 const NewSection = () => {
+  const navigate = useNavigate();
+
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 0,
@@ -381,14 +383,11 @@ const NewSection = () => {
     try {
 
       const res = await axios.get("http://localhost:5000/api/products");
-      const data = res.data;
-//       console.log('data', data)
-    
+      const data = res.data;    
 
       // const response = await fetch("http://localhost:5000/api/products");
       // const data = await response.json();
       console.log("data", data);
-      // Filter only Quick Heal products based on brand name
 
       const quickHealProducts = data.filter(product => 
         product.bname && product.bname.toLowerCase().includes("Quick Heal")
@@ -502,7 +501,20 @@ const NewSection = () => {
   const handleProductClick = (product) => {
     // Mock navigation - you can replace this with actual navigation
     console.log("Product clicked:", product);
-    alert(`Viewing details for: ${product.pname}`);
+    navigate(`/new-section-details/${encodeURIComponent(product.pname)}`, {
+      state: {
+        image: `${IMAGE_BASE_URL}${product.pic1}`,
+        price: product.oprice,
+        originalPrice: product.mprice,
+        category: product.cname,
+        stock: product.no_of_stock,
+        
+        // products: ,
+        brand: product.bname,
+
+      },
+    });
+
   };
 
   const handleAddToCart = (e, product) => {

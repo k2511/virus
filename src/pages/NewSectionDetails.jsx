@@ -17,9 +17,9 @@ const NewSectionDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { image, price, category, originalPrice,stock, products } = location.state || {};
+  const { image, price, category, originalPrice, stock } = location.state || {};
 
-  console.log("pro", products)
+  // console.log("pro", products)
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Reviews");
 
@@ -441,7 +441,7 @@ const NewSectionDetails = () => {
   
 
    
-     <RelatedProduct handleScroll={handleScroll} products={products} />
+     {/* <RelatedProduct handleScroll={handleScroll} products={products} /> */}
     </div>
 
     </>
