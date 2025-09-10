@@ -16,10 +16,17 @@
 //   const [visibleProducts, setVisibleProducts] = useState(8);
 //   const [products, setProducts] = useState([]);
 //   const [loading, setLoading] = useState(true);
-//   const [categories, setCategories] = useState([]);
 
 //   const navigate = useNavigate();
 //   const tabs = ["All Products", "Total Security", "Internet Security", "Antivirus Pro", "Upgrade"];
+
+//   // Map API categories to our tab names
+//   const categoryMap = {
+//     "Total Security": ["total security", "total", "ts"],
+//     "Internet Security": ["internet security", "internet", "is"],
+//     "Antivirus Pro": ["antivirus pro", "antivirus", "avp", "pro"],
+//     "Upgrade": ["upgrade", "renewal", "update"]
+//   };
 
 //   const getData = async () => {
 //     try {
@@ -32,17 +39,29 @@
 //       );
       
 //       setProducts(quickHealProducts);
-      
-//       // Extract unique categories from Quick Heal products
-//       const uniqueCategories = [...new Set(quickHealProducts.map(product => product.cname))];
-//       setCategories(uniqueCategories);
-      
 //       setLoading(false);
 //     } catch (err) {
 //       console.error("Error fetching data:", err);
 //       toast.error("Failed to load products");
 //       setLoading(false);
 //     }
+//   };
+
+//   // Filter products based on active tab
+//   const filteredProducts = () => {
+//     if (activeTab === "All Products") {
+//       return products;
+//     }
+    
+//     // Find matching category keys for the active tab
+//     const categoryKeys = categoryMap[activeTab] || [activeTab.toLowerCase()];
+    
+//     return products.filter(product => {
+//       if (!product.cname) return false;
+      
+//       const productCategory = product.cname.toLowerCase();
+//       return categoryKeys.some(key => productCategory.includes(key.toLowerCase()));
+//     });
 //   };
 
 //   useEffect(() => {
@@ -94,9 +113,13 @@
 
 //   const handleDealProductClick = () => {
 //     // Find a suitable deal product from the API data
-//     const dealProduct = products.find(product => 
-//       product.cname === "Total Security" && product.pname.includes("3 Years")
-//     ) || products[0];
+//     const totalSecurityProducts = filteredProducts().filter(product => 
+//       product.cname && product.cname.toLowerCase().includes("total")
+//     );
+    
+//     const dealProduct = totalSecurityProducts.find(product => 
+//       product.pname && product.pname.includes("3 Years")
+//     ) || totalSecurityProducts[0] || products[0];
     
 //     if (dealProduct) {
 //       navigate(`/new-section-details/${encodeURIComponent(dealProduct.pname)}`, {
@@ -122,6 +145,11 @@
 //       </div>
 //     );
 //   }
+
+//   const productsToShow = filteredProducts();
+//   const displayProducts = activeTab === "All Products" 
+//     ? productsToShow.slice(0, visibleProducts) 
+//     : productsToShow;
 
 //   return (
 //     <div className="min-h-screen bg-white sm:p-4 p-0 lg:p-8">
@@ -221,94 +249,102 @@
 //                       : "text-gray-600 hover:text-gray-900"
 //                   }`}
 //                 >
-//                   {tab}
+//                   {tab} {tab !== "All Products" && `(${filteredProducts().filter(p => {
+//                     const categoryKeys = categoryMap[tab] || [tab.toLowerCase()];
+//                     return p.cname && categoryKeys.some(key => p.cname.toLowerCase().includes(key.toLowerCase()));
+//                   }).length})`}
 //                 </button>
 //               ))}
 //             </div>
 
-//             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0">
-//               {products
-//                 .filter((product) => activeTab === "All Products" || product.cname === activeTab)
-//                 .slice(0, activeTab === "All Products" ? visibleProducts : products.length)
-//                 .map((product) => (
-//                   <div
-//                     key={product.PID}
-//                     className="group cursor-pointer"
-//                     onClick={() => handleProductClick(product)}
-//                   >
-//                     <div className="bg-white border-r-2 border-gray-200 mb-4 sm:p-4 p-3 transition-all duration-200 m-1 hover:border-gray-300 border-b-2 sm:border-b-0 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
-//                       <div className="text-xs text-gray-500 mb-2">{product.cname}</div>
-//                       <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
-//                         {product.pname}
-//                       </h3>
+//             {displayProducts.length === 0 ? (
+//               <div className="text-center py-10">
+//                 <p className="text-gray-500">No products found in this category.</p>
+//               </div>
+//             ) : (
+//               <>
+//                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-0">
+//                   {displayProducts.map((product) => (
+//                     <div
+//                       key={product.PID}
+//                       className="group cursor-pointer"
+//                       onClick={() => handleProductClick(product)}
+//                     >
+//                       <div className="bg-white border-r-2 border-gray-200 mb-4 sm:p-4 p-3 transition-all duration-200 m-1 hover:border-gray-300 border-b-2 sm:border-b-0 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
+//                         <div className="text-xs text-gray-500 mb-2">{product.cname}</div>
+//                         <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
+//                           {product.pname}
+//                         </h3>
 
-//                       <div className="mb-4 rounded-lg sm:p-1 h-32 flex items-center justify-center">
-//                         <img
-//                           src={`${IMAGE_BASE_URL}${product.pic1}`}
-//                           alt={product.pname}
-//                           className="max-w-full sm:w-full w-40 mt-3 mb-3 sm:h-full h-40 object-contain"
-//                           onError={(e) => {
-//                             e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
-//                           }}
-//                         />
-//                       </div>
-
-//                       <div className="flex items-center justify-between">
-//                         <div className="flex flex-col">
-//                           {product.mprice && product.mprice !== product.oprice && (
-//                             <span className="text-xs text-gray-500 line-through">
-//                               ₹{product.mprice}
-//                             </span>
-//                           )}
-//                           <span className="text-lg font-semibold text-gray-900">
-//                             ₹{product.oprice}
-//                           </span>
+//                         <div className="mb-4 rounded-lg sm:p-1 h-32 flex items-center justify-center">
+//                           <img
+//                             src={`${IMAGE_BASE_URL}${product.pic1}`}
+//                             alt={product.pname}
+//                             className="max-w-full sm:w-full w-40 mt-3 mb-3 sm:h-full h-40 object-contain"
+//                             onError={(e) => {
+//                               e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+//                             }}
+//                           />
 //                         </div>
 
-//                         <button
-//                           className="bg-yellow-400 hover:bg-yellow-500 text-white p-2 rounded-full transition-colors"
-//                           onClick={(e) => handleAddToCart(e, product)}
-//                         >
-//                           <ShoppingCart className="w-4 h-4" />
-//                         </button>
-//                       </div>
+//                         <div className="flex items-center justify-between">
+//                           <div className="flex flex-col">
+//                             {product.mprice && product.mprice !== product.oprice && (
+//                               <span className="text-xs text-gray-500 line-through">
+//                                 ₹{product.mprice}
+//                               </span>
+//                             )}
+//                             <span className="text-lg font-semibold text-gray-900">
+//                               ₹{product.oprice}
+//                             </span>
+//                           </div>
 
-//                       <div className="flex items-center justify-between gap-1 mt-3 text-xs text-gray-500">
-//                         <button
-//                           className="flex items-center gap-1 hover:text-gray-700"
-//                           onClick={(e) => {
-//                             e.stopPropagation();
-//                             toast.success("Added to compare list!");
-//                           }}
-//                         >
-//                           <BarChart3 className="w-3 h-3" />
-//                           Compare
-//                         </button>
-//                         <button
-//                           className="flex items-center gap-1 hover:text-gray-700 text-[0.8rem] sm:text-xs"
-//                           onClick={(e) => {
-//                             e.stopPropagation();
-//                             toast.success("Added to wishlist!");
-//                           }}
-//                         >
-//                           <Heart className="w-3 h-3" />
-//                           Wishlist
-//                         </button>
+//                           <button
+//                             className="bg-yellow-400 hover:bg-yellow-500 text-white p-2 rounded-full transition-colors"
+//                             onClick={(e) => handleAddToCart(e, product)}
+//                           >
+//                             <ShoppingCart className="w-4 h-4" />
+//                           </button>
+//                         </div>
+
+//                         <div className="flex items-center justify-between gap-1 mt-3 text-xs text-gray-500">
+//                           <button
+//                             className="flex items-center gap-1 hover:text-gray-700"
+//                             onClick={(e) => {
+//                               e.stopPropagation();
+//                               toast.success("Added to compare list!");
+//                             }}
+//                           >
+//                             <BarChart3 className="w-3 h-3" />
+//                             Compare
+//                           </button>
+//                           <button
+//                             className="flex items-center gap-1 hover:text-gray-700 text-[0.8rem] sm:text-xs"
+//                             onClick={(e) => {
+//                               e.stopPropagation();
+//                               toast.success("Added to wishlist!");
+//                             }}
+//                           >
+//                             <Heart className="w-3 h-3" />
+//                             Wishlist
+//                           </button>
+//                         </div>
 //                       </div>
 //                     </div>
-//                   </div>
-//                 ))}
-//             </div>
+//                   ))}
+//                 </div>
 
-//             {activeTab === "All Products" && visibleProducts < products.length && (
-//               <div className="text-center mt-8">
-//                 <button
-//                   onClick={handleViewMore}
-//                   className="px-6 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 transition-colors"
-//                 >
-//                   View More
-//                 </button>
-//               </div>
+//                 {activeTab === "All Products" && visibleProducts < productsToShow.length && (
+//                   <div className="text-center mt-8">
+//                     <button
+//                       onClick={handleViewMore}
+//                       className="px-6 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 transition-colors"
+//                     >
+//                       View More
+//                     </button>
+//                   </div>
+//                 )}
+//               </>
 //             )}
 //           </div>
 //         </div>
@@ -322,17 +358,8 @@
 
 
 
-
-
-
-
-
-
 import React, { useState, useEffect } from "react";
 import { ShoppingCart, BarChart3, Heart } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "axios";
 
 const IMAGE_BASE_URL = "http://localhost:5000/";
 
@@ -347,34 +374,69 @@ const NewSection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate();
-  const tabs = ["All Products", "Total Security", "Internet Security", "Antivirus Pro", "Upgrade"];
-
-  // Map API categories to our tab names
-  const categoryMap = {
-    "Total Security": ["total security", "total", "ts"],
-    "Internet Security": ["internet security", "internet", "is"],
-    "Antivirus Pro": ["antivirus pro", "antivirus", "avp", "pro"],
-    "Upgrade": ["upgrade", "renewal", "update"]
-  };
+  // Updated tabs to match Quick Heal product categories
+  const tabs = ["All Products", "Internet Security", "Total Security", "Antivirus", "Upgrade"];
 
   const getData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
-      const data = res.data;
+      const response = await fetch("http://localhost:5000/api/products");
+      const data = await response.json();
       
-      // Filter only Quick Heal products
+      // Filter only Quick Heal products based on brand name
       const quickHealProducts = data.filter(product => 
         product.bname && product.bname.toLowerCase().includes("quick heal")
       );
       
+      console.log("Quick Heal Products:", quickHealProducts);
       setProducts(quickHealProducts);
       setLoading(false);
     } catch (err) {
       console.error("Error fetching data:", err);
-      toast.error("Failed to load products");
+      // Show mock data in case of error for demonstration
+      const mockData = [
+        {
+          PID: 268,
+          cname: "Antivirus",
+          bname: "Quick Heal",
+          pname: "uPGRADE Quick Heal Internet Security 5 User 3 Year",
+          mprice: "7970",
+          oprice: "4200",
+          pic1: "action/photos/_2019_09_24_08_43_45.jpg",
+          no_of_stock: 139
+        }
+      ];
+      setProducts(mockData);
       setLoading(false);
     }
+  };
+
+  // Function to categorize products based on product name and category
+  const categorizeProduct = (product) => {
+    const productName = product.pname ? product.pname.toLowerCase() : '';
+    const categoryName = product.cname ? product.cname.toLowerCase() : '';
+    
+    // Check for Internet Security
+    if (productName.includes('internet security') || categoryName.includes('internet')) {
+      return 'Internet Security';
+    }
+    
+    // Check for Total Security
+    if (productName.includes('total security') || categoryName.includes('total')) {
+      return 'Total Security';
+    }
+    
+    // Check for Antivirus
+    if (productName.includes('antivirus') || categoryName.includes('antivirus')) {
+      return 'Antivirus';
+    }
+    
+    // Check for Upgrade
+    if (productName.includes('upgrade') || productName.includes('renewal') || categoryName.includes('upgrade')) {
+      return 'Upgrade';
+    }
+    
+    // Default category based on cname or fallback
+    return product.cname || 'Antivirus';
   };
 
   // Filter products based on active tab
@@ -383,15 +445,22 @@ const NewSection = () => {
       return products;
     }
     
-    // Find matching category keys for the active tab
-    const categoryKeys = categoryMap[activeTab] || [activeTab.toLowerCase()];
+    return products.filter(product => {
+      const category = categorizeProduct(product);
+      return category === activeTab;
+    });
+  };
+
+  // Get product count for each category
+  const getCategoryCount = (categoryName) => {
+    if (categoryName === "All Products") {
+      return products.length;
+    }
     
     return products.filter(product => {
-      if (!product.cname) return false;
-      
-      const productCategory = product.cname.toLowerCase();
-      return categoryKeys.some(key => productCategory.includes(key.toLowerCase()));
-    });
+      const category = categorizeProduct(product);
+      return category === categoryName;
+    }).length;
   };
 
   useEffect(() => {
@@ -424,44 +493,30 @@ const NewSection = () => {
   };
 
   const handleProductClick = (product) => {
-    navigate(`/new-section-details/${encodeURIComponent(product.pname)}`, {
-      state: {
-        image: `${IMAGE_BASE_URL}${product.pic1}`,
-        price: product.oprice,
-        category: product.cname,
-        originalPrice: product.mprice,
-        stock: product.no_of_stock,
-        product: product
-      },
-    });
+    // Mock navigation - you can replace this with actual navigation
+    console.log("Product clicked:", product);
+    alert(`Viewing details for: ${product.pname}`);
   };
 
   const handleAddToCart = (e, product) => {
     e.stopPropagation();
-    toast.success(`${product.pname} added to cart!`);
+    alert(`${product.pname} added to cart!`);
   };
 
   const handleDealProductClick = () => {
-    // Find a suitable deal product from the API data
-    const totalSecurityProducts = filteredProducts().filter(product => 
-      product.cname && product.cname.toLowerCase().includes("total")
+    // Find a suitable deal product - prefer Internet Security or Total Security
+    const internetSecurityProducts = products.filter(product => 
+      categorizeProduct(product) === 'Internet Security'
     );
     
-    const dealProduct = totalSecurityProducts.find(product => 
-      product.pname && product.pname.includes("3 Years")
-    ) || totalSecurityProducts[0] || products[0];
+    const totalSecurityProducts = products.filter(product => 
+      categorizeProduct(product) === 'Total Security'
+    );
+    
+    const dealProduct = internetSecurityProducts[0] || totalSecurityProducts[0] || products[0];
     
     if (dealProduct) {
-      navigate(`/new-section-details/${encodeURIComponent(dealProduct.pname)}`, {
-        state: {
-          image: `${IMAGE_BASE_URL}${dealProduct.pic1}`,
-          price: dealProduct.oprice,
-          category: dealProduct.cname,
-          originalPrice: dealProduct.mprice,
-          stock: dealProduct.no_of_stock,
-          product: dealProduct
-        },
-      });
+      handleProductClick(dealProduct);
     }
   };
 
@@ -470,7 +525,7 @@ const NewSection = () => {
       <div className="min-h-screen bg-white sm:p-4 p-0 lg:p-8 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading products...</p>
+          <p className="mt-4 text-gray-600">Loading Quick Heal products...</p>
         </div>
       </div>
     );
@@ -484,6 +539,12 @@ const NewSection = () => {
   return (
     <div className="min-h-screen bg-white sm:p-4 p-0 lg:p-8">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-6 text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Quick Heal Security Solutions</h1>
+          <p className="text-gray-600">Complete protection for your digital world</p>
+        </div>
+
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Deal of the Day Section */}
           <div className="lg:w-80 flex-shrink-0">
@@ -494,7 +555,7 @@ const NewSection = () => {
               <div className="absolute top-4 right-4 bg-yellow-400 rounded-full w-16 h-16 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-xs font-medium text-gray-700">Save</div>
-                  <div className="text-sm font-bold text-gray-900">₹20</div>
+                  <div className="text-sm font-bold text-gray-900">₹3770</div>
                 </div>
               </div>
 
@@ -507,35 +568,35 @@ const NewSection = () => {
                 <img
                   src="https://antivirusestore.in/admin/model/pics/quick-heal-total-security08_18_09_46_14.png"
                   style={{ height: "283px" }}
-                  alt="Quick Heal Total Security Deal"
+                  alt="Quick Heal Internet Security Deal"
                   className="w-full object-contain mx-auto"
                   onError={(e) => {
-                    e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                    e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Quick+Heal";
                   }}
                 />
               </div>
 
               <div className="text-center mb-4">
                 <h4 className="text-blue-600 font-medium mb-2 hover:underline">
-                  Quick Heal Total Security 1PC 3 Years
+                  Quick Heal Internet Security 5 User 3 Year
                 </h4>
 
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  <span className="text-gray-500 line-through text-sm">₹99.00</span>
-                  <span className="text-red-600 text-2xl font-bold">₹79.00</span>
+                  <span className="text-gray-500 line-through text-sm">₹7970</span>
+                  <span className="text-red-600 text-2xl font-bold">₹4200</span>
                 </div>
 
                 <div className="flex justify-between text-sm text-gray-600 mb-4">
                   <span>
-                    Available: <span className="font-semibold">6</span>
+                    Available: <span className="font-semibold">139</span>
                   </span>
                   <span>
-                    Already Sold: <span className="font-semibold">28</span>
+                    Already Sold: <span className="font-semibold">50</span>
                   </span>
                 </div>
 
                 <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-                  <div className="bg-yellow-400 h-2 rounded-full" style={{ width: "82%" }}></div>
+                  <div className="bg-yellow-400 h-2 rounded-full" style={{ width: "73%" }}></div>
                 </div>
 
                 <div className="text-center mb-4">
@@ -566,30 +627,31 @@ const NewSection = () => {
           {/* Products Section */}
           <div className="flex-1 mx-auto">
             <div className="flex flex-nowrap sm:gap-5 gap-0 mx-auto mb-8 bg-gray-100 rounded-lg p-1 w-full overflow-x-auto">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => {
-                    setActiveTab(tab);
-                    setVisibleProducts(8);
-                  }}
-                  className={`lg:px-4 md:px-2 sm:px-1 py-2 px-2 rounded-md sm:text-sm md:text-md mx-auto text-[0.7rem] font-medium transition-all whitespace-nowrap ${
-                    activeTab === tab
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  {tab} {tab !== "All Products" && `(${filteredProducts().filter(p => {
-                    const categoryKeys = categoryMap[tab] || [tab.toLowerCase()];
-                    return p.cname && categoryKeys.some(key => p.cname.toLowerCase().includes(key.toLowerCase()));
-                  }).length})`}
-                </button>
-              ))}
+              {tabs.map((tab) => {
+                const count = getCategoryCount(tab);
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => {
+                      setActiveTab(tab);
+                      setVisibleProducts(8);
+                    }}
+                    className={`lg:px-4 md:px-2 sm:px-1 py-2 px-2 rounded-md sm:text-sm md:text-md mx-auto text-[0.7rem] font-medium transition-all whitespace-nowrap ${
+                      activeTab === tab
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    {tab} ({count})
+                  </button>
+                );
+              })}
             </div>
 
             {displayProducts.length === 0 ? (
               <div className="text-center py-10">
-                <p className="text-gray-500">No products found in this category.</p>
+                <p className="text-gray-500">No Quick Heal products found in this category.</p>
+                <p className="text-sm text-gray-400 mt-2">Try selecting a different category or check back later.</p>
               </div>
             ) : (
               <>
@@ -601,7 +663,9 @@ const NewSection = () => {
                       onClick={() => handleProductClick(product)}
                     >
                       <div className="bg-white border-r-2 border-gray-200 mb-4 sm:p-4 p-3 transition-all duration-200 m-1 hover:border-gray-300 border-b-2 sm:border-b-0 hover:shadow-[0px_0px_6px_rgba(0,0,0,0.3)]">
-                        <div className="text-xs text-gray-500 mb-2">{product.cname}</div>
+                        <div className="text-xs text-gray-500 mb-2">
+                          {categorizeProduct(product)}
+                        </div>
                         <h3 className="text-blue-600 font-semibold sm:text-sm text-xs mb-3 line-clamp-2 hover:underline">
                           {product.pname}
                         </h3>
@@ -612,7 +676,7 @@ const NewSection = () => {
                             alt={product.pname}
                             className="max-w-full sm:w-full w-40 mt-3 mb-3 sm:h-full h-40 object-contain"
                             onError={(e) => {
-                              e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Image+Not+Found";
+                              e.target.src = "https://via.placeholder.com/200/200/ffffff/000000?text=Quick+Heal";
                             }}
                           />
                         </div>
@@ -642,7 +706,7 @@ const NewSection = () => {
                             className="flex items-center gap-1 hover:text-gray-700"
                             onClick={(e) => {
                               e.stopPropagation();
-                              toast.success("Added to compare list!");
+                              alert("Added to compare list!");
                             }}
                           >
                             <BarChart3 className="w-3 h-3" />
@@ -652,13 +716,20 @@ const NewSection = () => {
                             className="flex items-center gap-1 hover:text-gray-700 text-[0.8rem] sm:text-xs"
                             onClick={(e) => {
                               e.stopPropagation();
-                              toast.success("Added to wishlist!");
+                              alert("Added to wishlist!");
                             }}
                           >
                             <Heart className="w-3 h-3" />
                             Wishlist
                           </button>
                         </div>
+
+                        {/* Stock indicator */}
+                        {product.no_of_stock && (
+                          <div className="mt-2 text-xs text-green-600">
+                            In Stock: {product.no_of_stock} units
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -670,7 +741,7 @@ const NewSection = () => {
                       onClick={handleViewMore}
                       className="px-6 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-500 transition-colors"
                     >
-                      View More
+                      View More ({productsToShow.length - visibleProducts} remaining)
                     </button>
                   </div>
                 )}
